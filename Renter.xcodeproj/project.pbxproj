@@ -27,6 +27,8 @@
 		F8EAE5D92793117500298DED /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE5D82793117500298DED /* AuthManager.swift */; };
 		F8EAE5DB279311D300298DED /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE5DA279311D300298DED /* User.swift */; };
 		F8EAE5DD2793166300298DED /* Extension+NotificationCenter.Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE5DC2793166300298DED /* Extension+NotificationCenter.Name.swift */; };
+		F8EAE5E0279328AF00298DED /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE5DF279328AF00298DED /* InputView.swift */; };
+		F8EAE5E2279330FE00298DED /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE5E1279330FE00298DED /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +73,8 @@
 		F8EAE5D82793117500298DED /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		F8EAE5DA279311D300298DED /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F8EAE5DC2793166300298DED /* Extension+NotificationCenter.Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+NotificationCenter.Name.swift"; sourceTree = "<group>"; };
+		F8EAE5DF279328AF00298DED /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
+		F8EAE5E1279330FE00298DED /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +160,7 @@
 			children = (
 				F8EAE5872792F45800298DED /* AppDelegate.swift */,
 				F8EAE5892792F45800298DED /* SceneDelegate.swift */,
+				F8EAE5E1279330FE00298DED /* Constants.swift */,
 				F8EAE5902792F45900298DED /* Assets.xcassets */,
 			);
 			path = Resourses;
@@ -175,6 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				F8EAE5DE2793184B00298DED /* Storyboards */,
+				F8EAE5DF279328AF00298DED /* InputView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -395,10 +401,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				F8EAE5C72792FF3A00298DED /* LoginViewController.swift in Sources */,
+				F8EAE5E2279330FE00298DED /* Constants.swift in Sources */,
 				F8EAE58C2792F45800298DED /* ViewController.swift in Sources */,
 				F8EAE5CF2793070E00298DED /* Extension+UIView.swift in Sources */,
 				F8EAE5D92793117500298DED /* AuthManager.swift in Sources */,
 				F8EAE5C92792FF4300298DED /* RegisterViewController.swift in Sources */,
+				F8EAE5E0279328AF00298DED /* InputView.swift in Sources */,
 				F8EAE5D727930CEE00298DED /* ApiManager.swift in Sources */,
 				F8EAE5DD2793166300298DED /* Extension+NotificationCenter.Name.swift in Sources */,
 				F8EAE5DB279311D300298DED /* User.swift in Sources */,
