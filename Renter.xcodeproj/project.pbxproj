@@ -23,6 +23,10 @@
 		F8EAE5D12793072900298DED /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE5D02793072900298DED /* Extension+String.swift */; };
 		F8EAE5D32793074100298DED /* Extension+DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE5D22793074100298DED /* Extension+DateFormatter.swift */; };
 		F8EAE5D52793085600298DED /* JWTDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE5D42793085600298DED /* JWTDecoder.swift */; };
+		F8EAE5D727930CEE00298DED /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE5D627930CEE00298DED /* ApiManager.swift */; };
+		F8EAE5D92793117500298DED /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE5D82793117500298DED /* AuthManager.swift */; };
+		F8EAE5DB279311D300298DED /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE5DA279311D300298DED /* User.swift */; };
+		F8EAE5DD2793166300298DED /* Extension+NotificationCenter.Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE5DC2793166300298DED /* Extension+NotificationCenter.Name.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +67,10 @@
 		F8EAE5D02793072900298DED /* Extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
 		F8EAE5D22793074100298DED /* Extension+DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+DateFormatter.swift"; sourceTree = "<group>"; };
 		F8EAE5D42793085600298DED /* JWTDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JWTDecoder.swift; sourceTree = "<group>"; };
+		F8EAE5D627930CEE00298DED /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
+		F8EAE5D82793117500298DED /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		F8EAE5DA279311D300298DED /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		F8EAE5DC2793166300298DED /* Extension+NotificationCenter.Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+NotificationCenter.Name.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +165,8 @@
 			isa = PBXGroup;
 			children = (
 				F8EAE5D42793085600298DED /* JWTDecoder.swift */,
+				F8EAE5D627930CEE00298DED /* ApiManager.swift */,
+				F8EAE5D82793117500298DED /* AuthManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -164,7 +174,7 @@
 		F8EAE5B92792F59E00298DED /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				F8EAE5922792F45900298DED /* LaunchScreen.storyboard */,
+				F8EAE5DE2793184B00298DED /* Storyboards */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -230,6 +240,7 @@
 		F8EAE5CC2793051000298DED /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				F8EAE5DA279311D300298DED /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -240,8 +251,17 @@
 				F8EAE5CE2793070E00298DED /* Extension+UIView.swift */,
 				F8EAE5D02793072900298DED /* Extension+String.swift */,
 				F8EAE5D22793074100298DED /* Extension+DateFormatter.swift */,
+				F8EAE5DC2793166300298DED /* Extension+NotificationCenter.Name.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		F8EAE5DE2793184B00298DED /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				F8EAE5922792F45900298DED /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -377,7 +397,11 @@
 				F8EAE5C72792FF3A00298DED /* LoginViewController.swift in Sources */,
 				F8EAE58C2792F45800298DED /* ViewController.swift in Sources */,
 				F8EAE5CF2793070E00298DED /* Extension+UIView.swift in Sources */,
+				F8EAE5D92793117500298DED /* AuthManager.swift in Sources */,
 				F8EAE5C92792FF4300298DED /* RegisterViewController.swift in Sources */,
+				F8EAE5D727930CEE00298DED /* ApiManager.swift in Sources */,
+				F8EAE5DD2793166300298DED /* Extension+NotificationCenter.Name.swift in Sources */,
+				F8EAE5DB279311D300298DED /* User.swift in Sources */,
 				F8EAE5C52792FD4900298DED /* Coordinator.swift in Sources */,
 				F8EAE5D12793072900298DED /* Extension+String.swift in Sources */,
 				F8EAE5D32793074100298DED /* Extension+DateFormatter.swift in Sources */,

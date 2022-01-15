@@ -13,9 +13,19 @@ final class MainCoordinator: Coordinator {
     
     var children: [Coordinator]?
     
+    var observer: NSObjectProtocol?
+    
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
         self.navigationController.navigationBar.prefersLargeTitles = true
+        self.observer = NotificationCenter.default.addObserver(
+            forName: .tokenExpired,
+            object: nil,
+            queue: .main,
+            using: { [weak self] _ in
+                // TODO: reset to login
+                
+            })
     }
     
     func start() {
