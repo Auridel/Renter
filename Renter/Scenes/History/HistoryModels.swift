@@ -12,6 +12,15 @@
 
 import UIKit
 
+struct HistoryRowViewModel {
+    let date: String
+    let cold: Int
+    let hot: Int
+    let day: Int
+    let night: Int
+    let total: Double
+}
+
 enum History {
     // MARK: Use cases
 
@@ -21,11 +30,11 @@ enum History {
         }
 
         struct Response {
-
+            let entries: [HistoryEntry]
         }
 
         struct ViewModel {
-
+            let rows: [HistoryRowViewModel]
         }
     }
     
@@ -40,7 +49,7 @@ enum History {
         }
 
         struct ViewModel {
-
+            let rows: [HistoryRowViewModel]
         }
     }
 }

@@ -17,32 +17,39 @@ protocol HistoryDisplayLogic: AnyObject {
     func displayFiltredHistory(viewModel: History.FilterData.ViewModel)
 }
 
-class HistoryViewController: UIViewController, HistoryDisplayLogic {
+class HistoryViewController: UIViewController {
+    
     var interactor: HistoryBusinessLogic?
+    
     var router: (NSObjectProtocol & HistoryRoutingLogic & HistoryDataPassing)?
-
-    // MARK: - Routing
-
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if let scene = segue.identifier {
-//            let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
-//            if let router = router, router.responds(to: selector) {
-//                router.perform(selector, with: segue)
-//            }
-//        }
-//    }
+    
+    private var rows = [HistoryRowViewModel]()
+    
+    private let tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.register(HistoryTableViewCell.self,
+                           forCellReuseIdentifier: HistoryTableViewCell.identifier)
+        return tableView
+    }()
 
     // MARK: - View lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        HistoryConfigurator.shared.configure(with: self)
         
         title = "History"
         view.backgroundColor = .systemBackground
         
-        HistoryConfigurator.shared.configure(with: self)
         
+        configureViews()
         passHistoryRequest()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        tableView.frame = view.bounds
     }
     
     //MARK: - receive events from UI
@@ -60,14 +67,53 @@ class HistoryViewController: UIViewController, HistoryDisplayLogic {
 //        let request = History.FilterData.Request()
 //        interactor?.getFiltredHistory(request: request)
     }
+    
+    // MARK: Common
+    
+    private func configureViews() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        view.addSubview(tableView)
+    }
+}
+
+// MARK: HistoryDisplayLogic
+extension HistoryViewController: HistoryDisplayLogic {
 
     // MARK: - display view model from HistoryPresenter
 
     func displayHistory(viewModel: History.GetHistoryData.ViewModel) {
-        //nameTextField.text = viewModel.name
+        DispatchQueue.main.async {
+            self.rows = viewModel.rows
+            self.tableView.reloadData()
+        }
     }
 
     func displayFiltredHistory(viewModel: History.FilterData.ViewModel) {
         // do sometingElse with viewModel
     }
+}
+
+// MARK: TableView
+extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return rows.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: HistoryTableViewCell.identifier,
+            for: indexPath) as? HistoryTableViewCell
+        else {
+            return UITableViewCell()
+        }
+        let viewModel = rows[indexPath.row]
+        
+        cell.textLabel?.text = viewModel.date
+        return cell
+    }
+    
+    
 }

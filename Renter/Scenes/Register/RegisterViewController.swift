@@ -16,13 +16,12 @@ class RegisterViewController: UIViewController {
     
     weak var delegate: RegisterViewControllerDelegate?
     
-    private var activeTextView: UITextField?
-    
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.contentInsetAdjustmentBehavior = .never
         scrollView.bounces = false
+        scrollView.isScrollEnabled = true
         return scrollView
     }()
     
@@ -99,9 +98,7 @@ class RegisterViewController: UIViewController {
                               action: #selector(didTapLoginButton),
                               for: .touchUpInside)
         
-        scrollView.isScrollEnabled = true
         view.addSubview(scrollView)
-        scrollView.contentMode = .top
         scrollView.addSubview(nameInput)
         scrollView.addSubview(emailInput)
         scrollView.addSubview(passwordInput)
@@ -220,10 +217,6 @@ class RegisterViewController: UIViewController {
 
 // MARK: UITextFieldDelegate
 extension RegisterViewController: UITextFieldDelegate {
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        activeTextView = textField
-    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         // TODO: focus logic

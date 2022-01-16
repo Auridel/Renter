@@ -26,14 +26,24 @@ final class ApiManager {
     private init(){}
     
     public func login(with email: String, password: String, completion: @escaping TypedCompletion<AuthResponse>) {
-        performApiCall(to: "\(baseURLString)/auth/login",
-                       method: .POST,
-                       completion: completion,
-                       body: [
-                        "email": email,
-                        "password": password
-                       ])
+        performApiCall(
+            to: "\(baseURLString)/auth/login",
+            method: .POST,
+            completion: completion,
+            body: [
+                "email": email,
+                "password": password
+            ])
     }
+    
+    public func getHistoryData(completion: @escaping TypedCompletion<HistoryResponse>) {
+        performApiCall(
+            to: "\(baseURLString)/account/get",
+            method: .GET,
+            completion: completion)
+    }
+    
+    // MARK: Private Methods
     
     private func performApiCall<T: Codable>(to urlString: String, method: HTTPMethod, completion: @escaping TypedCompletion<T>, body: [String: String]? = nil) {
         createRequest(
@@ -67,7 +77,7 @@ final class ApiManager {
         }
         var request = URLRequest(url: url)
         request.setValue(
-            "Bearer \(token)",
+            "Bearer {\"token\":\"\(token)\"}",
             forHTTPHeaderField: "authorization")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
@@ -92,7 +102,9 @@ final class ApiManager {
                 let testJson = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
                 print(testJson)
                 
-                let result = try JSONDecoder().decode(T.self, from: data)
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                let result = try decoder.decode(T.self, from: data)
                 completion(.success(result))
             } catch let parseError {
                 print(parseError)

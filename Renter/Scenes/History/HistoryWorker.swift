@@ -13,7 +13,7 @@
 import UIKit
 
 class HistoryWorker {
-    func doSomeWork() {
+    func calculateTotal() {
         
     }
 //    

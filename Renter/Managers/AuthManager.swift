@@ -10,12 +10,23 @@ import Foundation
 final class AuthManager {
     
     enum StorageKeys: String {
-        case token, username, email, userId
+        case token, username, email, userId, expiredIn
     }
     
     public static let shared = AuthManager()
     
-    private var tokenExpirationTime: Date?
+    public var isAuthorized: Bool {
+        guard accessToken != nil,
+              let expiredIn = tokenExpirationTime
+        else {
+            return false
+        }
+        return expiredIn > Date()
+    }
+    
+    private var tokenExpirationTime: Date? {
+        UserDefaults.standard.value(forKey: "expiredIn") as? Date
+    }
     
     private var accessToken: String? {
         UserDefaults.standard.string(forKey: "token")
@@ -86,9 +97,9 @@ final class AuthManager {
             StorageKeys.userId.rawValue: userId,
             StorageKeys.username.rawValue: username,
             StorageKeys.email.rawValue: email,
-            StorageKeys.token.rawValue: token
+            StorageKeys.token.rawValue: token,
+            StorageKeys.expiredIn.rawValue: Date.now.addingTimeInterval(60 * 60)
         ])
-        tokenExpirationTime = Date.now.addingTimeInterval(60 * 60)
     }
     
     private func saveUserData(user: User, token: String) {
@@ -96,8 +107,8 @@ final class AuthManager {
             StorageKeys.userId.rawValue: user.userId,
             StorageKeys.username.rawValue: user.userName,
             StorageKeys.email.rawValue: user.email,
-            StorageKeys.token.rawValue: token
+            StorageKeys.token.rawValue: token,
+            StorageKeys.expiredIn.rawValue: Date.now.addingTimeInterval(60 * 60)
         ])
-        tokenExpirationTime = Date.now.addingTimeInterval(60 * 60)
     }
 }

@@ -18,22 +18,34 @@ protocol HistoryBusinessLogic {
 }
 
 protocol HistoryDataStore {
-    //var name: String { get set }
+    var historyEntries: [HistoryEntry] { get set }
 }
 
 class HistoryInteractor: HistoryBusinessLogic, HistoryDataStore {
+    
     var presenter: HistoryPresentationLogic?
+    
     var worker: HistoryWorker?
-    //var name: String = ""
+    
+    var historyEntries = [HistoryEntry]()
 
     // MARK: Do something (and send response to HistoryPresenter)
 
     func getHistory(request: History.GetHistoryData.Request) {
-        worker = HistoryWorker()
-        worker?.doSomeWork()
-
-        let response = History.GetHistoryData.Response()
-        presenter?.presentHistory(response: response)
+        ApiManager.shared.getHistoryData { [weak self] result in
+            switch result {
+            case .success(let response):
+                print(response)
+                self?.historyEntries = response.entries
+                let response = History.GetHistoryData.Response(
+                    entries: response.entries)
+                self?.presenter?.presentHistory(response: response)
+            case .failure(_):
+                //TODO: show some error
+                break
+            }
+        }
+        
     }
 
     func getFiltredHistory(request: History.FilterData.Request) {

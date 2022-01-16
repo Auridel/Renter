@@ -30,9 +30,13 @@ final class MainCoordinator: Coordinator {
     
     func start() {
         DispatchQueue.main.async {
-            let loginVC = LoginViewController()
-            loginVC.delegate = self
-            self.navigationController.viewControllers = [loginVC]
+            if AuthManager.shared.isAuthorized {
+                self.didLogin()
+            } else {
+                let loginVC = LoginViewController()
+                loginVC.delegate = self
+                self.navigationController.viewControllers = [loginVC]
+            }
         }
     }
 }

@@ -32,6 +32,8 @@
 		F813504C2794A475007EA1C4 /* AccountConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F813504B2794A475007EA1C4 /* AccountConfigurator.swift */; };
 		F813504E2794A4E7007EA1C4 /* HistoryConfigrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F813504D2794A4E7007EA1C4 /* HistoryConfigrator.swift */; };
 		F81350502794A520007EA1C4 /* CreateNewEntryConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F813504F2794A520007EA1C4 /* CreateNewEntryConfigurator.swift */; };
+		F81350532794B675007EA1C4 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81350522794B675007EA1C4 /* HistoryTableViewCell.swift */; };
+		F81350552794B92A007EA1C4 /* HistoryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81350542794B92A007EA1C4 /* HistoryResponse.swift */; };
 		F8EAE5882792F45800298DED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE5872792F45800298DED /* AppDelegate.swift */; };
 		F8EAE58A2792F45800298DED /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE5892792F45800298DED /* SceneDelegate.swift */; };
 		F8EAE58C2792F45800298DED /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE58B2792F45800298DED /* ViewController.swift */; };
@@ -99,6 +101,8 @@
 		F813504B2794A475007EA1C4 /* AccountConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountConfigurator.swift; sourceTree = "<group>"; };
 		F813504D2794A4E7007EA1C4 /* HistoryConfigrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryConfigrator.swift; sourceTree = "<group>"; };
 		F813504F2794A520007EA1C4 /* CreateNewEntryConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewEntryConfigurator.swift; sourceTree = "<group>"; };
+		F81350522794B675007EA1C4 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
+		F81350542794B92A007EA1C4 /* HistoryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryResponse.swift; sourceTree = "<group>"; };
 		F8EAE5842792F45800298DED /* Renter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Renter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8EAE5872792F45800298DED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F8EAE5892792F45800298DED /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -158,6 +162,14 @@
 				F813504927949F12007EA1C4 /* MainTabsViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		F81350512794B651007EA1C4 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				F81350522794B675007EA1C4 /* HistoryTableViewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		F8EAE57B2792F45800298DED = {
@@ -238,6 +250,7 @@
 		F8EAE5B92792F59E00298DED /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F81350512794B651007EA1C4 /* Cells */,
 				F8EAE5DE2793184B00298DED /* Storyboards */,
 				F8EAE5DF279328AF00298DED /* InputView.swift */,
 			);
@@ -329,6 +342,7 @@
 			children = (
 				F8EAE5DA279311D300298DED /* User.swift */,
 				F81350202794581F007EA1C4 /* AuthResponse.swift */,
+				F81350542794B92A007EA1C4 /* HistoryResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -488,6 +502,7 @@
 				F813502E27949E99007EA1C4 /* AccountViewController.swift in Sources */,
 				F8EAE5E2279330FE00298DED /* Constants.swift in Sources */,
 				F813504C2794A475007EA1C4 /* AccountConfigurator.swift in Sources */,
+				F81350552794B92A007EA1C4 /* HistoryResponse.swift in Sources */,
 				F8EAE58C2792F45800298DED /* ViewController.swift in Sources */,
 				F8EAE5CF2793070E00298DED /* Extension+UIView.swift in Sources */,
 				F813504A27949F12007EA1C4 /* MainTabsViewController.swift in Sources */,
@@ -525,6 +540,7 @@
 				F813504527949EC6007EA1C4 /* CreateNewEntryModels.swift in Sources */,
 				F813503B27949EAF007EA1C4 /* HistoryInteractor.swift in Sources */,
 				F813504227949EC6007EA1C4 /* CreateNewEntryPresenter.swift in Sources */,
+				F81350532794B675007EA1C4 /* HistoryTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

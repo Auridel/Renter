@@ -23,7 +23,18 @@ class HistoryPresenter: HistoryPresentationLogic {
     // MARK: Parse and calc respnse from HistoryInteractor and send simple view model to HistoryViewController to be displayed
 
     func presentHistory(response: History.GetHistoryData.Response) {
-        let viewModel = History.GetHistoryData.ViewModel()
+        
+        //TODO: Compute total with worker
+        let viewModel = History.GetHistoryData.ViewModel(
+            rows: response.entries.compactMap({
+                HistoryRowViewModel.init(
+                    date: $0.date.formattedDate(),
+                    cold: Int($0.meters.cold),
+                    hot: Int($0.meters.hot),
+                    day: Int($0.meters.day),
+                    night: Int($0.meters.night),
+                    total: 0)
+            }))
         viewController?.displayHistory(viewModel: viewModel)
     }
 
