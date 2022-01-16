@@ -40,7 +40,8 @@ extension MainCoordinator: LoginViewControllerDelegate {
     func didTapRegister() {
         let registerVC = RegisterViewController()
         registerVC.delegate = self
-        self.navigationController.pushViewController(registerVC, animated: true)
+        self.navigationController.view.layer.add(Constants.fadeTransition, forKey: nil)
+        self.navigationController.pushViewController(registerVC, animated: false)
     }
     
     func didLogin() {
@@ -51,7 +52,8 @@ extension MainCoordinator: LoginViewControllerDelegate {
 // MARK: RegisterViewControllerDelegate
 extension MainCoordinator: RegisterViewControllerDelegate {
     func didTapLogin() {
-        self.navigationController.popToRootViewController(animated: true)
+        self.navigationController.view.layer.add(Constants.fadeTransition, forKey: nil)
+        self.navigationController.popToRootViewController(animated: false)
     }
     
     func didRegister() {

@@ -15,5 +15,14 @@ struct Constants {
         blue: 237 / 255,
         alpha: 1)
     
+    static var fadeTransition: CATransition {
+        let transition = CATransition()
+        transition.duration = 0.35
+        transition.timingFunction = CAMediaTimingFunction(name: .easeIn)
+        transition.type = .fade
+        transition.subtype = .none
+        return transition
+    }
+    
     private init(){}
 }

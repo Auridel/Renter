@@ -32,6 +32,14 @@ class LoginViewController: UIViewController {
         button.layer.cornerRadius = 12
         return button
     }()
+    
+    private let registerButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Register", for: .normal)
+        button.setTitleColor(Constants.primaryColor, for: .normal)
+        button.layer.cornerRadius = 12
+        return button
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,16 +64,24 @@ class LoginViewController: UIViewController {
         loginButton.addTarget(self,
                               action: #selector(didTapLoginButton),
                               for: .touchUpInside)
+        registerButton.addTarget(self,
+                                 action: #selector(didTapRegisterButton),
+                                 for: .touchUpInside)
         
         view.addSubview(loginInput)
         view.addSubview(passwordInput)
         view.addSubview(loginButton)
+        view.addSubview(registerButton)
     }
     
     // MARK: Actions
     
     @objc private func didTapLoginButton() {
         // TODO: try to auth, notify coordinator
+    }
+    
+    @objc private func didTapRegisterButton() {
+        delegate?.didTapRegister()
     }
     
     // MARK: Common
@@ -85,6 +101,11 @@ class LoginViewController: UIViewController {
                                      height: inputSize)
         loginButton.frame = CGRect(
             x: 16,
+            y: passwordInput.bottom + 16,
+            width: 100,
+            height: 55)
+        registerButton.frame = CGRect(
+            x: loginButton.right + 16,
             y: passwordInput.bottom + 16,
             width: 100,
             height: 55)
@@ -142,3 +163,4 @@ extension LoginViewController: UITextFieldDelegate {
         return true
     }
 }
+
