@@ -29,31 +29,41 @@ final class MainCoordinator: Coordinator {
     }
     
     func start() {
-        let loginVC = LoginViewController()
-        loginVC.delegate = self
-        navigationController.viewControllers = [loginVC]
+        DispatchQueue.main.async {
+            let loginVC = LoginViewController()
+            loginVC.delegate = self
+            self.navigationController.viewControllers = [loginVC]
+        }
     }
 }
 
 // MARK: LoginViewControllerDelegate
 extension MainCoordinator: LoginViewControllerDelegate {
     func didTapRegister() {
-        let registerVC = RegisterViewController()
-        registerVC.delegate = self
-        self.navigationController.view.layer.add(Constants.fadeTransition, forKey: nil)
-        self.navigationController.pushViewController(registerVC, animated: false)
+        DispatchQueue.main.async {
+            let registerVC = RegisterViewController()
+            registerVC.delegate = self
+            self.navigationController.view.layer.add(Constants.fadeTransition, forKey: nil)
+            self.navigationController.pushViewController(registerVC, animated: false)
+        }
     }
     
     func didLogin() {
-        
+        DispatchQueue.main.async {
+            let tabVC = MainTabsViewController()
+            self.navigationController.viewControllers.removeAll()
+            self.navigationController.pushViewController(tabVC, animated: true)
+        }
     }
 }
 
 // MARK: RegisterViewControllerDelegate
 extension MainCoordinator: RegisterViewControllerDelegate {
     func didTapLogin() {
-        self.navigationController.view.layer.add(Constants.fadeTransition, forKey: nil)
-        self.navigationController.popToRootViewController(animated: false)
+        DispatchQueue.main.async {
+            self.navigationController.view.layer.add(Constants.fadeTransition, forKey: nil)
+            self.navigationController.popToRootViewController(animated: false)
+        }
     }
     
     func didRegister() {

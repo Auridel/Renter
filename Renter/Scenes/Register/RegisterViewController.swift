@@ -16,6 +16,16 @@ class RegisterViewController: UIViewController {
     
     weak var delegate: RegisterViewControllerDelegate?
     
+    private var activeTextView: UITextField?
+    
+    private let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.contentInsetAdjustmentBehavior = .never
+        scrollView.bounces = false
+        return scrollView
+    }()
+    
     private let nameInput = InputView(
         "Name",
         returnKey: .next)
@@ -26,11 +36,13 @@ class RegisterViewController: UIViewController {
     
     private let passwordInput = InputView(
         "Password",
-        returnKey: .done)
+        returnKey: .done,
+        isSecure: true)
     
     private let repeatPasswordInput = InputView(
         "Repeat Password",
-        returnKey: .next)
+        returnKey: .next,
+        isSecure: true)
     
     private let registerButton: UIButton = {
         let button = UIButton()
@@ -54,6 +66,15 @@ class RegisterViewController: UIViewController {
         
         title = "Register"
         view.backgroundColor = .systemBackground
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(adjustForKeyboard(notification:)),
+                                               name: UIResponder.keyboardWillShowNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(adjustForKeyboard(notification:)),
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
 
         configureNavigationBar()
         configureViews()
@@ -78,12 +99,15 @@ class RegisterViewController: UIViewController {
                               action: #selector(didTapLoginButton),
                               for: .touchUpInside)
         
-        view.addSubview(nameInput)
-        view.addSubview(emailInput)
-        view.addSubview(passwordInput)
-        view.addSubview(repeatPasswordInput)
-        view.addSubview(registerButton)
-        view.addSubview(loginButton)
+        scrollView.isScrollEnabled = true
+        view.addSubview(scrollView)
+        scrollView.contentMode = .top
+        scrollView.addSubview(nameInput)
+        scrollView.addSubview(emailInput)
+        scrollView.addSubview(passwordInput)
+        scrollView.addSubview(repeatPasswordInput)
+        scrollView.addSubview(registerButton)
+        scrollView.addSubview(loginButton)
     }
     
     // MARK: Actions
@@ -96,15 +120,31 @@ class RegisterViewController: UIViewController {
         delegate?.didTapLogin()
     }
     
+    @objc func adjustForKeyboard(notification: Notification) {
+        guard let keyboardValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
+
+        let keyboardScreenEndFrame = keyboardValue.cgRectValue
+        let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
+
+        if notification.name == UIResponder.keyboardWillHideNotification {
+            scrollView.contentInset = .zero
+        } else {
+            scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height - view.safeAreaInsets.bottom, right: 0)
+        }
+
+        scrollView.scrollIndicatorInsets = scrollView.contentInset
+    }
+    
     // MARK: Common
     
     private func layoutViews() {
         
         let inputSize: CGFloat = 78
         
+        scrollView.frame = view.bounds
         nameInput.frame = CGRect(
             x: 16,
-            y: (view.height - (78 * 4)) / 2 - 16,
+            y: 180,
             width: view.width - 32,
             height: inputSize)
         emailInput.frame = CGRect(x: 16,
@@ -130,6 +170,8 @@ class RegisterViewController: UIViewController {
             y: repeatPasswordInput.bottom + 16,
             width: 100,
             height: 55)
+        
+        scrollView.contentSize = CGSize(width: view.width, height: loginButton.bottom + 32)
     }
     
     private func configureNavigationBar() {
@@ -172,12 +214,17 @@ class RegisterViewController: UIViewController {
         shapeLayer.path = path.cgPath
         shapeLayer.fillColor = fillColor.cgColor
         
-        view.layer.addSublayer(shapeLayer)
+        scrollView.layer.addSublayer(shapeLayer)
     }
 }
 
 // MARK: UITextFieldDelegate
 extension RegisterViewController: UITextFieldDelegate {
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        activeTextView = textField
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         // TODO: focus logic
         

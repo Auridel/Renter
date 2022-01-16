@@ -10,7 +10,7 @@ import Foundation
 final class ApiManager {
     
     enum HTTPMethod: String {
-        case POST = "POST", GET
+        case POST, GET
     }
     
     enum ApiError: Error {
@@ -50,12 +50,9 @@ final class ApiManager {
                         completion(.failure(ApiError.failedToGetPostParameters))
                         return
                     }
-                    print("POST")
                     request.httpBody = try? JSONSerialization.data(
                         withJSONObject: body,
                         options: .fragmentsAllowed)
-                    print(body)
-                    print(request)
                 case .GET:
                     break
                 }

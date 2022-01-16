@@ -32,12 +32,15 @@ class InputView: UIView {
                           width: 5,
                           height: 0))
         textField.leftViewMode = .always
+        textField.doneAccessory = true
+        
         return textField
     }()
     
-    init(_ label: String, returnKey: UIReturnKeyType) {
+    init(_ label: String, returnKey: UIReturnKeyType, isSecure: Bool = false) {
         super.init(frame: .zero)
         inputLabel.text = label
+        inputTextField.isSecureTextEntry = isSecure
         inputTextField.returnKeyType = returnKey
         
         addSubview(inputLabel)
@@ -69,5 +72,9 @@ class InputView: UIView {
     
     public func clearInput() {
         inputTextField.text = nil
+    }
+    
+    @objc private func didTapDoneButton() {
+        inputTextField.resignFirstResponder()
     }
 }

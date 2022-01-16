@@ -57,7 +57,6 @@ final class AuthManager {
         ApiManager.shared.login(with: email, password: password) { [weak self] result in
             switch result {
             case .success(let response):
-                print("GET RESPONSE")
                 do {
                     let user = try JWTDecoder.shared.decode(response.token)
                     let data = try JSONSerialization.data(
@@ -65,6 +64,10 @@ final class AuthManager {
                         options: .fragmentsAllowed)
                     let decodedUser = try JSONDecoder().decode(User.self,
                                                                from: data)
+                    
+                    
+                    print(decodedUser)
+                    
                     self?.saveUserData(user: decodedUser, token: response.token)
                 } catch let error {
                     print(error)

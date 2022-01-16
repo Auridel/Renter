@@ -18,13 +18,17 @@ class LoginViewController: UIViewController {
     
     private var presenter = LoginPresenter()
     
+    private let scrollView = UIScrollView()
+    
     private let loginInput = InputView(
         "Email",
         returnKey: .next)
     
     private let passwordInput = InputView(
         "Password",
-        returnKey: .done)
+        returnKey: .done,
+        isSecure: true
+    )
     
     private let loginButton: UIButton = {
         let button = UIButton()
@@ -48,6 +52,15 @@ class LoginViewController: UIViewController {
         
         title = "Login"
         view.backgroundColor = .systemBackground
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillShow(notification:)),
+                                               name: UIResponder.keyboardWillShowNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillHide(notification:)),
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
 
         presenter.delegate = self
         configureNavigationBar()
@@ -71,10 +84,11 @@ class LoginViewController: UIViewController {
                                  action: #selector(didTapRegisterButton),
                                  for: .touchUpInside)
         
-        view.addSubview(loginInput)
-        view.addSubview(passwordInput)
-        view.addSubview(loginButton)
-        view.addSubview(registerButton)
+        view.addSubview(scrollView)
+        scrollView.addSubview(loginInput)
+        scrollView.addSubview(passwordInput)
+        scrollView.addSubview(loginButton)
+        scrollView.addSubview(registerButton)
     }
     
     // MARK: Actions
@@ -93,15 +107,30 @@ class LoginViewController: UIViewController {
         delegate?.didTapRegister()
     }
     
+    @objc private func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            if scrollView.height == view.height {
+                scrollView.frame.size.height -= keyboardSize.height
+            }
+        }
+    }
+    
+    @objc private func keyboardWillHide(notification: NSNotification) {
+        if scrollView.height != view.height {
+            scrollView.frame.size.height = view.height
+        }
+    }
+    
     // MARK: Common
     
     private func layoutViews() {
         
         let inputSize: CGFloat = 78
         
+        scrollView.frame = view.bounds
         loginInput.frame = CGRect(
             x: 16,
-            y: (view.height - (78 * 2)) / 2 - 16,
+            y: 100,
             width: view.width - 32,
             height: inputSize)
         passwordInput.frame = CGRect(x: 16,
@@ -180,7 +209,7 @@ extension LoginViewController: LoginPresenterDelegate {
     }
     
     func onLoginSuccess() {
-        print("Successfully logged in")
+        delegate?.didLogin()
     }
     
     

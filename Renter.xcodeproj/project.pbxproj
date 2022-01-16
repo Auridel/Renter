@@ -9,6 +9,29 @@
 /* Begin PBXBuildFile section */
 		F813501F2794553D007EA1C4 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F813501E2794553D007EA1C4 /* LoginPresenter.swift */; };
 		F81350212794581F007EA1C4 /* AuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81350202794581F007EA1C4 /* AuthResponse.swift */; };
+		F81350232794826D007EA1C4 /* Extension+UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81350222794826D007EA1C4 /* Extension+UITextField.swift */; };
+		F813502A27949E99007EA1C4 /* AccountPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F813502427949E99007EA1C4 /* AccountPresenter.swift */; };
+		F813502B27949E99007EA1C4 /* AccountWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F813502527949E99007EA1C4 /* AccountWorker.swift */; };
+		F813502C27949E99007EA1C4 /* AccountRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F813502627949E99007EA1C4 /* AccountRouter.swift */; };
+		F813502D27949E99007EA1C4 /* AccountModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F813502727949E99007EA1C4 /* AccountModels.swift */; };
+		F813502E27949E99007EA1C4 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F813502827949E99007EA1C4 /* AccountViewController.swift */; };
+		F813502F27949E99007EA1C4 /* AccountInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F813502927949E99007EA1C4 /* AccountInteractor.swift */; };
+		F813503627949EAF007EA1C4 /* HistoryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F813503027949EAF007EA1C4 /* HistoryPresenter.swift */; };
+		F813503727949EAF007EA1C4 /* HistoryWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F813503127949EAF007EA1C4 /* HistoryWorker.swift */; };
+		F813503827949EAF007EA1C4 /* HistoryRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F813503227949EAF007EA1C4 /* HistoryRouter.swift */; };
+		F813503927949EAF007EA1C4 /* HistoryModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F813503327949EAF007EA1C4 /* HistoryModels.swift */; };
+		F813503A27949EAF007EA1C4 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F813503427949EAF007EA1C4 /* HistoryViewController.swift */; };
+		F813503B27949EAF007EA1C4 /* HistoryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F813503527949EAF007EA1C4 /* HistoryInteractor.swift */; };
+		F813504227949EC6007EA1C4 /* CreateNewEntryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F813503C27949EC6007EA1C4 /* CreateNewEntryPresenter.swift */; };
+		F813504327949EC6007EA1C4 /* CreateNewEntryWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F813503D27949EC6007EA1C4 /* CreateNewEntryWorker.swift */; };
+		F813504427949EC6007EA1C4 /* CreateNewEntryRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F813503E27949EC6007EA1C4 /* CreateNewEntryRouter.swift */; };
+		F813504527949EC6007EA1C4 /* CreateNewEntryModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F813503F27949EC6007EA1C4 /* CreateNewEntryModels.swift */; };
+		F813504627949EC6007EA1C4 /* CreateNewEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F813504027949EC6007EA1C4 /* CreateNewEntryViewController.swift */; };
+		F813504727949EC6007EA1C4 /* CreateNewEntryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F813504127949EC6007EA1C4 /* CreateNewEntryInteractor.swift */; };
+		F813504A27949F12007EA1C4 /* MainTabsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F813504927949F12007EA1C4 /* MainTabsViewController.swift */; };
+		F813504C2794A475007EA1C4 /* AccountConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F813504B2794A475007EA1C4 /* AccountConfigurator.swift */; };
+		F813504E2794A4E7007EA1C4 /* HistoryConfigrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F813504D2794A4E7007EA1C4 /* HistoryConfigrator.swift */; };
+		F81350502794A520007EA1C4 /* CreateNewEntryConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F813504F2794A520007EA1C4 /* CreateNewEntryConfigurator.swift */; };
 		F8EAE5882792F45800298DED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE5872792F45800298DED /* AppDelegate.swift */; };
 		F8EAE58A2792F45800298DED /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE5892792F45800298DED /* SceneDelegate.swift */; };
 		F8EAE58C2792F45800298DED /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE58B2792F45800298DED /* ViewController.swift */; };
@@ -53,6 +76,29 @@
 /* Begin PBXFileReference section */
 		F813501E2794553D007EA1C4 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
 		F81350202794581F007EA1C4 /* AuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponse.swift; sourceTree = "<group>"; };
+		F81350222794826D007EA1C4 /* Extension+UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UITextField.swift"; sourceTree = "<group>"; };
+		F813502427949E99007EA1C4 /* AccountPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPresenter.swift; sourceTree = "<group>"; };
+		F813502527949E99007EA1C4 /* AccountWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountWorker.swift; sourceTree = "<group>"; };
+		F813502627949E99007EA1C4 /* AccountRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRouter.swift; sourceTree = "<group>"; };
+		F813502727949E99007EA1C4 /* AccountModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountModels.swift; sourceTree = "<group>"; };
+		F813502827949E99007EA1C4 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
+		F813502927949E99007EA1C4 /* AccountInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInteractor.swift; sourceTree = "<group>"; };
+		F813503027949EAF007EA1C4 /* HistoryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryPresenter.swift; sourceTree = "<group>"; };
+		F813503127949EAF007EA1C4 /* HistoryWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryWorker.swift; sourceTree = "<group>"; };
+		F813503227949EAF007EA1C4 /* HistoryRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryRouter.swift; sourceTree = "<group>"; };
+		F813503327949EAF007EA1C4 /* HistoryModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryModels.swift; sourceTree = "<group>"; };
+		F813503427949EAF007EA1C4 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
+		F813503527949EAF007EA1C4 /* HistoryInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryInteractor.swift; sourceTree = "<group>"; };
+		F813503C27949EC6007EA1C4 /* CreateNewEntryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewEntryPresenter.swift; sourceTree = "<group>"; };
+		F813503D27949EC6007EA1C4 /* CreateNewEntryWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewEntryWorker.swift; sourceTree = "<group>"; };
+		F813503E27949EC6007EA1C4 /* CreateNewEntryRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewEntryRouter.swift; sourceTree = "<group>"; };
+		F813503F27949EC6007EA1C4 /* CreateNewEntryModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewEntryModels.swift; sourceTree = "<group>"; };
+		F813504027949EC6007EA1C4 /* CreateNewEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewEntryViewController.swift; sourceTree = "<group>"; };
+		F813504127949EC6007EA1C4 /* CreateNewEntryInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewEntryInteractor.swift; sourceTree = "<group>"; };
+		F813504927949F12007EA1C4 /* MainTabsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabsViewController.swift; sourceTree = "<group>"; };
+		F813504B2794A475007EA1C4 /* AccountConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountConfigurator.swift; sourceTree = "<group>"; };
+		F813504D2794A4E7007EA1C4 /* HistoryConfigrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryConfigrator.swift; sourceTree = "<group>"; };
+		F813504F2794A520007EA1C4 /* CreateNewEntryConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewEntryConfigurator.swift; sourceTree = "<group>"; };
 		F8EAE5842792F45800298DED /* Renter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Renter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8EAE5872792F45800298DED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F8EAE5892792F45800298DED /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -106,6 +152,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F813504827949EDF007EA1C4 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F813504927949F12007EA1C4 /* MainTabsViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		F8EAE57B2792F45800298DED = {
 			isa = PBXGroup;
 			children = (
@@ -130,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				F8EAE5C32792FD3E00298DED /* Coordinator */,
+				F813504827949EDF007EA1C4 /* Controllers */,
 				F8EAE5BA2792F5C100298DED /* Scenes */,
 				F8EAE5B92792F59E00298DED /* Views */,
 				F8EAE5B82792F59600298DED /* Managers */,
@@ -213,6 +268,13 @@
 		F8EAE5BC2792F5E000298DED /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				F813502827949E99007EA1C4 /* AccountViewController.swift */,
+				F813502927949E99007EA1C4 /* AccountInteractor.swift */,
+				F813502427949E99007EA1C4 /* AccountPresenter.swift */,
+				F813502527949E99007EA1C4 /* AccountWorker.swift */,
+				F813502627949E99007EA1C4 /* AccountRouter.swift */,
+				F813502727949E99007EA1C4 /* AccountModels.swift */,
+				F813504B2794A475007EA1C4 /* AccountConfigurator.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -228,6 +290,13 @@
 		F8EAE5BE2792F74E00298DED /* History */ = {
 			isa = PBXGroup;
 			children = (
+				F813503427949EAF007EA1C4 /* HistoryViewController.swift */,
+				F813503527949EAF007EA1C4 /* HistoryInteractor.swift */,
+				F813503027949EAF007EA1C4 /* HistoryPresenter.swift */,
+				F813503127949EAF007EA1C4 /* HistoryWorker.swift */,
+				F813503227949EAF007EA1C4 /* HistoryRouter.swift */,
+				F813503327949EAF007EA1C4 /* HistoryModels.swift */,
+				F813504D2794A4E7007EA1C4 /* HistoryConfigrator.swift */,
 			);
 			path = History;
 			sourceTree = "<group>";
@@ -235,6 +304,13 @@
 		F8EAE5BF2792F75800298DED /* CreateEntry */ = {
 			isa = PBXGroup;
 			children = (
+				F813504027949EC6007EA1C4 /* CreateNewEntryViewController.swift */,
+				F813504127949EC6007EA1C4 /* CreateNewEntryInteractor.swift */,
+				F813503C27949EC6007EA1C4 /* CreateNewEntryPresenter.swift */,
+				F813503D27949EC6007EA1C4 /* CreateNewEntryWorker.swift */,
+				F813503E27949EC6007EA1C4 /* CreateNewEntryRouter.swift */,
+				F813503F27949EC6007EA1C4 /* CreateNewEntryModels.swift */,
+				F813504F2794A520007EA1C4 /* CreateNewEntryConfigurator.swift */,
 			);
 			path = CreateEntry;
 			sourceTree = "<group>";
@@ -264,6 +340,7 @@
 				F8EAE5D02793072900298DED /* Extension+String.swift */,
 				F8EAE5D22793074100298DED /* Extension+DateFormatter.swift */,
 				F8EAE5DC2793166300298DED /* Extension+NotificationCenter.Name.swift */,
+				F81350222794826D007EA1C4 /* Extension+UITextField.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -407,24 +484,47 @@
 			buildActionMask = 2147483647;
 			files = (
 				F8EAE5C72792FF3A00298DED /* LoginViewController.swift in Sources */,
+				F813503A27949EAF007EA1C4 /* HistoryViewController.swift in Sources */,
+				F813502E27949E99007EA1C4 /* AccountViewController.swift in Sources */,
 				F8EAE5E2279330FE00298DED /* Constants.swift in Sources */,
+				F813504C2794A475007EA1C4 /* AccountConfigurator.swift in Sources */,
 				F8EAE58C2792F45800298DED /* ViewController.swift in Sources */,
 				F8EAE5CF2793070E00298DED /* Extension+UIView.swift in Sources */,
+				F813504A27949F12007EA1C4 /* MainTabsViewController.swift in Sources */,
 				F8EAE5D92793117500298DED /* AuthManager.swift in Sources */,
 				F8EAE5C92792FF4300298DED /* RegisterViewController.swift in Sources */,
 				F8EAE5E0279328AF00298DED /* InputView.swift in Sources */,
+				F813504E2794A4E7007EA1C4 /* HistoryConfigrator.swift in Sources */,
+				F813502A27949E99007EA1C4 /* AccountPresenter.swift in Sources */,
 				F8EAE5D727930CEE00298DED /* ApiManager.swift in Sources */,
+				F813503627949EAF007EA1C4 /* HistoryPresenter.swift in Sources */,
 				F8EAE5DD2793166300298DED /* Extension+NotificationCenter.Name.swift in Sources */,
+				F813503927949EAF007EA1C4 /* HistoryModels.swift in Sources */,
 				F8EAE5DB279311D300298DED /* User.swift in Sources */,
+				F813502B27949E99007EA1C4 /* AccountWorker.swift in Sources */,
+				F813502C27949E99007EA1C4 /* AccountRouter.swift in Sources */,
+				F813504627949EC6007EA1C4 /* CreateNewEntryViewController.swift in Sources */,
 				F81350212794581F007EA1C4 /* AuthResponse.swift in Sources */,
 				F8EAE5C52792FD4900298DED /* Coordinator.swift in Sources */,
+				F81350502794A520007EA1C4 /* CreateNewEntryConfigurator.swift in Sources */,
+				F813502F27949E99007EA1C4 /* AccountInteractor.swift in Sources */,
+				F813503727949EAF007EA1C4 /* HistoryWorker.swift in Sources */,
+				F813504727949EC6007EA1C4 /* CreateNewEntryInteractor.swift in Sources */,
+				F813503827949EAF007EA1C4 /* HistoryRouter.swift in Sources */,
 				F8EAE5D12793072900298DED /* Extension+String.swift in Sources */,
+				F81350232794826D007EA1C4 /* Extension+UITextField.swift in Sources */,
+				F813504427949EC6007EA1C4 /* CreateNewEntryRouter.swift in Sources */,
 				F813501F2794553D007EA1C4 /* LoginPresenter.swift in Sources */,
+				F813504327949EC6007EA1C4 /* CreateNewEntryWorker.swift in Sources */,
 				F8EAE5D32793074100298DED /* Extension+DateFormatter.swift in Sources */,
 				F8EAE5D52793085600298DED /* JWTDecoder.swift in Sources */,
 				F8EAE5882792F45800298DED /* AppDelegate.swift in Sources */,
 				F8EAE5CB2793006600298DED /* MainCoordinator.swift in Sources */,
 				F8EAE58A2792F45800298DED /* SceneDelegate.swift in Sources */,
+				F813502D27949E99007EA1C4 /* AccountModels.swift in Sources */,
+				F813504527949EC6007EA1C4 /* CreateNewEntryModels.swift in Sources */,
+				F813503B27949EAF007EA1C4 /* HistoryInteractor.swift in Sources */,
+				F813504227949EC6007EA1C4 /* CreateNewEntryPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
