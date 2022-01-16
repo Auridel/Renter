@@ -10,7 +10,7 @@ import Foundation
 final class ApiManager {
     
     enum HTTPMethod: String {
-        case POST, GET
+        case POST = "POST", GET
     }
     
     enum ApiError: Error {
@@ -21,12 +21,12 @@ final class ApiManager {
     
     public static let shared = ApiManager()
     
-    private let baseURLString = "https://renter-mern-deploy.herokuapp.com/"
+    private let baseURLString = "https://renter-mern-deploy.herokuapp.com/api"
     
     private init(){}
     
-    public func login(with email: String, password: String, completion: @escaping TypedCompletion<String>) {
-        performApiCall(to: "\(baseURLString)/login",
+    public func login(with email: String, password: String, completion: @escaping TypedCompletion<AuthResponse>) {
+        performApiCall(to: "\(baseURLString)/auth/login",
                        method: .POST,
                        completion: completion,
                        body: [
@@ -50,9 +50,12 @@ final class ApiManager {
                         completion(.failure(ApiError.failedToGetPostParameters))
                         return
                     }
+                    print("POST")
                     request.httpBody = try? JSONSerialization.data(
                         withJSONObject: body,
                         options: .fragmentsAllowed)
+                    print(body)
+                    print(request)
                 case .GET:
                     break
                 }
@@ -69,13 +72,15 @@ final class ApiManager {
         request.setValue(
             "Bearer \(token)",
             forHTTPHeaderField: "authorization")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.httpMethod = method.rawValue
         request.timeoutInterval = 30
         completion(request)
     }
     
     private func getTypedResponse<T: Codable>(request: URLRequest, completion: @escaping TypedCompletion<T>) {
-        URLSession.shared.dataTask(with: request) { data, _, error in
+        URLSession.shared.dataTask(with: request) { data, res, error in
             guard let data = data,
                   error == nil
             else {
@@ -85,6 +90,11 @@ final class ApiManager {
             }
             
             do {
+                //MARK: AUTH TEST
+                //FIXME: REMOVE
+                let testJson = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
+                print(testJson)
+                
                 let result = try JSONDecoder().decode(T.self, from: data)
                 completion(.success(result))
             } catch let parseError {

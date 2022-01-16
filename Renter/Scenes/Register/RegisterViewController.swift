@@ -146,7 +146,7 @@ class RegisterViewController: UIViewController {
         
         let fillColor = Constants.primaryColor
         
-        let figureHeight: CGFloat = 200
+        let figureHeight: CGFloat = 120
         let edgeX: CGFloat = UIScreen.main.bounds.width
         let edgeY: CGFloat = UIScreen.main.bounds.height
         
@@ -162,9 +162,9 @@ class RegisterViewController: UIViewController {
         path.move(to: CGPoint(x: edgeX, y: 0))
         path.addLine(to: CGPoint(x: edgeX, y: 60))
         path.addCurve(
-            to: CGPoint(x: 0, y: figureHeight),
-            controlPoint1: CGPoint(x: figureHeight * 6 / 4, y: figureHeight / 10),
-            controlPoint2: CGPoint(x: figureHeight, y: figureHeight * 4 / 3))
+            to: CGPoint(x: 0, y: figureHeight + 20),
+            controlPoint1: CGPoint(x: figureHeight * 6 / 3, y: figureHeight * 2 / 10),
+            controlPoint2: CGPoint(x: figureHeight, y: (figureHeight + 20) * 3 / 2))
         path.addLine(to: CGPoint(x: 0, y: 0))
         path.close()
         

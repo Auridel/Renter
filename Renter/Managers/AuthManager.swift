@@ -52,11 +52,47 @@ final class AuthManager {
         accessToken
     }
     
+    //TODO: handle errors
+    public func login(with email: String, password: String, completion: @escaping (Bool) -> Void) {
+        ApiManager.shared.login(with: email, password: password) { [weak self] result in
+            switch result {
+            case .success(let response):
+                print("GET RESPONSE")
+                do {
+                    let user = try JWTDecoder.shared.decode(response.token)
+                    let data = try JSONSerialization.data(
+                        withJSONObject: user,
+                        options: .fragmentsAllowed)
+                    let decodedUser = try JSONDecoder().decode(User.self,
+                                                               from: data)
+                    self?.saveUserData(user: decodedUser, token: response.token)
+                } catch let error {
+                    print(error)
+                    completion(false)
+                    return
+                }
+                completion(true)
+            case .failure(_):
+                completion(false)
+            }
+        }
+    }
+    
     private func saveUserData(userId: String, username: String, email: String, token: String) {
         UserDefaults.standard.setValuesForKeys([
             StorageKeys.userId.rawValue: userId,
             StorageKeys.username.rawValue: username,
             StorageKeys.email.rawValue: email,
+            StorageKeys.token.rawValue: token
+        ])
+        tokenExpirationTime = Date.now.addingTimeInterval(60 * 60)
+    }
+    
+    private func saveUserData(user: User, token: String) {
+        UserDefaults.standard.setValuesForKeys([
+            StorageKeys.userId.rawValue: user.userId,
+            StorageKeys.username.rawValue: user.userName,
+            StorageKeys.email.rawValue: user.email,
             StorageKeys.token.rawValue: token
         ])
         tokenExpirationTime = Date.now.addingTimeInterval(60 * 60)

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F813501F2794553D007EA1C4 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F813501E2794553D007EA1C4 /* LoginPresenter.swift */; };
+		F81350212794581F007EA1C4 /* AuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81350202794581F007EA1C4 /* AuthResponse.swift */; };
 		F8EAE5882792F45800298DED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE5872792F45800298DED /* AppDelegate.swift */; };
 		F8EAE58A2792F45800298DED /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE5892792F45800298DED /* SceneDelegate.swift */; };
 		F8EAE58C2792F45800298DED /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE58B2792F45800298DED /* ViewController.swift */; };
@@ -49,6 +51,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F813501E2794553D007EA1C4 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
+		F81350202794581F007EA1C4 /* AuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponse.swift; sourceTree = "<group>"; };
 		F8EAE5842792F45800298DED /* Renter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Renter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8EAE5872792F45800298DED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F8EAE5892792F45800298DED /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -201,6 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				F8EAE5C62792FF3A00298DED /* LoginViewController.swift */,
+				F813501E2794553D007EA1C4 /* LoginPresenter.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -247,6 +252,7 @@
 			isa = PBXGroup;
 			children = (
 				F8EAE5DA279311D300298DED /* User.swift */,
+				F81350202794581F007EA1C4 /* AuthResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -410,8 +416,10 @@
 				F8EAE5D727930CEE00298DED /* ApiManager.swift in Sources */,
 				F8EAE5DD2793166300298DED /* Extension+NotificationCenter.Name.swift in Sources */,
 				F8EAE5DB279311D300298DED /* User.swift in Sources */,
+				F81350212794581F007EA1C4 /* AuthResponse.swift in Sources */,
 				F8EAE5C52792FD4900298DED /* Coordinator.swift in Sources */,
 				F8EAE5D12793072900298DED /* Extension+String.swift in Sources */,
+				F813501F2794553D007EA1C4 /* LoginPresenter.swift in Sources */,
 				F8EAE5D32793074100298DED /* Extension+DateFormatter.swift in Sources */,
 				F8EAE5D52793085600298DED /* JWTDecoder.swift in Sources */,
 				F8EAE5882792F45800298DED /* AppDelegate.swift in Sources */,

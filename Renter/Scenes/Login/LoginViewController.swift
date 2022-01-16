@@ -16,6 +16,8 @@ class LoginViewController: UIViewController {
     
     weak var delegate: LoginViewControllerDelegate?
     
+    private var presenter = LoginPresenter()
+    
     private let loginInput = InputView(
         "Email",
         returnKey: .next)
@@ -47,6 +49,7 @@ class LoginViewController: UIViewController {
         title = "Login"
         view.backgroundColor = .systemBackground
 
+        presenter.delegate = self
         configureNavigationBar()
         configureViews()
         drawBackground()
@@ -78,6 +81,12 @@ class LoginViewController: UIViewController {
     
     @objc private func didTapLoginButton() {
         // TODO: try to auth, notify coordinator
+        guard let email = loginInput.getValue(),
+              let password = passwordInput.getValue()
+        else {
+            return
+        }
+        presenter.proceedToLogin(with: email, password: password)
     }
     
     @objc private func didTapRegisterButton() {
@@ -155,7 +164,7 @@ class LoginViewController: UIViewController {
     }
 }
 
-
+// MARK: UITextFieldDelegate
 extension LoginViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         // TODO: focus logic
@@ -164,3 +173,15 @@ extension LoginViewController: UITextFieldDelegate {
     }
 }
 
+// MARK: LoginPresenterDelegate
+extension LoginViewController: LoginPresenterDelegate {
+    func presentAlert(with error: String) {
+        print(error)
+    }
+    
+    func onLoginSuccess() {
+        print("Successfully logged in")
+    }
+    
+    
+}
