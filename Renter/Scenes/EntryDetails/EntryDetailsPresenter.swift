@@ -41,6 +41,14 @@ class EntryDetailsPresenter: EntryDetailsPresentationLogic {
                 EntryRowViewModel(title: "Day Electricity", value: "\(meters.day)"),
                 EntryRowViewModel(title: "Night Electricity", value: "\(meters.night)"),
             ]))
+        sections.append(EntrySectionViewModel(
+            title: "",
+            rows: [
+                EntryRowViewModel(title: response.entry.date.formattedDate(), value: ""),
+                EntryRowViewModel(
+                    title: "Price",
+                    value: String(format: "%.2f", response.entry.price))
+            ]))
         let viewModel = EntryDetails.GetEntry.ViewModel(sections: sections)
         viewController?.displayEntry(viewModel: viewModel)
     }

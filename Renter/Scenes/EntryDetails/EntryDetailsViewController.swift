@@ -30,6 +30,7 @@ class EntryDetailsViewController: UIViewController {
         tableView.register(EntryDetailsTableViewCell.self,
                            forCellReuseIdentifier: EntryDetailsTableViewCell.identifier)
         tableView.separatorStyle = .none
+        tableView.allowsSelection = false
         return tableView
     }()
 
@@ -51,6 +52,10 @@ class EntryDetailsViewController: UIViewController {
     }
     
     //MARK: - receive events from UI
+    
+    @objc private func didTapCloseButton() {
+        
+    }
 
     
     // MARK: - request data from EntryDetailsInteractor
@@ -112,6 +117,11 @@ extension EntryDetailsViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        if section == sections.count - 1 {
+            let footerView = EntryDetailsFooterView(frame: .zero)
+            footerView.delegate = self
+            return footerView
+        }
         return nil
     }
     
@@ -135,8 +145,17 @@ extension EntryDetailsViewController: UITableViewDelegate, UITableViewDataSource
         cell.configure(with: viewModel)
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+}
+
+// MARK: EntryDetailsFooterViewDelegate
+extension EntryDetailsViewController: EntryDetailsFooterViewDelegate {
+    func entryDetailsFooterViewDidTapCloseButton() {
+        
     }
+    
+    func entryDetailsFooterViewDidTapDeleteButton() {
+        
+    }
+    
+    
 }
