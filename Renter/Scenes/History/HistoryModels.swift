@@ -14,11 +14,7 @@ import UIKit
 
 struct HistoryRowViewModel {
     let date: String
-    let cold: Int
-    let hot: Int
-    let day: Int
-    let night: Int
-    let total: Double
+    let price: String
 }
 
 enum History {

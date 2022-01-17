@@ -55,8 +55,10 @@ extension MainCoordinator: LoginViewControllerDelegate {
     func didLogin() {
         DispatchQueue.main.async {
             let tabVC = MainTabsViewController()
+            tabVC.modalPresentationStyle = .fullScreen
             self.navigationController.viewControllers.removeAll()
-            self.navigationController.pushViewController(tabVC, animated: true)
+//            self.navigationController.pushViewController(tabVC, animated: true)
+            self.navigationController.present(tabVC, animated: true)
         }
     }
 }

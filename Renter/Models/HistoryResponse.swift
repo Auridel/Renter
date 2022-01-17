@@ -15,6 +15,8 @@ struct HistoryEntry: Codable {
     let curPlan: UserPlan
     let meters: MetersData
     let date: String
+    let price: Double
+    let timestamp: Double
 }
 
 struct UserPlan: Codable {

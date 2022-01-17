@@ -34,6 +34,13 @@
 		F81350502794A520007EA1C4 /* CreateNewEntryConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F813504F2794A520007EA1C4 /* CreateNewEntryConfigurator.swift */; };
 		F81350532794B675007EA1C4 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81350522794B675007EA1C4 /* HistoryTableViewCell.swift */; };
 		F81350552794B92A007EA1C4 /* HistoryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81350542794B92A007EA1C4 /* HistoryResponse.swift */; };
+		F8DBBB292795F82700414D7A /* EntryDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DBBB232795F82700414D7A /* EntryDetailsPresenter.swift */; };
+		F8DBBB2A2795F82700414D7A /* EntryDetailsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DBBB242795F82700414D7A /* EntryDetailsWorker.swift */; };
+		F8DBBB2B2795F82700414D7A /* EntryDetailsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DBBB252795F82700414D7A /* EntryDetailsRouter.swift */; };
+		F8DBBB2C2795F82700414D7A /* EntryDetailsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DBBB262795F82700414D7A /* EntryDetailsModels.swift */; };
+		F8DBBB2D2795F82700414D7A /* EntryDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DBBB272795F82700414D7A /* EntryDetailsViewController.swift */; };
+		F8DBBB2E2795F82700414D7A /* EntryDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DBBB282795F82700414D7A /* EntryDetailsInteractor.swift */; };
+		F8DBBB302795F91D00414D7A /* EntryDetailsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DBBB2F2795F91D00414D7A /* EntryDetailsConfigurator.swift */; };
 		F8EAE5882792F45800298DED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE5872792F45800298DED /* AppDelegate.swift */; };
 		F8EAE58A2792F45800298DED /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE5892792F45800298DED /* SceneDelegate.swift */; };
 		F8EAE58C2792F45800298DED /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE58B2792F45800298DED /* ViewController.swift */; };
@@ -103,6 +110,13 @@
 		F813504F2794A520007EA1C4 /* CreateNewEntryConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewEntryConfigurator.swift; sourceTree = "<group>"; };
 		F81350522794B675007EA1C4 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		F81350542794B92A007EA1C4 /* HistoryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryResponse.swift; sourceTree = "<group>"; };
+		F8DBBB232795F82700414D7A /* EntryDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryDetailsPresenter.swift; sourceTree = "<group>"; };
+		F8DBBB242795F82700414D7A /* EntryDetailsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryDetailsWorker.swift; sourceTree = "<group>"; };
+		F8DBBB252795F82700414D7A /* EntryDetailsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryDetailsRouter.swift; sourceTree = "<group>"; };
+		F8DBBB262795F82700414D7A /* EntryDetailsModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryDetailsModels.swift; sourceTree = "<group>"; };
+		F8DBBB272795F82700414D7A /* EntryDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryDetailsViewController.swift; sourceTree = "<group>"; };
+		F8DBBB282795F82700414D7A /* EntryDetailsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryDetailsInteractor.swift; sourceTree = "<group>"; };
+		F8DBBB2F2795F91D00414D7A /* EntryDetailsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryDetailsConfigurator.swift; sourceTree = "<group>"; };
 		F8EAE5842792F45800298DED /* Renter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Renter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8EAE5872792F45800298DED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F8EAE5892792F45800298DED /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -159,7 +173,7 @@
 		F813504827949EDF007EA1C4 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				F813504927949F12007EA1C4 /* MainTabsViewController.swift */,
+				F8DBBB202795F7A300414D7A /* Tabs */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -170,6 +184,28 @@
 				F81350522794B675007EA1C4 /* HistoryTableViewCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		F8DBBB202795F7A300414D7A /* Tabs */ = {
+			isa = PBXGroup;
+			children = (
+				F813504927949F12007EA1C4 /* MainTabsViewController.swift */,
+			);
+			path = Tabs;
+			sourceTree = "<group>";
+		};
+		F8DBBB222795F80400414D7A /* EntryDetails */ = {
+			isa = PBXGroup;
+			children = (
+				F8DBBB272795F82700414D7A /* EntryDetailsViewController.swift */,
+				F8DBBB282795F82700414D7A /* EntryDetailsInteractor.swift */,
+				F8DBBB232795F82700414D7A /* EntryDetailsPresenter.swift */,
+				F8DBBB242795F82700414D7A /* EntryDetailsWorker.swift */,
+				F8DBBB252795F82700414D7A /* EntryDetailsRouter.swift */,
+				F8DBBB262795F82700414D7A /* EntryDetailsModels.swift */,
+				F8DBBB2F2795F91D00414D7A /* EntryDetailsConfigurator.swift */,
+			);
+			path = EntryDetails;
 			sourceTree = "<group>";
 		};
 		F8EAE57B2792F45800298DED = {
@@ -264,6 +300,7 @@
 				F8EAE5BD2792F74200298DED /* Register */,
 				F8EAE5BC2792F5E000298DED /* Account */,
 				F8EAE5BE2792F74E00298DED /* History */,
+				F8DBBB222795F80400414D7A /* EntryDetails */,
 				F8EAE5BF2792F75800298DED /* CreateEntry */,
 			);
 			path = Scenes;
@@ -497,10 +534,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8DBBB292795F82700414D7A /* EntryDetailsPresenter.swift in Sources */,
 				F8EAE5C72792FF3A00298DED /* LoginViewController.swift in Sources */,
 				F813503A27949EAF007EA1C4 /* HistoryViewController.swift in Sources */,
 				F813502E27949E99007EA1C4 /* AccountViewController.swift in Sources */,
 				F8EAE5E2279330FE00298DED /* Constants.swift in Sources */,
+				F8DBBB302795F91D00414D7A /* EntryDetailsConfigurator.swift in Sources */,
 				F813504C2794A475007EA1C4 /* AccountConfigurator.swift in Sources */,
 				F81350552794B92A007EA1C4 /* HistoryResponse.swift in Sources */,
 				F8EAE58C2792F45800298DED /* ViewController.swift in Sources */,
@@ -513,12 +552,14 @@
 				F813502A27949E99007EA1C4 /* AccountPresenter.swift in Sources */,
 				F8EAE5D727930CEE00298DED /* ApiManager.swift in Sources */,
 				F813503627949EAF007EA1C4 /* HistoryPresenter.swift in Sources */,
+				F8DBBB2D2795F82700414D7A /* EntryDetailsViewController.swift in Sources */,
 				F8EAE5DD2793166300298DED /* Extension+NotificationCenter.Name.swift in Sources */,
 				F813503927949EAF007EA1C4 /* HistoryModels.swift in Sources */,
 				F8EAE5DB279311D300298DED /* User.swift in Sources */,
 				F813502B27949E99007EA1C4 /* AccountWorker.swift in Sources */,
 				F813502C27949E99007EA1C4 /* AccountRouter.swift in Sources */,
 				F813504627949EC6007EA1C4 /* CreateNewEntryViewController.swift in Sources */,
+				F8DBBB2A2795F82700414D7A /* EntryDetailsWorker.swift in Sources */,
 				F81350212794581F007EA1C4 /* AuthResponse.swift in Sources */,
 				F8EAE5C52792FD4900298DED /* Coordinator.swift in Sources */,
 				F81350502794A520007EA1C4 /* CreateNewEntryConfigurator.swift in Sources */,
@@ -534,13 +575,16 @@
 				F8EAE5D32793074100298DED /* Extension+DateFormatter.swift in Sources */,
 				F8EAE5D52793085600298DED /* JWTDecoder.swift in Sources */,
 				F8EAE5882792F45800298DED /* AppDelegate.swift in Sources */,
+				F8DBBB2B2795F82700414D7A /* EntryDetailsRouter.swift in Sources */,
 				F8EAE5CB2793006600298DED /* MainCoordinator.swift in Sources */,
 				F8EAE58A2792F45800298DED /* SceneDelegate.swift in Sources */,
 				F813502D27949E99007EA1C4 /* AccountModels.swift in Sources */,
 				F813504527949EC6007EA1C4 /* CreateNewEntryModels.swift in Sources */,
 				F813503B27949EAF007EA1C4 /* HistoryInteractor.swift in Sources */,
+				F8DBBB2E2795F82700414D7A /* EntryDetailsInteractor.swift in Sources */,
 				F813504227949EC6007EA1C4 /* CreateNewEntryPresenter.swift in Sources */,
 				F81350532794B675007EA1C4 /* HistoryTableViewCell.swift in Sources */,
+				F8DBBB2C2795F82700414D7A /* EntryDetailsModels.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

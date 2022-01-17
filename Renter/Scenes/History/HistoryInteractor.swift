@@ -36,9 +36,9 @@ class HistoryInteractor: HistoryBusinessLogic, HistoryDataStore {
             switch result {
             case .success(let response):
                 print(response)
-                self?.historyEntries = response.entries
+                self?.historyEntries = response.entries.reversed()
                 let response = History.GetHistoryData.Response(
-                    entries: response.entries)
+                    entries: response.entries.reversed())
                 self?.presenter?.presentHistory(response: response)
             case .failure(_):
                 //TODO: show some error

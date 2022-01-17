@@ -29,11 +29,7 @@ class HistoryPresenter: HistoryPresentationLogic {
             rows: response.entries.compactMap({
                 HistoryRowViewModel.init(
                     date: $0.date.formattedDate(),
-                    cold: Int($0.meters.cold),
-                    hot: Int($0.meters.hot),
-                    day: Int($0.meters.day),
-                    night: Int($0.meters.night),
-                    total: 0)
+                    price: "\(String(format: "%.2f", $0.price)) rub")
             }))
         viewController?.displayHistory(viewModel: viewModel)
     }

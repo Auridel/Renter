@@ -11,6 +11,7 @@ extension String {
     public func formattedDate() -> String {
         let date = DateFormatter.dateFormatter.date(from: self)
         guard let date = date else {
+            print("cannot get date")
             return self
         }
         return DateFormatter.displayDateFormatter.string(from: date)

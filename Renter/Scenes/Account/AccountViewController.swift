@@ -38,6 +38,7 @@ class AccountViewController: UIViewController, AccountDisplayLogic {
         super.viewDidLoad()
         
         title = "Account"
+        navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = .systemBackground
         
         AccountConfigurator.shared.configure(with: self)

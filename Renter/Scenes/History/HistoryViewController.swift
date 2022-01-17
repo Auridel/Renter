@@ -31,6 +31,8 @@ class HistoryViewController: UIViewController {
                            forCellReuseIdentifier: HistoryTableViewCell.identifier)
         return tableView
     }()
+    
+    // TODO: No data view
 
     // MARK: - View lifecycle
 
@@ -39,8 +41,10 @@ class HistoryViewController: UIViewController {
         HistoryConfigurator.shared.configure(with: self)
         
         title = "History"
+        navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = .systemBackground
         
+//        tableView.transform = CGAffineTransform(rotationAngle: -(CGFloat)(Double.pi))
         
         configureViews()
         passHistoryRequest()
@@ -110,10 +114,17 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         let viewModel = rows[indexPath.row]
-        
-        cell.textLabel?.text = viewModel.date
+//        cell.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi));
+        cell.configure(with: viewModel)
         return cell
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 54
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
     
 }
