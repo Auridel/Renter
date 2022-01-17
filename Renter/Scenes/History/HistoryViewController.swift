@@ -23,6 +23,10 @@ class HistoryViewController: UIViewController {
     
     var router: (NSObjectProtocol & HistoryRoutingLogic & HistoryDataPassing)?
     
+    public var currentIndexPath: IndexPath? {
+        tableView.indexPathForSelectedRow
+    }
+    
     private var rows = [HistoryRowViewModel]()
     
     private let tableView: UITableView = {
@@ -124,6 +128,7 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        router?.routeToEntryDetails()
         tableView.deselectRow(at: indexPath, animated: true)
     }
     

@@ -35,12 +35,13 @@
 		F81350532794B675007EA1C4 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81350522794B675007EA1C4 /* HistoryTableViewCell.swift */; };
 		F81350552794B92A007EA1C4 /* HistoryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81350542794B92A007EA1C4 /* HistoryResponse.swift */; };
 		F8DBBB292795F82700414D7A /* EntryDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DBBB232795F82700414D7A /* EntryDetailsPresenter.swift */; };
-		F8DBBB2A2795F82700414D7A /* EntryDetailsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DBBB242795F82700414D7A /* EntryDetailsWorker.swift */; };
 		F8DBBB2B2795F82700414D7A /* EntryDetailsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DBBB252795F82700414D7A /* EntryDetailsRouter.swift */; };
 		F8DBBB2C2795F82700414D7A /* EntryDetailsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DBBB262795F82700414D7A /* EntryDetailsModels.swift */; };
 		F8DBBB2D2795F82700414D7A /* EntryDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DBBB272795F82700414D7A /* EntryDetailsViewController.swift */; };
 		F8DBBB2E2795F82700414D7A /* EntryDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DBBB282795F82700414D7A /* EntryDetailsInteractor.swift */; };
 		F8DBBB302795F91D00414D7A /* EntryDetailsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DBBB2F2795F91D00414D7A /* EntryDetailsConfigurator.swift */; };
+		F8DBBB322795FAD500414D7A /* EntryDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DBBB312795FAD500414D7A /* EntryDetailsTableViewCell.swift */; };
+		F8DBBB342796088F00414D7A /* EntryDetailsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DBBB332796088F00414D7A /* EntryDetailsHeaderView.swift */; };
 		F8EAE5882792F45800298DED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE5872792F45800298DED /* AppDelegate.swift */; };
 		F8EAE58A2792F45800298DED /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE5892792F45800298DED /* SceneDelegate.swift */; };
 		F8EAE58C2792F45800298DED /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE58B2792F45800298DED /* ViewController.swift */; };
@@ -111,12 +112,13 @@
 		F81350522794B675007EA1C4 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		F81350542794B92A007EA1C4 /* HistoryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryResponse.swift; sourceTree = "<group>"; };
 		F8DBBB232795F82700414D7A /* EntryDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryDetailsPresenter.swift; sourceTree = "<group>"; };
-		F8DBBB242795F82700414D7A /* EntryDetailsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryDetailsWorker.swift; sourceTree = "<group>"; };
 		F8DBBB252795F82700414D7A /* EntryDetailsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryDetailsRouter.swift; sourceTree = "<group>"; };
 		F8DBBB262795F82700414D7A /* EntryDetailsModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryDetailsModels.swift; sourceTree = "<group>"; };
 		F8DBBB272795F82700414D7A /* EntryDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryDetailsViewController.swift; sourceTree = "<group>"; };
 		F8DBBB282795F82700414D7A /* EntryDetailsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryDetailsInteractor.swift; sourceTree = "<group>"; };
 		F8DBBB2F2795F91D00414D7A /* EntryDetailsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryDetailsConfigurator.swift; sourceTree = "<group>"; };
+		F8DBBB312795FAD500414D7A /* EntryDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryDetailsTableViewCell.swift; sourceTree = "<group>"; };
+		F8DBBB332796088F00414D7A /* EntryDetailsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryDetailsHeaderView.swift; sourceTree = "<group>"; };
 		F8EAE5842792F45800298DED /* Renter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Renter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8EAE5872792F45800298DED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F8EAE5892792F45800298DED /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				F81350522794B675007EA1C4 /* HistoryTableViewCell.swift */,
+				F8DBBB312795FAD500414D7A /* EntryDetailsTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -200,7 +203,6 @@
 				F8DBBB272795F82700414D7A /* EntryDetailsViewController.swift */,
 				F8DBBB282795F82700414D7A /* EntryDetailsInteractor.swift */,
 				F8DBBB232795F82700414D7A /* EntryDetailsPresenter.swift */,
-				F8DBBB242795F82700414D7A /* EntryDetailsWorker.swift */,
 				F8DBBB252795F82700414D7A /* EntryDetailsRouter.swift */,
 				F8DBBB262795F82700414D7A /* EntryDetailsModels.swift */,
 				F8DBBB2F2795F91D00414D7A /* EntryDetailsConfigurator.swift */,
@@ -289,6 +291,7 @@
 				F81350512794B651007EA1C4 /* Cells */,
 				F8EAE5DE2793184B00298DED /* Storyboards */,
 				F8EAE5DF279328AF00298DED /* InputView.swift */,
+				F8DBBB332796088F00414D7A /* EntryDetailsHeaderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -539,6 +542,7 @@
 				F813503A27949EAF007EA1C4 /* HistoryViewController.swift in Sources */,
 				F813502E27949E99007EA1C4 /* AccountViewController.swift in Sources */,
 				F8EAE5E2279330FE00298DED /* Constants.swift in Sources */,
+				F8DBBB322795FAD500414D7A /* EntryDetailsTableViewCell.swift in Sources */,
 				F8DBBB302795F91D00414D7A /* EntryDetailsConfigurator.swift in Sources */,
 				F813504C2794A475007EA1C4 /* AccountConfigurator.swift in Sources */,
 				F81350552794B92A007EA1C4 /* HistoryResponse.swift in Sources */,
@@ -548,6 +552,7 @@
 				F8EAE5D92793117500298DED /* AuthManager.swift in Sources */,
 				F8EAE5C92792FF4300298DED /* RegisterViewController.swift in Sources */,
 				F8EAE5E0279328AF00298DED /* InputView.swift in Sources */,
+				F8DBBB342796088F00414D7A /* EntryDetailsHeaderView.swift in Sources */,
 				F813504E2794A4E7007EA1C4 /* HistoryConfigrator.swift in Sources */,
 				F813502A27949E99007EA1C4 /* AccountPresenter.swift in Sources */,
 				F8EAE5D727930CEE00298DED /* ApiManager.swift in Sources */,
@@ -559,7 +564,6 @@
 				F813502B27949E99007EA1C4 /* AccountWorker.swift in Sources */,
 				F813502C27949E99007EA1C4 /* AccountRouter.swift in Sources */,
 				F813504627949EC6007EA1C4 /* CreateNewEntryViewController.swift in Sources */,
-				F8DBBB2A2795F82700414D7A /* EntryDetailsWorker.swift in Sources */,
 				F81350212794581F007EA1C4 /* AuthResponse.swift in Sources */,
 				F8EAE5C52792FD4900298DED /* Coordinator.swift in Sources */,
 				F81350502794A520007EA1C4 /* CreateNewEntryConfigurator.swift in Sources */,

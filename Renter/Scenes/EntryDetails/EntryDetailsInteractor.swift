@@ -18,21 +18,22 @@ protocol EntryDetailsBusinessLogic {
 }
 
 protocol EntryDetailsDataStore {
-    //var name: String { get set }
+    var entry: HistoryEntry? { get set }
 }
 
 class EntryDetailsInteractor: EntryDetailsBusinessLogic, EntryDetailsDataStore {
+    
     var presenter: EntryDetailsPresentationLogic?
-    var worker: EntryDetailsWorker?
-    //var name: String = ""
+    
+    var entry: HistoryEntry?
 
     // MARK: Do something (and send response to EntryDetailsPresenter)
 
     func getEntry(request: EntryDetails.GetEntry.Request) {
-        worker = EntryDetailsWorker()
-        worker?.doSomeWork()
-
-        let response = EntryDetails.GetEntry.Response()
+        guard let entry = entry else {
+            return
+        }
+        let response = EntryDetails.GetEntry.Response(entry: entry)
         presenter?.presentEntry(response: response)
     }
 //

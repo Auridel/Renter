@@ -17,21 +17,37 @@ protocol EntryDetailsDisplayLogic: AnyObject {
 //    func displaySomethingElse(viewModel: EntryDetails.SomethingElse.ViewModel)
 }
 
-class EntryDetailsViewController: UIViewController, EntryDetailsDisplayLogic {
+class EntryDetailsViewController: UIViewController {
     
     var interactor: EntryDetailsBusinessLogic?
     
     var router: (NSObjectProtocol & EntryDetailsRoutingLogic & EntryDetailsDataPassing)?
+    
+    private var sections = [EntrySectionViewModel]()
 
+    private let tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.register(EntryDetailsTableViewCell.self,
+                           forCellReuseIdentifier: EntryDetailsTableViewCell.identifier)
+        tableView.separatorStyle = .none
+        return tableView
+    }()
 
     // MARK: - View lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        EntryDetailConfigurator.shared.configure(with: self)
+        view.backgroundColor = .systemBackground
         
+        configureViews()
         passEntryRequest()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        layoutViews()
     }
     
     //MARK: - receive events from UI
@@ -49,13 +65,78 @@ class EntryDetailsViewController: UIViewController, EntryDetailsDisplayLogic {
 //        interactor?.doSomethingElse(request: request)
 //    }
 
+    // MARK: Commmon
+    
+    private func configureViews() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        view.addSubview(tableView)
+    }
+
+    private func layoutViews() {
+        tableView.frame = view.bounds
+    }
+
+}
+
+// MARK: EntryDetailsDisplayLogic
+extension EntryDetailsViewController: EntryDetailsDisplayLogic {
     // MARK: - display view model from EntryDetailsPresenter
 
     func displayEntry(viewModel: EntryDetails.GetEntry.ViewModel) {
-        //nameTextField.text = viewModel.name
+        sections = viewModel.sections
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
 //
 //    func displaySomethingElse(viewModel: EntryDetails.SomethingElse.ViewModel) {
 //        // do sometingElse with viewModel
 //    }
+}
+
+
+extension EntryDetailsViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return sections.count
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return sections[section].rows.count
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return EntryDetailsHeaderView(title: sections[section].title)
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return nil
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 38
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: EntryDetailsTableViewCell.identifier,
+            for: indexPath) as? EntryDetailsTableViewCell
+        else {
+            return UITableViewCell()
+        }
+        
+        let viewModel = sections[indexPath.section].rows[indexPath.row]
+        cell.configure(with: viewModel)
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }

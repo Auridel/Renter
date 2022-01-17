@@ -12,25 +12,30 @@
 
 import UIKit
 
-enum EntryDetails
-{
+struct EntrySectionViewModel {
+    let title: String
+    let rows: [EntryRowViewModel]
+}
+
+struct EntryRowViewModel {
+    let title: String
+    let value: String
+}
+
+enum EntryDetails {
     // MARK: Use cases
 
-    enum GetEntry
-    {
-        struct Request
-        {
+    enum GetEntry {
+        struct Request {
 
         }
 
-        struct Response
-        {
-
+        struct Response {
+            let entry: HistoryEntry
         }
 
-        struct ViewModel
-        {
-
+        struct ViewModel {
+            let sections: [EntrySectionViewModel]
         }
     }
     

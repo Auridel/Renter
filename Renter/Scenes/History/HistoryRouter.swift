@@ -12,8 +12,8 @@
 
 import UIKit
 
-@objc protocol HistoryRoutingLogic {
-    //func routeToSomewhere(segue: UIStoryboardSegue?)
+protocol HistoryRoutingLogic {
+    func routeToEntryDetails()
 }
 
 protocol HistoryDataPassing {
@@ -24,21 +24,20 @@ class HistoryRouter: NSObject, HistoryRoutingLogic, HistoryDataPassing {
     weak var viewController: HistoryViewController?
     var dataStore: HistoryDataStore?
 
-// MARK: Routing (navigating to other screens)
+    // MARK: Routing (navigating to other screens)
 
-//func routeToSomewhere(segue: UIStoryboardSegue?) {
-//    if let segue = segue {
-//        let destinationVC = segue.destination as! SomewhereViewController
-//        var destinationDS = destinationVC.router!.dataStore!
-//        passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-//    } else {
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        let destinationVC = storyboard.instantiateViewController(withIdentifier: "SomewhereViewController") as! SomewhereViewController
-//        var destinationDS = destinationVC.router!.dataStore!
-//        passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-//        navigateToSomewhere(source: viewController!, destination: destinationVC)
-//    }
-//}
+    func routeToEntryDetails() {
+        let entryDetailsVC = EntryDetailsViewController()
+        EntryDetailConfigurator.shared.configure(with: entryDetailsVC)
+        guard var destinationDS = entryDetailsVC.router?.dataStore,
+              let sourceDS = dataStore
+        else {
+            print("FAILED TO ROUTE")
+            return
+        }
+        passDataToEntryDetails(source: sourceDS, destination: &destinationDS)
+        viewController?.present(entryDetailsVC, animated: true)
+    }
 
 // MARK: Navigation to other screen
 
@@ -48,7 +47,10 @@ class HistoryRouter: NSObject, HistoryRoutingLogic, HistoryDataPassing {
 
 // MARK: Passing data to other screen
 
-//    func passDataToSomewhere(source: HistoryDataStore, destination: inout SomewhereDataStore) {
-//        destination.name = source.name
-//    }
+    func passDataToEntryDetails(source: HistoryDataStore, destination: inout EntryDetailsDataStore) {
+        guard let indexPath = viewController?.currentIndexPath else {
+            return
+        }
+        destination.entry = source.historyEntries[indexPath.row]
+    }
 }

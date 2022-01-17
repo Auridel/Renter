@@ -22,7 +22,26 @@ class EntryDetailsPresenter: EntryDetailsPresentationLogic {
     // MARK: Parse and calc respnse from EntryDetailsInteractor and send simple view model to EntryDetailsViewController to be displayed
 
     func presentEntry(response: EntryDetails.GetEntry.Response) {
-        let viewModel = EntryDetails.GetEntry.ViewModel()
+        let meters = response.entry.meters
+        let plan = response.entry.curPlan
+        var sections = [EntrySectionViewModel]()
+        sections.append(EntrySectionViewModel(
+            title: "Current Plan",
+            rows: [
+                EntryRowViewModel(title: "Cold Water", value: "\(plan.coldPlan)"),
+                EntryRowViewModel(title: "Hot Water", value: "\(plan.hotPlan)"),
+                EntryRowViewModel(title: "Day Electricity", value: "\(plan.dayPlan)"),
+                EntryRowViewModel(title: "Night Electricity", value: "\(plan.nightPlan)"),
+            ]))
+        sections.append(EntrySectionViewModel(
+            title: "Meters Data",
+            rows: [
+                EntryRowViewModel(title: "Cold Water", value: "\(meters.cold)"),
+                EntryRowViewModel(title: "Hot Water", value: "\(meters.hot)"),
+                EntryRowViewModel(title: "Day Electricity", value: "\(meters.day)"),
+                EntryRowViewModel(title: "Night Electricity", value: "\(meters.night)"),
+            ]))
+        let viewModel = EntryDetails.GetEntry.ViewModel(sections: sections)
         viewController?.displayEntry(viewModel: viewModel)
     }
 //

@@ -13,7 +13,7 @@
 import UIKit
 
 @objc protocol EntryDetailsRoutingLogic {
-    //func routeToSomewhere(segue: UIStoryboardSegue?)
+    //func routeToSomewhere()
 }
 
 protocol EntryDetailsDataPassing {
@@ -21,34 +21,8 @@ protocol EntryDetailsDataPassing {
 }
 
 class EntryDetailsRouter: NSObject, EntryDetailsRoutingLogic, EntryDetailsDataPassing {
+    
     weak var viewController: EntryDetailsViewController?
+    
     var dataStore: EntryDetailsDataStore?
-
-// MARK: Routing (navigating to other screens)
-
-//func routeToSomewhere(segue: UIStoryboardSegue?) {
-//    if let segue = segue {
-//        let destinationVC = segue.destination as! SomewhereViewController
-//        var destinationDS = destinationVC.router!.dataStore!
-//        passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-//    } else {
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        let destinationVC = storyboard.instantiateViewController(withIdentifier: "SomewhereViewController") as! SomewhereViewController
-//        var destinationDS = destinationVC.router!.dataStore!
-//        passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-//        navigateToSomewhere(source: viewController!, destination: destinationVC)
-//    }
-//}
-
-// MARK: Navigation to other screen
-
-//func navigateToSomewhere(source: EntryDetailsViewController, destination: SomewhereViewController) {
-//    source.show(destination, sender: nil)
-//}
-
-// MARK: Passing data to other screen
-
-//    func passDataToSomewhere(source: EntryDetailsDataStore, destination: inout SomewhereDataStore) {
-//        destination.name = source.name
-//    }
 }
