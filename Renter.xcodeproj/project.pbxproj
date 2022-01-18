@@ -32,7 +32,7 @@
 		F813504C2794A475007EA1C4 /* AccountConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F813504B2794A475007EA1C4 /* AccountConfigurator.swift */; };
 		F813504E2794A4E7007EA1C4 /* HistoryConfigrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F813504D2794A4E7007EA1C4 /* HistoryConfigrator.swift */; };
 		F81350502794A520007EA1C4 /* CreateNewEntryConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F813504F2794A520007EA1C4 /* CreateNewEntryConfigurator.swift */; };
-		F81350532794B675007EA1C4 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81350522794B675007EA1C4 /* HistoryTableViewCell.swift */; };
+		F81350532794B675007EA1C4 /* HistoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81350522794B675007EA1C4 /* HistoryCollectionViewCell.swift */; };
 		F81350552794B92A007EA1C4 /* HistoryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81350542794B92A007EA1C4 /* HistoryResponse.swift */; };
 		F8DBBB292795F82700414D7A /* EntryDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DBBB232795F82700414D7A /* EntryDetailsPresenter.swift */; };
 		F8DBBB2B2795F82700414D7A /* EntryDetailsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DBBB252795F82700414D7A /* EntryDetailsRouter.swift */; };
@@ -40,7 +40,7 @@
 		F8DBBB2D2795F82700414D7A /* EntryDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DBBB272795F82700414D7A /* EntryDetailsViewController.swift */; };
 		F8DBBB2E2795F82700414D7A /* EntryDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DBBB282795F82700414D7A /* EntryDetailsInteractor.swift */; };
 		F8DBBB302795F91D00414D7A /* EntryDetailsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DBBB2F2795F91D00414D7A /* EntryDetailsConfigurator.swift */; };
-		F8DBBB322795FAD500414D7A /* EntryDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DBBB312795FAD500414D7A /* EntryDetailsTableViewCell.swift */; };
+		F8DBBB322795FAD500414D7A /* EntryDetailsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DBBB312795FAD500414D7A /* EntryDetailsCollectionViewCell.swift */; };
 		F8DBBB342796088F00414D7A /* EntryDetailsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DBBB332796088F00414D7A /* EntryDetailsHeaderView.swift */; };
 		F8DBBB3627960DB600414D7A /* EntryDetailsFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DBBB3527960DB600414D7A /* EntryDetailsFooterView.swift */; };
 		F8EAE5882792F45800298DED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE5872792F45800298DED /* AppDelegate.swift */; };
@@ -110,7 +110,7 @@
 		F813504B2794A475007EA1C4 /* AccountConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountConfigurator.swift; sourceTree = "<group>"; };
 		F813504D2794A4E7007EA1C4 /* HistoryConfigrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryConfigrator.swift; sourceTree = "<group>"; };
 		F813504F2794A520007EA1C4 /* CreateNewEntryConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewEntryConfigurator.swift; sourceTree = "<group>"; };
-		F81350522794B675007EA1C4 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
+		F81350522794B675007EA1C4 /* HistoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		F81350542794B92A007EA1C4 /* HistoryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryResponse.swift; sourceTree = "<group>"; };
 		F8DBBB232795F82700414D7A /* EntryDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryDetailsPresenter.swift; sourceTree = "<group>"; };
 		F8DBBB252795F82700414D7A /* EntryDetailsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryDetailsRouter.swift; sourceTree = "<group>"; };
@@ -118,7 +118,7 @@
 		F8DBBB272795F82700414D7A /* EntryDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryDetailsViewController.swift; sourceTree = "<group>"; };
 		F8DBBB282795F82700414D7A /* EntryDetailsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryDetailsInteractor.swift; sourceTree = "<group>"; };
 		F8DBBB2F2795F91D00414D7A /* EntryDetailsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryDetailsConfigurator.swift; sourceTree = "<group>"; };
-		F8DBBB312795FAD500414D7A /* EntryDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryDetailsTableViewCell.swift; sourceTree = "<group>"; };
+		F8DBBB312795FAD500414D7A /* EntryDetailsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryDetailsCollectionViewCell.swift; sourceTree = "<group>"; };
 		F8DBBB332796088F00414D7A /* EntryDetailsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryDetailsHeaderView.swift; sourceTree = "<group>"; };
 		F8DBBB3527960DB600414D7A /* EntryDetailsFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryDetailsFooterView.swift; sourceTree = "<group>"; };
 		F8EAE5842792F45800298DED /* Renter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Renter.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -185,8 +185,8 @@
 		F81350512794B651007EA1C4 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				F81350522794B675007EA1C4 /* HistoryTableViewCell.swift */,
-				F8DBBB312795FAD500414D7A /* EntryDetailsTableViewCell.swift */,
+				F81350522794B675007EA1C4 /* HistoryCollectionViewCell.swift */,
+				F8DBBB312795FAD500414D7A /* EntryDetailsCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -545,7 +545,7 @@
 				F813503A27949EAF007EA1C4 /* HistoryViewController.swift in Sources */,
 				F813502E27949E99007EA1C4 /* AccountViewController.swift in Sources */,
 				F8EAE5E2279330FE00298DED /* Constants.swift in Sources */,
-				F8DBBB322795FAD500414D7A /* EntryDetailsTableViewCell.swift in Sources */,
+				F8DBBB322795FAD500414D7A /* EntryDetailsCollectionViewCell.swift in Sources */,
 				F8DBBB302795F91D00414D7A /* EntryDetailsConfigurator.swift in Sources */,
 				F813504C2794A475007EA1C4 /* AccountConfigurator.swift in Sources */,
 				F81350552794B92A007EA1C4 /* HistoryResponse.swift in Sources */,
@@ -591,7 +591,7 @@
 				F813503B27949EAF007EA1C4 /* HistoryInteractor.swift in Sources */,
 				F8DBBB2E2795F82700414D7A /* EntryDetailsInteractor.swift in Sources */,
 				F813504227949EC6007EA1C4 /* CreateNewEntryPresenter.swift in Sources */,
-				F81350532794B675007EA1C4 /* HistoryTableViewCell.swift in Sources */,
+				F81350532794B675007EA1C4 /* HistoryCollectionViewCell.swift in Sources */,
 				F8DBBB2C2795F82700414D7A /* EntryDetailsModels.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

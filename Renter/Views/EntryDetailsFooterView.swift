@@ -60,13 +60,13 @@ class EntryDetailsFooterView: UIView {
         super.layoutSubviews()
         
         deleteButton.frame = CGRect(x: 16,
-                                    y: 8,
+                                    y: 16,
                                     width: 120,
-                                    height: 55)
+                                    height: 30)
         closeButton.frame = CGRect(x: width - 120 - 16,
-                                   y: 8,
+                                   y: 16,
                                    width: 120,
-                                   height: 55)
+                                   height: 30)
     }
     
     // MARK: Actions

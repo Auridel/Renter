@@ -48,9 +48,11 @@ class HistoryRouter: NSObject, HistoryRoutingLogic, HistoryDataPassing {
 // MARK: Passing data to other screen
 
     func passDataToEntryDetails(source: HistoryDataStore, destination: inout EntryDetailsDataStore) {
-        guard let indexPath = viewController?.currentIndexPath else {
+        guard let selected = viewController?.currentIndexPath,
+              selected.count > 0
+        else {
             return
         }
-        destination.entry = source.historyEntries[indexPath.row]
+        destination.entry = source.historyEntries[selected[0].row]
     }
 }
