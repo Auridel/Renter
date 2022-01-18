@@ -97,7 +97,8 @@ class HistoryCollectionViewCell: UICollectionViewCell {
         contentView.layer.borderWidth = 1
         contentView.layer.borderColor = UIColor.cyan.withAlphaComponent(0.4).cgColor
         contentView.layer.shadowOffset = CGSize(width: 5, height: 5)
+        contentView.layer.shadowOpacity = 0.3
         contentView.layer.cornerRadius = 6
-        contentView.layer.shadowColor = UIColor.gray.withAlphaComponent(0.7).cgColor
+        contentView.layer.shadowColor = UIColor.black.withAlphaComponent(0.7).cgColor
     }
 }

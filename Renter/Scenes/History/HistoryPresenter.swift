@@ -39,3 +39,5 @@ class HistoryPresenter: HistoryPresentationLogic {
 //        viewController?.displayFiltredHistory(viewModel: viewModel)
     }
 }
+
+

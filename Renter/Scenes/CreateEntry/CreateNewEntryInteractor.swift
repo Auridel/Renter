@@ -18,11 +18,16 @@ protocol CreateNewEntryBusinessLogic {
 }
 
 protocol CreateNewEntryDataStore {
+    var actualPlan: UserPlan? { get set }
 }
 
 class CreateNewEntryInteractor: CreateNewEntryBusinessLogic, CreateNewEntryDataStore {
+    
     var presenter: CreateNewEntryPresentationLogic?
+    
     var worker: CreateNewEntryWorker?
+    
+    var actualPlan: UserPlan?
 
     // MARK: Do something (and send response to CreateNewEntryPresenter)
 

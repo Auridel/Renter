@@ -38,9 +38,9 @@ class CreateNewEntryViewController: UIViewController, CreateNewEntryDisplayLogic
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "New Entry"
+        title = "Create New Entry"
         
-        CreateNewEntryConfigurator.shared.configure(with: self)
+        view.backgroundColor = .systemBackground
         
         getCurrentPlan()
     }

@@ -31,7 +31,16 @@ class HistoryViewController: UIViewController {
     
     private var collectionView: UICollectionView?
     
-    // TODO: No data view
+    private let noDataLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 24)
+        label.text = "You don't have any bills yet..."
+        label.isHidden = false
+        label.textColor = .secondaryLabel
+        label.textAlignment = .center
+        label.sizeToFit()
+        return label
+    }()
     
     // MARK: - View lifecycle
     
@@ -42,6 +51,11 @@ class HistoryViewController: UIViewController {
         
         title = "History"
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            barButtonSystemItem: .add,
+            target: self,
+            action: #selector(didTapAddButton))
+        
         view.backgroundColor = .secondarySystemBackground
         
         //        tableView.transform = CGAffineTransform(rotationAngle: -(CGFloat)(Double.pi))
@@ -54,11 +68,14 @@ class HistoryViewController: UIViewController {
         super.viewDidLayoutSubviews()
         
         collectionView?.frame = view.bounds
+        noDataLabel.center = view.center
     }
     
     //MARK: - receive events from UI
     
-    
+    @objc private func didTapAddButton() {
+        router?.routeToCreateNewEntry()
+    }
     
     // MARK: - request data from HistoryInteractor
     
@@ -77,7 +94,7 @@ class HistoryViewController: UIViewController {
     private func configureViews() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.minimumLineSpacing = 5
+        layout.minimumLineSpacing = 10
         layout.minimumInteritemSpacing = 10
         layout.itemSize = CGSize(width: view.width - 32, height: 80)
         self.collectionView = UICollectionView(frame: .zero,
@@ -91,11 +108,13 @@ class HistoryViewController: UIViewController {
         collectionView.register(
             HistoryCollectionViewCell.self,
             forCellWithReuseIdentifier: HistoryCollectionViewCell.identifier)
+        collectionView.isHidden = true
         
         collectionView.delegate = self
         collectionView.dataSource = self
         
         view.addSubview(collectionView)
+        view.addSubview(noDataLabel)
     }
 }
 
@@ -107,7 +126,17 @@ extension HistoryViewController: HistoryDisplayLogic {
     func displayHistory(viewModel: History.GetHistoryData.ViewModel) {
         DispatchQueue.main.async { [weak self] in
             self?.rows = viewModel.rows
-            self?.collectionView?.reloadData()
+            guard let collectionView = self?.collectionView,
+                  let noDataLabel = self?.noDataLabel
+            else { return }
+            if viewModel.rows.count != 0 {
+                noDataLabel.isHidden = true
+                collectionView.isHidden = false
+                collectionView.reloadData()
+            } else {
+                collectionView.isHidden = true
+                noDataLabel.isHidden = false
+            }
         }
     }
     

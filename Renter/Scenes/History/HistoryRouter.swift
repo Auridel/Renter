@@ -14,6 +14,7 @@ import UIKit
 
 protocol HistoryRoutingLogic {
     func routeToEntryDetails()
+    func routeToCreateNewEntry()
 }
 
 protocol HistoryDataPassing {
@@ -21,11 +22,13 @@ protocol HistoryDataPassing {
 }
 
 class HistoryRouter: NSObject, HistoryRoutingLogic, HistoryDataPassing {
+    
     weak var viewController: HistoryViewController?
+    
     var dataStore: HistoryDataStore?
-
+    
     // MARK: Routing (navigating to other screens)
-
+    
     func routeToEntryDetails() {
         let entryDetailsVC = EntryDetailsViewController()
         EntryDetailConfigurator.shared.configure(with: entryDetailsVC)
@@ -38,15 +41,22 @@ class HistoryRouter: NSObject, HistoryRoutingLogic, HistoryDataPassing {
         passDataToEntryDetails(source: sourceDS, destination: &destinationDS)
         viewController?.present(entryDetailsVC, animated: true)
     }
-
-// MARK: Navigation to other screen
-
-//func navigateToSomewhere(source: HistoryViewController, destination: SomewhereViewController) {
-//    source.show(destination, sender: nil)
-//}
-
-// MARK: Passing data to other screen
-
+    
+    func routeToCreateNewEntry() {
+        let createNewEntryVC = CreateNewEntryViewController()
+        CreateNewEntryConfigurator.shared.configure(with: createNewEntryVC)
+        guard var destinationDS = createNewEntryVC.router?.dataStore,
+              let sourceDS = dataStore
+        else {
+            return
+        }
+        passDataToCreateNewEntry(source: sourceDS, destination: &destinationDS)
+        createNewEntryVC.modalPresentationStyle = .fullScreen
+        viewController?.present(createNewEntryVC, animated: true)
+    }
+    
+    // MARK: Passing data to other screen
+    
     func passDataToEntryDetails(source: HistoryDataStore, destination: inout EntryDetailsDataStore) {
         guard let selected = viewController?.currentIndexPath,
               selected.count > 0
@@ -54,5 +64,13 @@ class HistoryRouter: NSObject, HistoryRoutingLogic, HistoryDataPassing {
             return
         }
         destination.entry = source.historyEntries[selected[0].row]
+    }
+    
+    func passDataToCreateNewEntry(source: HistoryDataStore, destination: inout CreateNewEntryDataStore) {
+        guard let latestEntry = dataStore?.historyEntries.first else {
+            return
+        }
+        let currentPlan = latestEntry.curPlan
+        destination.actualPlan = currentPlan
     }
 }
