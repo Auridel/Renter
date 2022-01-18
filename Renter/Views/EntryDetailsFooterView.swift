@@ -18,26 +18,35 @@ class EntryDetailsFooterView: UIView {
 
     private let deleteButton: UIButton = {
         let button = UIButton()
-        button.imageView?.image = UIImage(systemName: "trash")
-        button.imageView?.tintColor = .red
+        button.setImage(UIImage(systemName: "trash"), for: .normal)
         button.setTitle("Delete", for: .normal)
-        button.setTitleColor(.red, for: .normal)
+        var configuration = UIButton.Configuration.plain()
+        configuration.imagePadding = 10
+        configuration.baseForegroundColor = .red
+        button.configuration = configuration
         return button
     }()
     
     private let closeButton: UIButton = {
         let button = UIButton()
-        button.imageView?.image = UIImage(systemName: "xmark")
-        button.imageView?.tintColor = .link
+        button.setImage(UIImage(systemName: "xmark"), for: .normal)
         button.setTitle("Close", for: .normal)
-        button.setTitleColor(.link, for: .normal)
+        var configuration = UIButton.Configuration.plain()
+        configuration.imagePadding = 10
+        configuration.baseForegroundColor = .link
+        button.configuration = configuration
         return button
     }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        
+        closeButton.addTarget(self,
+                              action: #selector(didTapCloseButton),
+                              for: .touchUpInside)
+        deleteButton.addTarget(self,
+                               action: #selector(didTapDeleteButton),
+                               for: .touchUpInside)
         
         addSubview(deleteButton)
         addSubview(closeButton)
@@ -52,11 +61,11 @@ class EntryDetailsFooterView: UIView {
         
         deleteButton.frame = CGRect(x: 16,
                                     y: 8,
-                                    width: 100,
+                                    width: 120,
                                     height: 55)
-        closeButton.frame = CGRect(x: width - 100 - 16,
+        closeButton.frame = CGRect(x: width - 120 - 16,
                                    y: 8,
-                                   width: 100,
+                                   width: 120,
                                    height: 55)
     }
     

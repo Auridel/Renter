@@ -7,10 +7,14 @@
 
 import UIKit
 
+protocol InputViewDelegate: AnyObject {
+    func inputViewTextFieldDidReturn(_ textField: UITextField, with label: String?)
+}
+
 class InputView: UIView {
     
-    weak var delegate: UITextFieldDelegate?
-
+    weak var delegate: InputViewDelegate?
+    
     private let inputLabel: UILabel = {
         let label = UILabel()
         label.textColor = .label
@@ -40,6 +44,7 @@ class InputView: UIView {
     init(_ label: String, returnKey: UIReturnKeyType, isSecure: Bool = false) {
         super.init(frame: .zero)
         inputLabel.text = label
+        inputTextField.delegate = self
         inputTextField.isSecureTextEntry = isSecure
         inputTextField.returnKeyType = returnKey
         
@@ -74,7 +79,20 @@ class InputView: UIView {
         inputTextField.text = nil
     }
     
+    public func makeFirstResponder() {
+        inputTextField.becomeFirstResponder()
+    }
+    
     @objc private func didTapDoneButton() {
         inputTextField.resignFirstResponder()
+    }
+}
+
+
+extension InputView: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        delegate?.inputViewTextFieldDidReturn(textField, with: inputLabel.text)
+        
+        return true
     }
 }

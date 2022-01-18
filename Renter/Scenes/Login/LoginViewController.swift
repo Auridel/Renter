@@ -193,13 +193,19 @@ class LoginViewController: UIViewController {
     }
 }
 
-// MARK: UITextFieldDelegate
-extension LoginViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        // TODO: focus logic
-        
-        return true
+// MARK: InputViewDelegate
+extension LoginViewController: InputViewDelegate {
+    func inputViewTextFieldDidReturn(_ textField: UITextField, with label: String?) {
+        if label == "Email" {
+            textField.resignFirstResponder()
+            passwordInput.makeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+            didTapLoginButton()
+        }
     }
+    
+    
 }
 
 // MARK: LoginPresenterDelegate

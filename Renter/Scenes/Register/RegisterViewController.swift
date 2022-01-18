@@ -216,12 +216,19 @@ class RegisterViewController: UIViewController {
 }
 
 // MARK: UITextFieldDelegate
-extension RegisterViewController: UITextFieldDelegate {
+extension RegisterViewController: InputViewDelegate {
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        // TODO: focus logic
-        
-        return true
+    func inputViewTextFieldDidReturn(_ textField: UITextField, with label: String?) {
+        textField.resignFirstResponder()
+        if label == "Name" {
+            emailInput.makeFirstResponder()
+        } else if label == "Email" {
+            passwordInput.makeFirstResponder()
+        } else if label == "Password" {
+            repeatPasswordInput.makeFirstResponder()
+        } else {
+            didTapRegisterButton()
+        }
     }
 }
 

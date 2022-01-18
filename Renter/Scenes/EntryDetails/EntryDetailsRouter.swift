@@ -13,7 +13,7 @@
 import UIKit
 
 @objc protocol EntryDetailsRoutingLogic {
-    //func routeToSomewhere()
+    func routeToHistory()
 }
 
 protocol EntryDetailsDataPassing {
@@ -25,4 +25,8 @@ class EntryDetailsRouter: NSObject, EntryDetailsRoutingLogic, EntryDetailsDataPa
     weak var viewController: EntryDetailsViewController?
     
     var dataStore: EntryDetailsDataStore?
+    
+    func routeToHistory() {
+        viewController?.dismiss(animated: true, completion: nil)
+    }
 }

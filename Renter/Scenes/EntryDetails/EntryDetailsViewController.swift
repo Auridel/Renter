@@ -150,11 +150,11 @@ extension EntryDetailsViewController: UITableViewDelegate, UITableViewDataSource
 // MARK: EntryDetailsFooterViewDelegate
 extension EntryDetailsViewController: EntryDetailsFooterViewDelegate {
     func entryDetailsFooterViewDidTapCloseButton() {
-        
+        router?.routeToHistory()
     }
     
     func entryDetailsFooterViewDidTapDeleteButton() {
-        
+        // TODO: Delete model
     }
     
     

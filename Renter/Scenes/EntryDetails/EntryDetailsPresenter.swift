@@ -47,7 +47,7 @@ class EntryDetailsPresenter: EntryDetailsPresentationLogic {
                 EntryRowViewModel(title: response.entry.date.formattedDate(), value: ""),
                 EntryRowViewModel(
                     title: "Price",
-                    value: String(format: "%.2f", response.entry.price))
+                    value: "\(String(format: "%.2f", response.entry.price)) rub")
             ]))
         let viewModel = EntryDetails.GetEntry.ViewModel(sections: sections)
         viewController?.displayEntry(viewModel: viewModel)
