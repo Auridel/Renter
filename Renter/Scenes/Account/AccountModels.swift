@@ -12,6 +12,18 @@
 
 import UIKit
 
+struct AccountSectionViewModel {
+    let title: String
+    let rows: [AccountRowViewModel]
+}
+
+struct AccountRowViewModel {
+    let isInteractable: Bool
+    let content: String
+    let color: UIColor?
+    let tag: String
+}
+
 enum Account {
     // MARK: Use cases
 
@@ -24,8 +36,7 @@ enum Account {
         }
 
         struct ViewModel {
-            let name: String
-            let email: String
+            let sections: [AccountSectionViewModel]
         }
     }
     
@@ -41,6 +52,14 @@ enum Account {
         struct ViewModel {
             let name: String
             let email: String
+        }
+    }
+    
+    enum SingOutUser {
+        
+        struct ViewModel {
+            let title: String
+            let message: String
         }
     }
 }

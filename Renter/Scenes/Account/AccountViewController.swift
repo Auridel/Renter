@@ -15,22 +15,23 @@ import UIKit
 protocol AccountDisplayLogic: AnyObject {
     func displayUser(viewModel: Account.ShowUser.ViewModel)
     func displayUpdatedUsername(viewModel: Account.SaveUser.ViewModel)
+    func displaySignOutAlert(viewModel: Account.SingOutUser.ViewModel)
 }
 
-class AccountViewController: UIViewController, AccountDisplayLogic {
+class AccountViewController: UIViewController {
+    
     var interactor: AccountBusinessLogic?
+    
     var router: (NSObjectProtocol & AccountRoutingLogic & AccountDataPassing)?
-
-//    // MARK: - Routing
-//
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if let scene = segue.identifier {
-//            let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
-//            if let router = router, router.responds(to: selector) {
-//                router.perform(selector, with: segue)
-//            }
-//        }
-//    }
+    
+    private var sections = [AccountSectionViewModel]()
+    
+    private let tableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .grouped)
+        tableView.register(AccountTableViewCell.self,
+                           forCellReuseIdentifier: AccountTableViewCell.identifier)
+        return tableView
+    }()
 
     // MARK: - View lifecycle
 
@@ -43,7 +44,14 @@ class AccountViewController: UIViewController, AccountDisplayLogic {
         
         AccountConfigurator.shared.configure(with: self)
         
+        configureViews()
         passUserRequest()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        layoutViews()
     }
     
     //MARK: - receive events from UI
@@ -60,14 +68,100 @@ class AccountViewController: UIViewController, AccountDisplayLogic {
 //        let request = Account.SomethingElse.Request()
 //        interactor?.updateUser(request: request)
     }
+    
+    // MARK: Common
+    
+    private func configureViews() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        view.addSubview(tableView)
+    }
 
+    private func layoutViews() {
+        tableView.frame = view.bounds
+    }
+
+}
+
+// MARK: AccountDisplayLogic
+extension AccountViewController: AccountDisplayLogic {
     // MARK: - display view model from AccountPresenter
 
     func displayUser(viewModel: Account.ShowUser.ViewModel) {
-        //nameTextField.text = viewModel.name
+        DispatchQueue.main.async {
+            self.sections = viewModel.sections
+            self.tableView.reloadData()
+        }
     }
 
     func displayUpdatedUsername(viewModel: Account.SaveUser.ViewModel) {
         // do sometingElse with viewModel
+    }
+    
+    func displaySignOutAlert(viewModel: Account.SingOutUser.ViewModel) {
+        let alert = UIAlertController(
+            title: viewModel.title,
+            message: viewModel.message,
+            preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel",
+                                      style: .cancel,
+                                      handler: nil))
+        alert.addAction(UIAlertAction(title: "Sign Out",
+                                      style: .destructive,
+                                      handler: { [weak self] _ in
+            self?.interactor?.signOutUser()
+        }))
+        
+        present(alert, animated: true)
+    }
+}
+
+// MARK: TableView
+extension AccountViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        sections.count
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        sections[section].rows.count
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        sections[section].title
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: AccountTableViewCell.identifier,
+            for: indexPath) as? AccountTableViewCell
+        else {
+            return UITableViewCell()
+        }
+        let viewModel = sections[indexPath.section].rows[indexPath.row]
+        cell.configure(with: viewModel)
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let viewmodel = sections[indexPath.section].rows[indexPath.row]
+        if viewmodel.tag == "logout" {
+            // TODO: name change case
+            interactor?.presentSignOutAlert()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        let model = sections[indexPath.section].rows[indexPath.row]
+        if model.isInteractable {
+            return indexPath
+        }
+        return nil
     }
 }

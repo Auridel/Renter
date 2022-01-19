@@ -51,8 +51,9 @@ class HistoryRouter: NSObject, HistoryRoutingLogic, HistoryDataPassing {
             return
         }
         passDataToCreateNewEntry(source: sourceDS, destination: &destinationDS)
-        createNewEntryVC.modalPresentationStyle = .fullScreen
-        viewController?.present(createNewEntryVC, animated: true)
+        createNewEntryVC.hidesBottomBarWhenPushed = true
+        viewController?.navigationController?.pushViewController(
+            createNewEntryVC, animated: true)
     }
     
     // MARK: Passing data to other screen

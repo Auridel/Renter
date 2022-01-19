@@ -15,6 +15,8 @@ final class MainCoordinator: Coordinator {
     
     var observer: NSObjectProtocol?
     
+    var mainTabViewController: MainTabsViewController?
+    
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
         self.navigationController.navigationBar.prefersLargeTitles = true
@@ -23,8 +25,8 @@ final class MainCoordinator: Coordinator {
             object: nil,
             queue: .main,
             using: { [weak self] _ in
-                // TODO: reset to login
-                
+                self?.mainTabViewController?.dismiss(animated: true)
+                self?.navigationController.viewControllers = [LoginViewController()]
             })
     }
     
@@ -38,6 +40,10 @@ final class MainCoordinator: Coordinator {
                 self.navigationController.viewControllers = [loginVC]
             }
         }
+    }
+    
+    private func resetToLogin() {
+        
     }
 }
 
@@ -54,10 +60,15 @@ extension MainCoordinator: LoginViewControllerDelegate {
     
     func didLogin() {
         DispatchQueue.main.async {
-            let tabVC = MainTabsViewController()
+            self.mainTabViewController = MainTabsViewController()
+            guard let tabVC = self.mainTabViewController else {
+                return
+            }
             tabVC.modalPresentationStyle = .fullScreen
             self.navigationController.viewControllers.removeAll()
-            self.navigationController.present(tabVC, animated: true)
+            self.navigationController.present(
+                tabVC,
+                animated: true)
         }
     }
 }

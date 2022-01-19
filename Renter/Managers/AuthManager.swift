@@ -92,6 +92,19 @@ final class AuthManager {
         }
     }
     
+    public func signOut() {
+        let domain = Bundle.main.bundleIdentifier
+        guard let domain = domain else {
+            return
+        }
+        UserDefaults.standard.removePersistentDomain(forName: domain)
+        NotificationCenter.default.post(
+            name: .tokenExpired,
+            object: nil)
+    }
+    
+    // MARK: Private
+    
     private func saveUserData(userId: String, username: String, email: String, token: String) {
         UserDefaults.standard.setValuesForKeys([
             StorageKeys.userId.rawValue: userId,

@@ -10,11 +10,12 @@
 //  see http://clean-swift.com
 //
 
-import UIKit
+import Foundation
 
 protocol AccountPresentationLogic {
     func presentUser(response: Account.ShowUser.Response)
     func presentUpdatedUsername(response: Account.SaveUser.Response)
+    func presentSignOutAlert()
 }
 
 class AccountPresenter: AccountPresentationLogic {
@@ -23,12 +24,50 @@ class AccountPresenter: AccountPresentationLogic {
     // MARK: Parse and calc respnse from AccountInteractor and send simple view model to AccountViewController to be displayed
 
     func presentUser(response: Account.ShowUser.Response) {
-//        let viewModel = Account.ShowUser.ViewModel()
-//        viewController?.displayUser(viewModel: viewModel)
+        var sections = [AccountSectionViewModel]()
+        sections.append(AccountSectionViewModel(
+            title: "Your Name",
+            rows: [
+                AccountRowViewModel(
+                    isInteractable: true,
+                    content: response.user.userName,
+                    color: .label,
+                    tag: "name"
+                )
+            ]))
+        sections.append(AccountSectionViewModel(
+            title: "Your Email",
+            rows: [
+                AccountRowViewModel(
+                    isInteractable: false,
+                    content: response.user.email,
+                    color: .label,
+                    tag: "email"
+                )
+            ]))
+        sections.append(AccountSectionViewModel(
+            title: "",
+            rows: [
+                AccountRowViewModel(
+                    isInteractable: true,
+                    content: "Sign Out",
+                    color: .red,
+                    tag: "logout"
+                )
+            ]))
+        let viewModel = Account.ShowUser.ViewModel(sections: sections)
+        viewController?.displayUser(viewModel: viewModel)
     }
 //
     func presentUpdatedUsername(response: Account.SaveUser.Response) {
 //        let viewModel = Account.SaveUser.ViewModel()
 //        viewController?.displayUpdatedUsername(viewModel: viewModel)
+    }
+    
+    func presentSignOutAlert() {
+        viewController?.displaySignOutAlert(
+            viewModel: Account.SingOutUser.ViewModel(
+                title: "Sign Out",
+                message: "Dou you really want to sign out?"))
     }
 }

@@ -34,6 +34,7 @@
 		F81350502794A520007EA1C4 /* CreateNewEntryConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F813504F2794A520007EA1C4 /* CreateNewEntryConfigurator.swift */; };
 		F81350532794B675007EA1C4 /* HistoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81350522794B675007EA1C4 /* HistoryCollectionViewCell.swift */; };
 		F81350552794B92A007EA1C4 /* HistoryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81350542794B92A007EA1C4 /* HistoryResponse.swift */; };
+		F8CA0FD12798A80E00EEEF8E /* AccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8CA0FD02798A80E00EEEF8E /* AccountTableViewCell.swift */; };
 		F8DBBB292795F82700414D7A /* EntryDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DBBB232795F82700414D7A /* EntryDetailsPresenter.swift */; };
 		F8DBBB2B2795F82700414D7A /* EntryDetailsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DBBB252795F82700414D7A /* EntryDetailsRouter.swift */; };
 		F8DBBB2C2795F82700414D7A /* EntryDetailsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DBBB262795F82700414D7A /* EntryDetailsModels.swift */; };
@@ -112,6 +113,7 @@
 		F813504F2794A520007EA1C4 /* CreateNewEntryConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewEntryConfigurator.swift; sourceTree = "<group>"; };
 		F81350522794B675007EA1C4 /* HistoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		F81350542794B92A007EA1C4 /* HistoryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryResponse.swift; sourceTree = "<group>"; };
+		F8CA0FD02798A80E00EEEF8E /* AccountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableViewCell.swift; sourceTree = "<group>"; };
 		F8DBBB232795F82700414D7A /* EntryDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryDetailsPresenter.swift; sourceTree = "<group>"; };
 		F8DBBB252795F82700414D7A /* EntryDetailsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryDetailsRouter.swift; sourceTree = "<group>"; };
 		F8DBBB262795F82700414D7A /* EntryDetailsModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryDetailsModels.swift; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 			children = (
 				F81350522794B675007EA1C4 /* HistoryCollectionViewCell.swift */,
 				F8DBBB312795FAD500414D7A /* EntryDetailsCollectionViewCell.swift */,
+				F8CA0FD02798A80E00EEEF8E /* AccountTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -591,6 +594,7 @@
 				F813503B27949EAF007EA1C4 /* HistoryInteractor.swift in Sources */,
 				F8DBBB2E2795F82700414D7A /* EntryDetailsInteractor.swift in Sources */,
 				F813504227949EC6007EA1C4 /* CreateNewEntryPresenter.swift in Sources */,
+				F8CA0FD12798A80E00EEEF8E /* AccountTableViewCell.swift in Sources */,
 				F81350532794B675007EA1C4 /* HistoryCollectionViewCell.swift in Sources */,
 				F8DBBB2C2795F82700414D7A /* EntryDetailsModels.swift in Sources */,
 			);

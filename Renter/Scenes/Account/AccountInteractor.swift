@@ -15,6 +15,8 @@ import UIKit
 protocol AccountBusinessLogic {
     func getUser(request: Account.ShowUser.Request)
     func updateUser(request: Account.SaveUser.Request)
+    func presentSignOutAlert()
+    func signOutUser()
 }
 
 protocol AccountDataStore {
@@ -27,11 +29,9 @@ class AccountInteractor: AccountBusinessLogic, AccountDataStore {
     // MARK: Do something (and send response to AccountPresenter)
 
     func getUser(request: Account.ShowUser.Request) {
-        worker = AccountWorker()
-        worker?.doSomeWork()
-
-//        let response = Account.ShowUser.Response()
-//        presenter?.presentSomething(response: response)
+        guard let user = AuthManager.shared.getUser()
+        else { return }
+        presenter?.presentUser(response: Account.ShowUser.Response(user: user))
     }
 
     func updateUser(request: Account.SaveUser.Request) {
@@ -40,5 +40,13 @@ class AccountInteractor: AccountBusinessLogic, AccountDataStore {
 //
 //        let response = Account.SaveUser.Response()
 //        presenter?.presentUpdatedUsername(response: response)
+    }
+    
+    func signOutUser() {
+        AuthManager.shared.signOut()
+    }
+    
+    func presentSignOutAlert() {
+        presenter?.presentSignOutAlert()
     }
 }
