@@ -21,7 +21,7 @@ enum CreateNewEntry {
         }
 
         struct Response {
-
+            let plan: UserPlan
         }
 
         struct ViewModel {
@@ -34,10 +34,10 @@ enum CreateNewEntry {
     
     enum SaveNewEntry {
         struct Request {
-            let cold: Double
-            let hot: Double
-            let day: Double
-            let night: Double
+            let cold: String
+            let hot: String
+            let day: String
+            let night: String
         }
 
         struct Response {
@@ -46,7 +46,7 @@ enum CreateNewEntry {
         }
 
         struct ViewModel {
-
+            
         }
     }
 }

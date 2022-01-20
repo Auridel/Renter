@@ -15,6 +15,7 @@ import UIKit
 protocol CreateNewEntryPresentationLogic {
     func presentCurrentPlan(response: CreateNewEntry.GetMeters.Response)
     func presentTransactionStatus(response: CreateNewEntry.SaveNewEntry.Response)
+    func presentAlert(with error: String)
 }
 
 class CreateNewEntryPresenter: CreateNewEntryPresentationLogic {
@@ -23,12 +24,20 @@ class CreateNewEntryPresenter: CreateNewEntryPresentationLogic {
     // MARK: Parse and calc respnse from CreateNewEntryInteractor and send simple view model to CreateNewEntryViewController to be displayed
 
     func presentCurrentPlan(response: CreateNewEntry.GetMeters.Response) {
-//        let viewModel = CreateNewEntry.GetMeters.ViewModel()
-//        viewController?.displayCurrentPlan(viewModel: viewModel)
+        let viewModel = CreateNewEntry.GetMeters.ViewModel(
+            cold: response.plan.coldPlan,
+            hot: response.plan.hotPlan,
+            day: response.plan.dayPlan,
+            night: response.plan.nightPlan)
+        viewController?.displayCurrentPlan(viewModel: viewModel)
     }
 
     func presentTransactionStatus(response: CreateNewEntry.SaveNewEntry.Response) {
 //        let viewModel = CreateNewEntry.SomethingElse.ViewModel()
 //        viewController?.displayTransactionStatus(viewModel: viewModel)
+    }
+    
+    func presentAlert(with error: String) {
+        
     }
 }

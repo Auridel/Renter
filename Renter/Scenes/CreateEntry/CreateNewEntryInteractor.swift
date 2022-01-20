@@ -32,10 +32,10 @@ class CreateNewEntryInteractor: CreateNewEntryBusinessLogic, CreateNewEntryDataS
     // MARK: Do something (and send response to CreateNewEntryPresenter)
 
     func getCurrentPlanData(request: CreateNewEntry.GetMeters.Request) {
-        worker = CreateNewEntryWorker()
-        worker?.doSomeWork()
-
-        let response = CreateNewEntry.GetMeters.Response()
+        guard let actualPlan = actualPlan else {
+            return
+        }
+        let response = CreateNewEntry.GetMeters.Response(plan: actualPlan)
         presenter?.presentCurrentPlan(response: response)
     }
 

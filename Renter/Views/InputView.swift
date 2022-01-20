@@ -41,12 +41,17 @@ class InputView: UIView {
         return textField
     }()
     
-    init(_ label: String, returnKey: UIReturnKeyType, isSecure: Bool = false) {
+    init(_ label: String,
+         returnKey: UIReturnKeyType,
+         isSecure: Bool = false,
+         keyboardType: UIKeyboardType = .default
+    ) {
         super.init(frame: .zero)
         inputLabel.text = label
         inputTextField.delegate = self
         inputTextField.isSecureTextEntry = isSecure
         inputTextField.returnKeyType = returnKey
+        inputTextField.keyboardType = keyboardType
         
         addSubview(inputLabel)
         addSubview(inputTextField)
@@ -69,6 +74,10 @@ class InputView: UIView {
             y: inputLabel.bottom + 8,
             width: width,
             height: 50)
+    }
+    
+    public func setInputValue(_ value: String?) {
+        inputTextField.text = value
     }
     
     public func getValue() -> String? {

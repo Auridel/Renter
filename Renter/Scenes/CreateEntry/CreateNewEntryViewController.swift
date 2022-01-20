@@ -15,39 +15,111 @@ import UIKit
 protocol CreateNewEntryDisplayLogic: AnyObject {
     func displayCurrentPlan(viewModel: CreateNewEntry.GetMeters.ViewModel)
     func displayTransactionStatus(viewModel: CreateNewEntry.SaveNewEntry.ViewModel)
+    func presentAlert(with title: String, message: String)
 }
 
-class CreateNewEntryViewController: UIViewController, CreateNewEntryDisplayLogic {
+class CreateNewEntryViewController: UIViewController {
+    
     var interactor: CreateNewEntryBusinessLogic?
+    
     var router: (NSObjectProtocol & CreateNewEntryRoutingLogic & CreateNewEntryDataPassing)?
-
-//
-//    // MARK: - Routing
-//
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if let scene = segue.identifier {
-//            let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
-//            if let router = router, router.responds(to: selector) {
-//                router.perform(selector, with: segue)
-//            }
-//        }
-//    }
+    
+    private var planViewModel: CreateNewEntry.GetMeters.ViewModel?
+    
+    private let scrollView = UIScrollView()
+    
+    private let coldPlanInput = InputView(
+        "Cold Plan",
+        returnKey: .next,
+        keyboardType: .decimalPad)
+    
+    private let hotPlanInput = InputView(
+        "Hot Plan",
+        returnKey: .next,
+        keyboardType: .decimalPad)
+    
+    private let dayPlanInput = InputView(
+        "Day Plan",
+        returnKey: .next,
+        keyboardType: .decimalPad)
+    
+    private let nightPlanInput = InputView(
+        "Night Plan",
+        returnKey: .next,
+        keyboardType: .decimalPad)
+    
+    private let coldMetersInput = InputView(
+        "Cold",
+        returnKey: .next,
+        keyboardType: .decimalPad)
+    
+    private let hotMetersInput = InputView(
+        "Hot",
+        returnKey: .next,
+        keyboardType: .decimalPad)
+    
+    private let dayMetersInput = InputView(
+        "Day Electricity",
+        returnKey: .next,
+        keyboardType: .decimalPad)
+    
+    private let nightMetersInput = InputView(
+        "Night Electricity",
+        returnKey: .done,
+        keyboardType: .decimalPad)
+    
+    private let planLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 24, weight: .bold)
+        label.text = "Monthly Plan"
+        label.textAlignment = .center
+        return label
+    }()
+    
+    private let metersLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 24, weight: .bold)
+        label.text = "Current Meters"
+        label.textAlignment = .center
+        return label
+    }()
+    
+    private let submitButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Submit", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        var configuration = UIButton.Configuration.filled()
+        configuration.baseBackgroundColor = .link
+        configuration.cornerStyle = .small
+        button.configuration = configuration
+        return button
+    }()
 
     // MARK: - View lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // TODO: Error handling
         title = "Create New Entry"
         
         view.backgroundColor = .systemBackground
         
+        configureViews()
         getCurrentPlan()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        layoutViews()
     }
     
     //MARK: - receive events from UI
     
-    
+    @objc private func didTapSubmitButton() {
+        
+    }
     
     // MARK: - request data from CreateNewEntryInteractor
 
@@ -61,13 +133,113 @@ class CreateNewEntryViewController: UIViewController, CreateNewEntryDisplayLogic
 //        interactor?.createNewEntry(request: request)
     }
 
-    // MARK: - display view model from CreateNewEntryPresenter
+    // MARK: Common
+    
+    private func configureViews() {
+        submitButton.addTarget(self,
+                               action: #selector(didTapSubmitButton),
+                               for: .touchUpInside)
+        
+        view.addSubview(scrollView)
+        scrollView.addSubview(planLabel)
+        scrollView.addSubview(coldPlanInput)
+        scrollView.addSubview(hotPlanInput)
+        scrollView.addSubview(dayPlanInput)
+        scrollView.addSubview(nightPlanInput)
+        scrollView.addSubview(metersLabel)
+        scrollView.addSubview(coldMetersInput)
+        scrollView.addSubview(hotMetersInput)
+        scrollView.addSubview(dayMetersInput)
+        scrollView.addSubview(nightMetersInput)
+        scrollView.addSubview(submitButton)
+    }
+    
+    private func layoutViews() {
+        scrollView.frame = view.bounds
+        
+        let padding: CGFloat = 16
+        let rightInputX = scrollView.width / 2  + padding
+        let inputWidth = scrollView.width / 2 - padding * 2
+        let lineSpacing: CGFloat = 24
+        let inputHeight: CGFloat = 70
+        
+        planLabel.frame = CGRect(
+            x: padding,
+            y: 16,
+            width: scrollView.width - 32,
+            height: 26)
+        coldPlanInput.frame = CGRect(
+            x: padding,
+            y: planLabel.bottom + lineSpacing,
+            width: inputWidth,
+            height: inputHeight)
+        hotPlanInput.frame = CGRect(
+            x: rightInputX,
+            y: planLabel.bottom + lineSpacing,
+            width: inputWidth,
+            height: inputHeight)
+        dayPlanInput.frame = CGRect(
+            x: padding,
+            y: coldPlanInput.bottom + lineSpacing,
+            width: inputWidth,
+            height: inputHeight)
+        nightPlanInput.frame = CGRect(
+            x: rightInputX,
+            y: coldPlanInput.bottom + lineSpacing,
+            width: inputWidth,
+            height: inputHeight)
+        metersLabel.frame = CGRect(
+            x: padding,
+            y: dayPlanInput.bottom + lineSpacing * 2,
+            width: scrollView.width - padding * 2,
+            height: 26)
+        coldMetersInput.frame = CGRect(
+            x: padding,
+            y: metersLabel.bottom + lineSpacing,
+            width: inputWidth,
+            height: inputHeight)
+        hotMetersInput.frame = CGRect(
+            x: rightInputX,
+            y: metersLabel.bottom + lineSpacing,
+            width: inputWidth,
+            height: inputHeight)
+        dayMetersInput.frame = CGRect(
+            x: padding,
+            y: coldMetersInput.bottom + lineSpacing,
+            width: inputWidth,
+            height: inputHeight)
+        nightMetersInput.frame = CGRect(
+            x: rightInputX,
+            y: coldMetersInput.bottom + lineSpacing,
+            width: inputWidth,
+            height: inputHeight)
+        submitButton.frame = CGRect(
+            x: scrollView.width - 100 - padding,
+            y: dayMetersInput.bottom + lineSpacing * 2,
+            width: 100,
+            height: 50)
+        
+        scrollView.contentSize = CGSize(width: view.width, height: submitButton.bottom)
+    }
+}
 
+
+extension CreateNewEntryViewController: CreateNewEntryDisplayLogic {
+    
+    // MARK: - display view model from CreateNewEntryPresenter
+    
     func displayCurrentPlan(viewModel: CreateNewEntry.GetMeters.ViewModel) {
-        //nameTextField.text = viewModel.name
+        coldPlanInput.setInputValue("\(viewModel.cold)")
+        hotPlanInput.setInputValue("\(viewModel.hot)")
+        dayPlanInput.setInputValue("\(viewModel.day)")
+        nightPlanInput.setInputValue("\(viewModel.night)")
     }
 
     func displayTransactionStatus(viewModel: CreateNewEntry.SaveNewEntry.ViewModel) {
         // do sometingElse with viewModel
+    }
+    
+    func presentAlert(with title: String, message: String) {
+        
     }
 }
