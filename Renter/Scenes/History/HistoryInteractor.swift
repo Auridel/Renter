@@ -53,6 +53,6 @@ class HistoryInteractor: HistoryBusinessLogic, HistoryDataStore {
 //        worker?.doSomeOtherWork()
 //
 //        let response = History.FilterData.Response()
-//        presenter?.presentFiltredHistory(response: response)
+//        presenter?.presentFilteredHistory(response: response)
     }
 }

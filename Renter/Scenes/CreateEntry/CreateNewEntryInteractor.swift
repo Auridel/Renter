@@ -40,10 +40,24 @@ class CreateNewEntryInteractor: CreateNewEntryBusinessLogic, CreateNewEntryDataS
     }
 
     func createNewEntry(request: CreateNewEntry.SaveNewEntry.Request) {
-//        worker = CreateNewEntryWorker()
-//        worker?.doSomeOtherWork()
-//
-//        let response = CreateNewEntry.SaveNewEntry.Response()
-//        presenter?.presentTransactionStatus(response: response)
+        print(request)
+        worker = CreateNewEntryWorker()
+        do {
+            let converted = try worker?.convertStringToDouble(request)
+            if let data = converted {
+                ApiManager.shared.createNewEntry(with: data) { [weak self] isSuccess in
+                    self?.presenter?.presentTransactionStatus(
+                        response: CreateNewEntry.SaveNewEntry.Response(
+                            isSuccess: isSuccess))
+                    NotificationCenter.default.post(name: .entriesUpdated,
+                                                    object: nil)
+                    return
+                }
+            } else {
+                presenter?.presentAlert(with: "Incorrect values!")
+            }
+        } catch {
+            presenter?.presentAlert(with: "Values must be numbers!")
+        }
     }
 }

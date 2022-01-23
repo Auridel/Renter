@@ -14,7 +14,7 @@ import UIKit
 
 protocol HistoryPresentationLogic {
     func presentHistory(response: History.GetHistoryData.Response)
-    func presentFiltredHistory(response: History.FilterData.Response)
+    func presentFilteredHistory(response: History.FilterData.Response)
 }
 
 class HistoryPresenter: HistoryPresentationLogic {
@@ -34,7 +34,7 @@ class HistoryPresenter: HistoryPresentationLogic {
         viewController?.displayHistory(viewModel: viewModel)
     }
 
-    func presentFiltredHistory(response: History.FilterData.Response) {
+    func presentFilteredHistory(response: History.FilterData.Response) {
 //        let viewModel = History.FilterData.ViewModel()
 //        viewController?.displayFiltredHistory(viewModel: viewModel)
     }

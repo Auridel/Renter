@@ -14,12 +14,16 @@ import UIKit
 
 protocol EntryDetailsPresentationLogic {
     func presentEntry(response: EntryDetails.GetEntry.Response)
+    func presentError(with message: String)
+    func presentAlert()
+    func dismissVC()
 }
 
 class EntryDetailsPresenter: EntryDetailsPresentationLogic {
+    
     weak var viewController: EntryDetailsDisplayLogic?
 
-    // MARK: Parse and calc respnse from EntryDetailsInteractor and send simple view model to EntryDetailsViewController to be displayed
+    // MARK: Parse and calc response from EntryDetailsInteractor and send simple view model to EntryDetailsViewController to be displayed
 
     func presentEntry(response: EntryDetails.GetEntry.Response) {
         let meters = response.entry.meters
@@ -52,9 +56,24 @@ class EntryDetailsPresenter: EntryDetailsPresentationLogic {
         let viewModel = EntryDetails.GetEntry.ViewModel(sections: sections)
         viewController?.displayEntry(viewModel: viewModel)
     }
-//
-//    func presentSomethingElse(response: EntryDetails.SomethingElse.Response) {
-//        let viewModel = EntryDetails.SomethingElse.ViewModel()
-//        viewController?.displaySomethingElse(viewModel: viewModel)
-//    }
+
+    func presentError(with message: String) {
+        viewController?.displayAlert(
+            viewModel: EntryDetails.RemoveEntry.ViewModel(
+                title: "Error",
+                message: "Something went wrong",
+                isDelete: false))
+    }
+    
+    func presentAlert() {
+        viewController?.displayAlert(
+            viewModel: EntryDetails.RemoveEntry.ViewModel(
+                title: "Delete Entry",
+                message: "Do you really want to delete entry?",
+                isDelete: true))
+    }
+    
+    func dismissVC() {
+        viewController?.dismissScreen()
+    }
 }

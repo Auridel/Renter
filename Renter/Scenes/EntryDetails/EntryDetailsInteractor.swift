@@ -14,7 +14,8 @@ import UIKit
 
 protocol EntryDetailsBusinessLogic {
     func getEntry(request: EntryDetails.GetEntry.Request)
-//    func doSomethingElse(request: EntryDetails.SomethingElse.Request)
+    func askToDelete()
+    func deleteEntry()
 }
 
 protocol EntryDetailsDataStore {
@@ -36,8 +37,26 @@ class EntryDetailsInteractor: EntryDetailsBusinessLogic, EntryDetailsDataStore {
         let response = EntryDetails.GetEntry.Response(entry: entry)
         presenter?.presentEntry(response: response)
     }
-//
-//    func doSomethingElse(request: EntryDetails.SomethingElse.Request) {
+    
+    func deleteEntry( ) {
+        guard let entry = entry else {
+            return
+        }
+        ApiManager.shared.removeEntry(with: entry.timestamp) { [weak self] isSuccess in
+            if isSuccess {
+                NotificationCenter.default.post(name: .entriesUpdated, object: nil)
+                self?.presenter?.dismissVC()
+            } else {
+                self?.presenter?.presentAlert()
+            }
+        }
+    }
+    
+    func askToDelete() {
+        presenter?.presentAlert()
+    }
+
+//    func doSomethingElse(request: EntryDetails.RemoveEntry.Request) {
 //        worker = EntryDetailsWorker()
 //        worker?.doSomeOtherWork()
 //

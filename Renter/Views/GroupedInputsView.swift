@@ -10,12 +10,6 @@ import UIKit
 struct GroupedInput {
     let title: String
     let tag: String
-    let value: String
-}
-
-struct GroupedInputValue {
-    let tag: String
-    let value: String
 }
 
 struct GroupedInputsViewModel {
@@ -23,7 +17,6 @@ struct GroupedInputsViewModel {
     let inputs: [GroupedInput]
 }
 
-// TODO: Validation, error handling
 class GroupedInputView: UIView {
     
     public var blockHeight: CGFloat {
@@ -46,6 +39,7 @@ class GroupedInputView: UIView {
             InputView(
                 $0.title,
                 returnKey: $0.tag == inputs.last?.tag ? .done : .next,
+                keyboardType: .decimalPad,
                 tag: $0.tag)
         })
         self.titleLabel.text = title
@@ -98,12 +92,6 @@ class GroupedInputView: UIView {
             if let input = inputs.first(where: { $0.inputTag == key }) {
                 input.setInputValue(value)
             }
-        }
-    }
-    
-    public func validateInputs() {
-        for input in inputs {
-            // TODO: validation
         }
     }
     

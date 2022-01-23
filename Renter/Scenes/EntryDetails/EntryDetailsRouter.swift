@@ -27,6 +27,8 @@ class EntryDetailsRouter: NSObject, EntryDetailsRoutingLogic, EntryDetailsDataPa
     var dataStore: EntryDetailsDataStore?
     
     func routeToHistory() {
-        viewController?.dismiss(animated: true, completion: nil)
+        DispatchQueue.main.async { [weak self] in
+            self?.viewController?.dismiss(animated: true, completion: nil)
+        }
     }
 }

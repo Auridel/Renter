@@ -14,7 +14,8 @@ import UIKit
 
 protocol EntryDetailsDisplayLogic: AnyObject {
     func displayEntry(viewModel: EntryDetails.GetEntry.ViewModel)
-//    func displaySomethingElse(viewModel: EntryDetails.SomethingElse.ViewModel)
+    func displayAlert(viewModel: EntryDetails.RemoveEntry.ViewModel)
+    func dismissScreen()
 }
 
 class EntryDetailsViewController: UIViewController {
@@ -66,7 +67,7 @@ class EntryDetailsViewController: UIViewController {
     }
 //
 //    func doSomethingElse() {
-//        let request = EntryDetails.SomethingElse.Request()
+//        let request = EntryDetails.RemoveEntry.Request()
 //        interactor?.doSomethingElse(request: request)
 //    }
 
@@ -87,6 +88,31 @@ class EntryDetailsViewController: UIViewController {
 
 // MARK: EntryDetailsDisplayLogic
 extension EntryDetailsViewController: EntryDetailsDisplayLogic {
+    
+    func displayAlert(viewModel: EntryDetails.RemoveEntry.ViewModel) {
+        let alert = UIAlertController(title: viewModel.title,
+                                      message: viewModel.message,
+                                      preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Cancel",
+                                      style: .cancel,
+                                      handler: nil))
+        
+        if viewModel.isDelete {
+            alert.addAction(UIAlertAction(title: "Delete",
+                                          style: .destructive,
+                                          handler: { [weak self] _ in
+                self?.interactor?.deleteEntry()
+            }))
+        }
+        
+        present(alert, animated: true)
+    }
+    
+    func dismissScreen() {
+        router?.routeToHistory()
+    }
+    
     // MARK: - display view model from EntryDetailsPresenter
 
     func displayEntry(viewModel: EntryDetails.GetEntry.ViewModel) {
@@ -95,10 +121,7 @@ extension EntryDetailsViewController: EntryDetailsDisplayLogic {
             self.tableView.reloadData()
         }
     }
-//
-//    func displaySomethingElse(viewModel: EntryDetails.SomethingElse.ViewModel) {
-//        // do sometingElse with viewModel
-//    }
+
 }
 
 
@@ -154,7 +177,7 @@ extension EntryDetailsViewController: EntryDetailsFooterViewDelegate {
     }
     
     func entryDetailsFooterViewDidTapDeleteButton() {
-        // TODO: Delete model
+        interactor?.askToDelete()
     }
     
     

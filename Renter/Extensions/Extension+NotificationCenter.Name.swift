@@ -9,4 +9,6 @@ import Foundation
 
 extension Notification.Name {
     static let tokenExpired = Notification.Name("tokenExpired")
+    
+    static let entriesUpdated = Notification.Name("entriesUpdated")
 }

@@ -10,7 +10,14 @@
 //  see http://clean-swift.com
 //
 
-import UIKit
+import Foundation
+
+struct CreateNewEntryUserInput {
+    let cold: String
+    let hot: String
+    let day: String
+    let night: String
+}
 
 enum CreateNewEntry {
     // MARK: Use cases
@@ -34,10 +41,8 @@ enum CreateNewEntry {
     
     enum SaveNewEntry {
         struct Request {
-            let cold: String
-            let hot: String
-            let day: String
-            let night: String
+            let plan: CreateNewEntryUserInput
+            let meters: CreateNewEntryUserInput
         }
 
         struct Response {
@@ -46,7 +51,8 @@ enum CreateNewEntry {
         }
 
         struct ViewModel {
-            
+            let isSuccess: Bool
+            let error: String?
         }
     }
 }

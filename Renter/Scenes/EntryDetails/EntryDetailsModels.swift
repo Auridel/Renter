@@ -39,21 +39,19 @@ enum EntryDetails {
         }
     }
     
-//    enum SomethingElse
-//    {
-//        struct Request
-//        {
-//
-//        }
-//
-//        struct Response
-//        {
-//
-//        }
-//
-//        struct ViewModel
-//        {
-//
-//        }
-//    }
+    enum RemoveEntry {
+        struct Request {
+
+        }
+
+        struct Response {
+            let isSuccess: Bool
+        }
+
+        struct ViewModel {
+            let title: String
+            let message: String
+            let isDelete: Bool
+        }
+    }
 }

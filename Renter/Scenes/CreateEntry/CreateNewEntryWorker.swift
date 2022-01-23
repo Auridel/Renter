@@ -10,14 +10,32 @@
 //  see http://clean-swift.com
 //
 
-import UIKit
+import Foundation
+
+struct NumerousUserInput {
+    let cold: Double
+    let hot: Double
+    let day: Double
+    let night: Double
+}
+
+struct NewEntryConvertedInput {
+    let plan: NumerousUserInput
+    let meters: NumerousUserInput
+}
 
 class CreateNewEntryWorker {
-    func doSomeWork() {
-        
+    func convertStringToDouble(_ request: CreateNewEntry.SaveNewEntry.Request) throws -> NewEntryConvertedInput {
+        NewEntryConvertedInput(
+            plan: NumerousUserInput(
+                cold: Double(request.plan.cold)!,
+                hot: Double(request.plan.hot)!,
+                day: Double(request.plan.day)!,
+                night: Double(request.plan.night)!),
+            meters: NumerousUserInput(
+                cold: Double(request.meters.cold)!,
+                hot: Double(request.meters.hot)!,
+                day: Double(request.meters.day)!,
+                night: Double(request.meters.night)!))
     }
-//    
-//    func doSomeOtherWork() {
-//
-//    }
 }

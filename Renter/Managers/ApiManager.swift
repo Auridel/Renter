@@ -19,6 +19,8 @@ final class ApiManager {
     
     typealias TypedCompletion<T: Codable> = ((Result<T, Error>) -> Void)
     
+    typealias StatusResponse = (Bool) -> Void
+    
     public static let shared = ApiManager()
     
     private let baseURLString = "https://renter-mern-deploy.herokuapp.com/api"
@@ -43,9 +45,37 @@ final class ApiManager {
             completion: completion)
     }
     
+    public func createNewEntry(
+        with data: NewEntryConvertedInput,
+        completion: @escaping StatusResponse)
+    {
+        performApiCall(to: "\(baseURLString)/account/add",
+                       method: .POST,
+                       completion: completion,
+                       body: [
+                        "cold_plan": data.plan.cold,
+                        "hot_plan": data.plan.hot,
+                        "day_plan": data.plan.day,
+                        "night_plan": data.plan.night,
+                        "cold": data.meters.cold,
+                        "hot": data.meters.hot,
+                        "day": data.meters.day,
+                        "night": data.meters.night
+                       ])
+    }
+    
+    public func removeEntry(with timestamp: Double, completion: @escaping StatusResponse) {
+        performApiCall(to: "\(baseURLString)/account/del",
+                       method: .POST,
+                       completion: completion,
+                       body: [
+                        "timestamp": timestamp
+                       ])
+    }
+    
     // MARK: Private Methods
     
-    private func performApiCall<T: Codable>(to urlString: String, method: HTTPMethod, completion: @escaping TypedCompletion<T>, body: [String: String]? = nil) {
+    private func performApiCall<T: Codable>(to urlString: String, method: HTTPMethod, completion: @escaping TypedCompletion<T>, body: [String: Any]? = nil) {
         createRequest(
             URL(string: urlString),
             method: method) { [weak self] baseRequest in
@@ -67,6 +97,31 @@ final class ApiManager {
                     break
                 }
                 self.getTypedResponse(request: request, completion: completion)
+            }
+    }
+    
+    private func performApiCall(to urlString: String, method: HTTPMethod, completion: @escaping StatusResponse, body: [String: Any]? = nil) {
+        createRequest(
+            URL(string: urlString),
+            method: method) { [weak self] baseRequest in
+                guard let self = self else {
+                    completion(false)
+                    return
+                }
+                var request = baseRequest
+                switch method {
+                case .POST:
+                    guard let body = body else {
+                        completion(false)
+                        return
+                    }
+                    request.httpBody = try? JSONSerialization.data(
+                        withJSONObject: body,
+                        options: .fragmentsAllowed)
+                case .GET:
+                    break
+                }
+                self.getStatusResponse(request: request, completion: completion)
             }
     }
     
@@ -110,6 +165,35 @@ final class ApiManager {
                 print(parseError)
                 completion(.failure(ApiError.failedToGetData))
             }
+        }.resume()
+    }
+    
+    private func getStatusResponse(request: URLRequest, completion: @escaping StatusResponse) {
+        URLSession.shared.dataTask(with: request) { data, _, error in
+            guard let data = data,
+                    error == nil
+            else {
+                print(String(describing: error))
+                completion(false)
+                return
+            }
+            
+            do {
+                let result = try JSONSerialization.jsonObject(with: data,
+                                                              options: .fragmentsAllowed)
+                if let body = result as? [String: Any],
+                   let message = body["message"] as? String,
+                   message == "ok" {
+                    completion(true)
+                    return
+                } else {
+                    completion(false)
+                }
+            } catch let error {
+                print(error)
+                completion(false)
+            }
+            
         }.resume()
     }
     

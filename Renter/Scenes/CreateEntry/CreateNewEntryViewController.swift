@@ -24,6 +24,14 @@ class CreateNewEntryViewController: UIViewController {
     
     var router: (NSObjectProtocol & CreateNewEntryRoutingLogic & CreateNewEntryDataPassing)?
     
+    private enum PlanInputTag: String {
+        case cold_plan, hot_plan, day_plan, night_plan
+    }
+    
+    private enum MetersInputTag: String {
+        case cold, hot, day, night
+    }
+    
     private var planViewModel: CreateNewEntry.GetMeters.ViewModel?
     
     private let scrollView = UIScrollView()
@@ -31,19 +39,19 @@ class CreateNewEntryViewController: UIViewController {
     private let planGroup = GroupedInputView(
         title: "Monthly Plan",
         inputs: [
-            GroupedInput(title: "Cold Plan", tag: "cold_plan", value: ""),
-            GroupedInput(title: "Hot Plan", tag: "hot_plan", value: ""),
-            GroupedInput(title: "Day Plan", tag: "day_plan", value: ""),
-            GroupedInput(title: "Night Plan", tag: "night_plan", value: "")
+            GroupedInput(title: "Cold Plan", tag: PlanInputTag.cold_plan.rawValue),
+            GroupedInput(title: "Hot Plan", tag: PlanInputTag.hot_plan.rawValue),
+            GroupedInput(title: "Day Plan", tag: PlanInputTag.day_plan.rawValue),
+            GroupedInput(title: "Night Plan", tag: PlanInputTag.night_plan.rawValue)
         ])
     
     private let metersGroup = GroupedInputView(
         title: "Current Meters",
         inputs: [
-            GroupedInput(title: "Cold", tag: "cold", value: ""),
-            GroupedInput(title: "Hot", tag: "hot", value: ""),
-            GroupedInput(title: "Day Electricity", tag: "day", value: ""),
-            GroupedInput(title: "Night Electricity", tag: "night", value: "")
+            GroupedInput(title: "Cold", tag: MetersInputTag.cold.rawValue),
+            GroupedInput(title: "Hot", tag: MetersInputTag.hot.rawValue),
+            GroupedInput(title: "Day Electricity", tag: MetersInputTag.day.rawValue),
+            GroupedInput(title: "Night Electricity", tag: MetersInputTag.night.rawValue)
         ])
     
     private let submitButton: UIButton = {
@@ -87,7 +95,7 @@ class CreateNewEntryViewController: UIViewController {
     //MARK: - receive events from UI
     
     @objc private func didTapSubmitButton() {
-        
+        passCreateNewEntryRequest()
     }
     @objc func adjustForKeyboard(notification: Notification) {
         guard let keyboardValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
@@ -112,8 +120,21 @@ class CreateNewEntryViewController: UIViewController {
     }
 
     func passCreateNewEntryRequest() {
-//        let request = CreateNewEntry.SaveNewEntry.Request()
-//        interactor?.createNewEntry(request: request)
+        let planData = planGroup.getValues()
+        let metersData = metersGroup.getValues()
+        
+        let request = CreateNewEntry.SaveNewEntry.Request(
+            plan: CreateNewEntryUserInput(
+                cold: planData[PlanInputTag.cold_plan.rawValue] ?? "",
+                hot: planData[PlanInputTag.hot_plan.rawValue] ?? "",
+                day: planData[PlanInputTag.day_plan.rawValue] ?? "",
+                night: planData[PlanInputTag.night_plan.rawValue] ?? ""),
+            meters: CreateNewEntryUserInput(
+                cold: metersData[MetersInputTag.cold.rawValue] ?? "",
+                hot: metersData[MetersInputTag.hot.rawValue] ?? "",
+                day: metersData[MetersInputTag.day.rawValue] ?? "",
+                night: metersData[MetersInputTag.night.rawValue] ?? ""))
+        interactor?.createNewEntry(request: request)
     }
 
     // MARK: Common
@@ -162,15 +183,17 @@ extension CreateNewEntryViewController: CreateNewEntryDisplayLogic {
     
     func displayCurrentPlan(viewModel: CreateNewEntry.GetMeters.ViewModel) {
         planGroup.setValues([
-            "cold_plan": viewModel.cold,
-            "hot_plan": viewModel.hot,
-            "day_plan": viewModel.day,
-            "night_plan": viewModel.night
+            PlanInputTag.cold_plan.rawValue: viewModel.cold,
+            PlanInputTag.hot_plan.rawValue: viewModel.hot,
+            PlanInputTag.day_plan.rawValue: viewModel.day,
+            PlanInputTag.night_plan.rawValue: viewModel.night
         ])
     }
 
     func displayTransactionStatus(viewModel: CreateNewEntry.SaveNewEntry.ViewModel) {
-        // do sometingElse with viewModel
+        if viewModel.isSuccess {
+            router?.routeToPreviousScreen()
+        }
     }
     
     func presentAlert(with title: String, message: String) {

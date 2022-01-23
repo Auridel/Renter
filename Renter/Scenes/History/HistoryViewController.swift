@@ -55,10 +55,12 @@ class HistoryViewController: UIViewController {
             barButtonSystemItem: .add,
             target: self,
             action: #selector(didTapAddButton))
-        
         view.backgroundColor = .secondarySystemBackground
         
-        //        tableView.transform = CGAffineTransform(rotationAngle: -(CGFloat)(Double.pi))
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(entriesDidUpdate),
+                                               name: .entriesUpdated,
+                                               object: nil)
         
         configureViews()
         passHistoryRequest()
@@ -90,6 +92,10 @@ class HistoryViewController: UIViewController {
     }
     
     // MARK: Common
+    
+    @objc private func entriesDidUpdate() {
+        passHistoryRequest()
+    }
     
     private func configureViews() {
         let layout = UICollectionViewFlowLayout()

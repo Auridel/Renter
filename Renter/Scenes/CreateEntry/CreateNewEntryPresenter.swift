@@ -10,6 +10,7 @@
 //  see http://clean-swift.com
 //
 
+import Foundation
 import UIKit
 
 protocol CreateNewEntryPresentationLogic {
@@ -33,6 +34,12 @@ class CreateNewEntryPresenter: CreateNewEntryPresentationLogic {
     }
 
     func presentTransactionStatus(response: CreateNewEntry.SaveNewEntry.Response) {
+        if response.isSuccess {
+            viewController?.displayTransactionStatus(
+                viewModel: CreateNewEntry.SaveNewEntry.ViewModel(
+                    isSuccess: true,
+                    error: nil))
+        }
 //        let viewModel = CreateNewEntry.SomethingElse.ViewModel()
 //        viewController?.displayTransactionStatus(viewModel: viewModel)
     }
