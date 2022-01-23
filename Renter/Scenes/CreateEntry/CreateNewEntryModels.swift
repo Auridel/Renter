@@ -25,10 +25,10 @@ enum CreateNewEntry {
         }
 
         struct ViewModel {
-            let cold: Double
-            let hot: Double
-            let day: Double
-            let night: Double
+            let cold: String
+            let hot: String
+            let day: String
+            let night: String
         }
     }
     

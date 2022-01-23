@@ -28,61 +28,23 @@ class CreateNewEntryViewController: UIViewController {
     
     private let scrollView = UIScrollView()
     
-    private let coldPlanInput = InputView(
-        "Cold Plan",
-        returnKey: .next,
-        keyboardType: .decimalPad)
+    private let planGroup = GroupedInputView(
+        title: "Monthly Plan",
+        inputs: [
+            GroupedInput(title: "Cold Plan", tag: "cold_plan", value: ""),
+            GroupedInput(title: "Hot Plan", tag: "hot_plan", value: ""),
+            GroupedInput(title: "Day Plan", tag: "day_plan", value: ""),
+            GroupedInput(title: "Night Plan", tag: "night_plan", value: "")
+        ])
     
-    private let hotPlanInput = InputView(
-        "Hot Plan",
-        returnKey: .next,
-        keyboardType: .decimalPad)
-    
-    private let dayPlanInput = InputView(
-        "Day Plan",
-        returnKey: .next,
-        keyboardType: .decimalPad)
-    
-    private let nightPlanInput = InputView(
-        "Night Plan",
-        returnKey: .next,
-        keyboardType: .decimalPad)
-    
-    private let coldMetersInput = InputView(
-        "Cold",
-        returnKey: .next,
-        keyboardType: .decimalPad)
-    
-    private let hotMetersInput = InputView(
-        "Hot",
-        returnKey: .next,
-        keyboardType: .decimalPad)
-    
-    private let dayMetersInput = InputView(
-        "Day Electricity",
-        returnKey: .next,
-        keyboardType: .decimalPad)
-    
-    private let nightMetersInput = InputView(
-        "Night Electricity",
-        returnKey: .done,
-        keyboardType: .decimalPad)
-    
-    private let planLabel: UILabel = {
-        let label = UILabel()
-        label.font = .systemFont(ofSize: 24, weight: .bold)
-        label.text = "Monthly Plan"
-        label.textAlignment = .center
-        return label
-    }()
-    
-    private let metersLabel: UILabel = {
-        let label = UILabel()
-        label.font = .systemFont(ofSize: 24, weight: .bold)
-        label.text = "Current Meters"
-        label.textAlignment = .center
-        return label
-    }()
+    private let metersGroup = GroupedInputView(
+        title: "Current Meters",
+        inputs: [
+            GroupedInput(title: "Cold", tag: "cold", value: ""),
+            GroupedInput(title: "Hot", tag: "hot", value: ""),
+            GroupedInput(title: "Day Electricity", tag: "day", value: ""),
+            GroupedInput(title: "Night Electricity", tag: "night", value: "")
+        ])
     
     private let submitButton: UIButton = {
         let button = UIButton()
@@ -102,8 +64,15 @@ class CreateNewEntryViewController: UIViewController {
         
         // TODO: Error handling
         title = "Create New Entry"
-        
         view.backgroundColor = .systemBackground
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(adjustForKeyboard(notification:)),
+                                               name: UIResponder.keyboardWillShowNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(adjustForKeyboard(notification:)),
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
         
         configureViews()
         getCurrentPlan()
@@ -119,6 +88,20 @@ class CreateNewEntryViewController: UIViewController {
     
     @objc private func didTapSubmitButton() {
         
+    }
+    @objc func adjustForKeyboard(notification: Notification) {
+        guard let keyboardValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
+
+        let keyboardScreenEndFrame = keyboardValue.cgRectValue
+        let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
+
+        if notification.name == UIResponder.keyboardWillHideNotification {
+            scrollView.contentInset = .zero
+        } else {
+            scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height - view.safeAreaInsets.bottom, right: 0)
+        }
+
+        scrollView.scrollIndicatorInsets = scrollView.contentInset
     }
     
     // MARK: - request data from CreateNewEntryInteractor
@@ -141,16 +124,8 @@ class CreateNewEntryViewController: UIViewController {
                                for: .touchUpInside)
         
         view.addSubview(scrollView)
-        scrollView.addSubview(planLabel)
-        scrollView.addSubview(coldPlanInput)
-        scrollView.addSubview(hotPlanInput)
-        scrollView.addSubview(dayPlanInput)
-        scrollView.addSubview(nightPlanInput)
-        scrollView.addSubview(metersLabel)
-        scrollView.addSubview(coldMetersInput)
-        scrollView.addSubview(hotMetersInput)
-        scrollView.addSubview(dayMetersInput)
-        scrollView.addSubview(nightMetersInput)
+        scrollView.addSubview(planGroup)
+        scrollView.addSubview(metersGroup)
         scrollView.addSubview(submitButton)
     }
     
@@ -158,64 +133,21 @@ class CreateNewEntryViewController: UIViewController {
         scrollView.frame = view.bounds
         
         let padding: CGFloat = 16
-        let rightInputX = scrollView.width / 2  + padding
-        let inputWidth = scrollView.width / 2 - padding * 2
         let lineSpacing: CGFloat = 24
-        let inputHeight: CGFloat = 70
-        
-        planLabel.frame = CGRect(
-            x: padding,
-            y: 16,
-            width: scrollView.width - 32,
-            height: 26)
-        coldPlanInput.frame = CGRect(
-            x: padding,
-            y: planLabel.bottom + lineSpacing,
-            width: inputWidth,
-            height: inputHeight)
-        hotPlanInput.frame = CGRect(
-            x: rightInputX,
-            y: planLabel.bottom + lineSpacing,
-            width: inputWidth,
-            height: inputHeight)
-        dayPlanInput.frame = CGRect(
-            x: padding,
-            y: coldPlanInput.bottom + lineSpacing,
-            width: inputWidth,
-            height: inputHeight)
-        nightPlanInput.frame = CGRect(
-            x: rightInputX,
-            y: coldPlanInput.bottom + lineSpacing,
-            width: inputWidth,
-            height: inputHeight)
-        metersLabel.frame = CGRect(
-            x: padding,
-            y: dayPlanInput.bottom + lineSpacing * 2,
-            width: scrollView.width - padding * 2,
-            height: 26)
-        coldMetersInput.frame = CGRect(
-            x: padding,
-            y: metersLabel.bottom + lineSpacing,
-            width: inputWidth,
-            height: inputHeight)
-        hotMetersInput.frame = CGRect(
-            x: rightInputX,
-            y: metersLabel.bottom + lineSpacing,
-            width: inputWidth,
-            height: inputHeight)
-        dayMetersInput.frame = CGRect(
-            x: padding,
-            y: coldMetersInput.bottom + lineSpacing,
-            width: inputWidth,
-            height: inputHeight)
-        nightMetersInput.frame = CGRect(
-            x: rightInputX,
-            y: coldMetersInput.bottom + lineSpacing,
-            width: inputWidth,
-            height: inputHeight)
+
+        planGroup.frame = CGRect(
+            x: 0,
+            y: padding,
+            width: view.width,
+            height: planGroup.blockHeight)
+        metersGroup.frame = CGRect(
+            x: 0,
+            y: planGroup.bottom + lineSpacing,
+            width: view.width,
+            height: metersGroup.blockHeight)
         submitButton.frame = CGRect(
             x: scrollView.width - 100 - padding,
-            y: dayMetersInput.bottom + lineSpacing * 2,
+            y: metersGroup.bottom + lineSpacing * 3,
             width: 100,
             height: 50)
         
@@ -229,10 +161,12 @@ extension CreateNewEntryViewController: CreateNewEntryDisplayLogic {
     // MARK: - display view model from CreateNewEntryPresenter
     
     func displayCurrentPlan(viewModel: CreateNewEntry.GetMeters.ViewModel) {
-        coldPlanInput.setInputValue("\(viewModel.cold)")
-        hotPlanInput.setInputValue("\(viewModel.hot)")
-        dayPlanInput.setInputValue("\(viewModel.day)")
-        nightPlanInput.setInputValue("\(viewModel.night)")
+        planGroup.setValues([
+            "cold_plan": viewModel.cold,
+            "hot_plan": viewModel.hot,
+            "day_plan": viewModel.day,
+            "night_plan": viewModel.night
+        ])
     }
 
     func displayTransactionStatus(viewModel: CreateNewEntry.SaveNewEntry.ViewModel) {

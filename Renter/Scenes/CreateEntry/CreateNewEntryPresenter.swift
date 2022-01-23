@@ -25,10 +25,10 @@ class CreateNewEntryPresenter: CreateNewEntryPresentationLogic {
 
     func presentCurrentPlan(response: CreateNewEntry.GetMeters.Response) {
         let viewModel = CreateNewEntry.GetMeters.ViewModel(
-            cold: response.plan.coldPlan,
-            hot: response.plan.hotPlan,
-            day: response.plan.dayPlan,
-            night: response.plan.nightPlan)
+            cold: "\(response.plan.coldPlan)",
+            hot: "\(response.plan.hotPlan)",
+            day: "\(response.plan.dayPlan)",
+            night: "\(response.plan.nightPlan)")
         viewController?.displayCurrentPlan(viewModel: viewModel)
     }
 

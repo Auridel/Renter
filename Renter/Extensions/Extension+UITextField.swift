@@ -28,13 +28,13 @@ extension UITextField {
             barButtonSystemItem: .flexibleSpace,
             target: nil,
             action: nil)
-        let doneButton = UIBarButtonItem(
-            title: "Done",
+        let closeButton = UIBarButtonItem(
+            title: "Close",
             style: .done,
             target: self,
             action: #selector(didTapDoneButton))
         
-        doneToolbar.items = [flexSpace, doneButton]
+        doneToolbar.items = [flexSpace, closeButton]
         
         inputAccessoryView = doneToolbar
     }

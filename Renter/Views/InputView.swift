@@ -15,6 +15,8 @@ class InputView: UIView {
     
     weak var delegate: InputViewDelegate?
     
+    public let inputTag: String
+    
     private let inputLabel: UILabel = {
         let label = UILabel()
         label.textColor = .label
@@ -44,8 +46,11 @@ class InputView: UIView {
     init(_ label: String,
          returnKey: UIReturnKeyType,
          isSecure: Bool = false,
-         keyboardType: UIKeyboardType = .default
+         keyboardType: UIKeyboardType = .default,
+         tag: String = ""
     ) {
+        self.inputTag = tag
+        
         super.init(frame: .zero)
         inputLabel.text = label
         inputTextField.delegate = self
