@@ -16,6 +16,7 @@ protocol AccountDisplayLogic: AnyObject {
     func displayUser(viewModel: Account.ShowUser.ViewModel)
     func displayUpdatedUsername(viewModel: Account.SaveUser.ViewModel)
     func displaySignOutAlert(viewModel: Account.SingOutUser.ViewModel)
+    func displayError(with title: String, message: String)
 }
 
 class AccountViewController: UIViewController {
@@ -82,6 +83,30 @@ class AccountViewController: UIViewController {
         tableView.frame = view.bounds
     }
 
+    private func displayUpdateNameModal(_ name: String) {
+        let alert = UIAlertController(
+            title: "Change name",
+            message: "Enter your name",
+            preferredStyle: .alert)
+        
+        alert.addTextField { textField in
+            textField.text = name
+        }
+        
+        alert.addAction(UIAlertAction(title: "Cancel",
+                                      style: .cancel,
+                                      handler: nil))
+        alert.addAction(UIAlertAction(title: "Change",
+                                      style: .default,
+                                      handler: { [weak self] a in
+            self?.interactor?.updateUserName(
+                request: Account.SaveUser.Request(
+                    name: alert.textFields?.first?.text ?? ""))
+        }))
+        
+        present(alert, animated: true)
+    }
+    
 }
 
 // MARK: AccountDisplayLogic
@@ -96,22 +121,32 @@ extension AccountViewController: AccountDisplayLogic {
     }
 
     func displayUpdatedUsername(viewModel: Account.SaveUser.ViewModel) {
-        // do sometingElse with viewModel
+        guard let index = sections.firstIndex(where: { $0.rows.first?.tag == "name"})
+        else { return }
+        DispatchQueue.main.async { [weak self] in
+            self?.sections[index] = viewModel.section
+            self?.tableView.reloadSections([index], with: .automatic)
+        }
     }
     
     func displaySignOutAlert(viewModel: Account.SingOutUser.ViewModel) {
-        let alert = UIAlertController(
-            title: viewModel.title,
+        let alert = ComponentFactory.shared.produceUIAlert(
+            with: viewModel.title,
             message: viewModel.message,
-            preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Cancel",
-                                      style: .cancel,
-                                      handler: nil))
-        alert.addAction(UIAlertAction(title: "Sign Out",
-                                      style: .destructive,
-                                      handler: { [weak self] _ in
-            self?.interactor?.signOutUser()
-        }))
+            action: UIAlertAction(
+                title: "Sign Out",
+                style: .destructive,
+                handler: { [weak self] _ in
+                    self?.interactor?.signOutUser()
+                }))
+        
+        present(alert, animated: true)
+    }
+    
+    func displayError(with title: String, message: String) {
+        let alert = ComponentFactory.shared.produceUIAlert(
+            with: title,
+            message: message)
         
         present(alert, animated: true)
     }
@@ -152,8 +187,9 @@ extension AccountViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         let viewmodel = sections[indexPath.section].rows[indexPath.row]
         if viewmodel.tag == "logout" {
-            // TODO: name change case
             interactor?.presentSignOutAlert()
+        } else if viewmodel.tag == "name" {
+            displayUpdateNameModal(viewmodel.content)
         }
     }
     

@@ -26,7 +26,9 @@ final class MainCoordinator: Coordinator {
             queue: .main,
             using: { [weak self] _ in
                 self?.mainTabViewController?.dismiss(animated: true)
-                self?.navigationController.viewControllers = [LoginViewController()]
+                let loginVC = LoginViewController()
+                loginVC.delegate = self
+                self?.navigationController.viewControllers = [loginVC]
             })
     }
     
@@ -65,10 +67,10 @@ extension MainCoordinator: LoginViewControllerDelegate {
                 return
             }
             tabVC.modalPresentationStyle = .fullScreen
-            self.navigationController.viewControllers.removeAll()
             self.navigationController.present(
                 tabVC,
                 animated: true)
+            self.navigationController.viewControllers.removeAll()
         }
     }
 }

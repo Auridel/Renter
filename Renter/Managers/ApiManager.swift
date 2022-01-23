@@ -19,7 +19,7 @@ final class ApiManager {
     
     typealias TypedCompletion<T: Codable> = ((Result<T, Error>) -> Void)
     
-    typealias StatusResponse = (Bool) -> Void
+    typealias StatusCompletion = (Bool) -> Void
     
     public static let shared = ApiManager()
     
@@ -38,6 +38,18 @@ final class ApiManager {
             ])
     }
     
+    public func register(with email: String, name: String, password: String, confirm: String, completion: @escaping TypedCompletion<AuthResponse>) {
+        performApiCall(to: "\(baseURLString)/auth/register",
+                       method: .POST,
+                       completion: completion,
+                       body: [
+                        "email": email,
+                        "name": name,
+                        "password": password,
+                        "confirm": confirm
+                       ])
+    }
+    
     public func getHistoryData(completion: @escaping TypedCompletion<HistoryResponse>) {
         performApiCall(
             to: "\(baseURLString)/account/get",
@@ -47,7 +59,7 @@ final class ApiManager {
     
     public func createNewEntry(
         with data: NewEntryConvertedInput,
-        completion: @escaping StatusResponse)
+        completion: @escaping StatusCompletion)
     {
         performApiCall(to: "\(baseURLString)/account/add",
                        method: .POST,
@@ -64,12 +76,21 @@ final class ApiManager {
                        ])
     }
     
-    public func removeEntry(with timestamp: Double, completion: @escaping StatusResponse) {
+    public func removeEntry(with timestamp: Double, completion: @escaping StatusCompletion) {
         performApiCall(to: "\(baseURLString)/account/del",
                        method: .POST,
                        completion: completion,
                        body: [
                         "timestamp": timestamp
+                       ])
+    }
+    
+    public func changeUsername(_ name: String, completion: @escaping StatusCompletion) {
+        performApiCall(to: "\(baseURLString)/auth/name",
+                       method: .POST,
+                       completion: completion,
+                       body: [
+                        "name": name
                        ])
     }
     
@@ -100,7 +121,7 @@ final class ApiManager {
             }
     }
     
-    private func performApiCall(to urlString: String, method: HTTPMethod, completion: @escaping StatusResponse, body: [String: Any]? = nil) {
+    private func performApiCall(to urlString: String, method: HTTPMethod, completion: @escaping StatusCompletion, body: [String: Any]? = nil) {
         createRequest(
             URL(string: urlString),
             method: method) { [weak self] baseRequest in
@@ -168,7 +189,7 @@ final class ApiManager {
         }.resume()
     }
     
-    private func getStatusResponse(request: URLRequest, completion: @escaping StatusResponse) {
+    private func getStatusResponse(request: URLRequest, completion: @escaping StatusCompletion) {
         URLSession.shared.dataTask(with: request) { data, _, error in
             guard let data = data,
                     error == nil

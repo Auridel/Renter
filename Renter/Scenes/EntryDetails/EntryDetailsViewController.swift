@@ -65,13 +65,8 @@ class EntryDetailsViewController: UIViewController {
         let request = EntryDetails.GetEntry.Request()
         interactor?.getEntry(request: request)
     }
-//
-//    func doSomethingElse() {
-//        let request = EntryDetails.RemoveEntry.Request()
-//        interactor?.doSomethingElse(request: request)
-//    }
 
-    // MARK: Commmon
+    // MARK: Common
     
     private func configureViews() {
         tableView.delegate = self
@@ -83,28 +78,21 @@ class EntryDetailsViewController: UIViewController {
     private func layoutViews() {
         tableView.frame = view.bounds
     }
-
+    
 }
 
 // MARK: EntryDetailsDisplayLogic
 extension EntryDetailsViewController: EntryDetailsDisplayLogic {
     
     func displayAlert(viewModel: EntryDetails.RemoveEntry.ViewModel) {
-        let alert = UIAlertController(title: viewModel.title,
-                                      message: viewModel.message,
-                                      preferredStyle: .alert)
-        
-        alert.addAction(UIAlertAction(title: "Cancel",
-                                      style: .cancel,
-                                      handler: nil))
-        
-        if viewModel.isDelete {
-            alert.addAction(UIAlertAction(title: "Delete",
-                                          style: .destructive,
-                                          handler: { [weak self] _ in
-                self?.interactor?.deleteEntry()
-            }))
-        }
+        let alert = ComponentFactory.shared.produceUIAlert(
+            with: viewModel.title,
+            message: viewModel.message,
+            action: UIAlertAction(title: "Delete",
+                                  style: .destructive,
+                                  handler: { [weak self] _ in
+                                      self?.interactor?.deleteEntry()
+                                  }))
         
         present(alert, animated: true)
     }

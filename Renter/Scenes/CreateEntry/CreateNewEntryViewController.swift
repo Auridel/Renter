@@ -176,7 +176,7 @@ class CreateNewEntryViewController: UIViewController {
     }
 }
 
-
+// MARK: CreateNewEntryDisplayLogic
 extension CreateNewEntryViewController: CreateNewEntryDisplayLogic {
     
     // MARK: - display view model from CreateNewEntryPresenter

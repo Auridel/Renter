@@ -11,7 +11,6 @@
 		F81350212794581F007EA1C4 /* AuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81350202794581F007EA1C4 /* AuthResponse.swift */; };
 		F81350232794826D007EA1C4 /* Extension+UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81350222794826D007EA1C4 /* Extension+UITextField.swift */; };
 		F813502A27949E99007EA1C4 /* AccountPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F813502427949E99007EA1C4 /* AccountPresenter.swift */; };
-		F813502B27949E99007EA1C4 /* AccountWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F813502527949E99007EA1C4 /* AccountWorker.swift */; };
 		F813502C27949E99007EA1C4 /* AccountRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F813502627949E99007EA1C4 /* AccountRouter.swift */; };
 		F813502D27949E99007EA1C4 /* AccountModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F813502727949E99007EA1C4 /* AccountModels.swift */; };
 		F813502E27949E99007EA1C4 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F813502827949E99007EA1C4 /* AccountViewController.swift */; };
@@ -35,6 +34,8 @@
 		F81350532794B675007EA1C4 /* HistoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81350522794B675007EA1C4 /* HistoryCollectionViewCell.swift */; };
 		F81350552794B92A007EA1C4 /* HistoryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81350542794B92A007EA1C4 /* HistoryResponse.swift */; };
 		F81E64C8279D987F004B831E /* GroupedInputsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81E64C7279D987F004B831E /* GroupedInputsView.swift */; };
+		F81E64CA279DECD2004B831E /* RegisterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81E64C9279DECD2004B831E /* RegisterPresenter.swift */; };
+		F81E64CC279DEFB9004B831E /* ComponentFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81E64CB279DEFB9004B831E /* ComponentFactory.swift */; };
 		F8CA0FD12798A80E00EEEF8E /* AccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8CA0FD02798A80E00EEEF8E /* AccountTableViewCell.swift */; };
 		F8DBBB292795F82700414D7A /* EntryDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DBBB232795F82700414D7A /* EntryDetailsPresenter.swift */; };
 		F8DBBB2B2795F82700414D7A /* EntryDetailsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DBBB252795F82700414D7A /* EntryDetailsRouter.swift */; };
@@ -91,7 +92,6 @@
 		F81350202794581F007EA1C4 /* AuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponse.swift; sourceTree = "<group>"; };
 		F81350222794826D007EA1C4 /* Extension+UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UITextField.swift"; sourceTree = "<group>"; };
 		F813502427949E99007EA1C4 /* AccountPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPresenter.swift; sourceTree = "<group>"; };
-		F813502527949E99007EA1C4 /* AccountWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountWorker.swift; sourceTree = "<group>"; };
 		F813502627949E99007EA1C4 /* AccountRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRouter.swift; sourceTree = "<group>"; };
 		F813502727949E99007EA1C4 /* AccountModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountModels.swift; sourceTree = "<group>"; };
 		F813502827949E99007EA1C4 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
@@ -115,6 +115,8 @@
 		F81350522794B675007EA1C4 /* HistoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		F81350542794B92A007EA1C4 /* HistoryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryResponse.swift; sourceTree = "<group>"; };
 		F81E64C7279D987F004B831E /* GroupedInputsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupedInputsView.swift; sourceTree = "<group>"; };
+		F81E64C9279DECD2004B831E /* RegisterPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPresenter.swift; sourceTree = "<group>"; };
+		F81E64CB279DEFB9004B831E /* ComponentFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentFactory.swift; sourceTree = "<group>"; };
 		F8CA0FD02798A80E00EEEF8E /* AccountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableViewCell.swift; sourceTree = "<group>"; };
 		F8DBBB232795F82700414D7A /* EntryDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryDetailsPresenter.swift; sourceTree = "<group>"; };
 		F8DBBB252795F82700414D7A /* EntryDetailsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryDetailsRouter.swift; sourceTree = "<group>"; };
@@ -288,6 +290,7 @@
 				F8EAE5D42793085600298DED /* JWTDecoder.swift */,
 				F8EAE5D627930CEE00298DED /* ApiManager.swift */,
 				F8EAE5D82793117500298DED /* AuthManager.swift */,
+				F81E64CB279DEFB9004B831E /* ComponentFactory.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -333,7 +336,6 @@
 				F813502827949E99007EA1C4 /* AccountViewController.swift */,
 				F813502927949E99007EA1C4 /* AccountInteractor.swift */,
 				F813502427949E99007EA1C4 /* AccountPresenter.swift */,
-				F813502527949E99007EA1C4 /* AccountWorker.swift */,
 				F813502627949E99007EA1C4 /* AccountRouter.swift */,
 				F813502727949E99007EA1C4 /* AccountModels.swift */,
 				F813504B2794A475007EA1C4 /* AccountConfigurator.swift */,
@@ -345,6 +347,7 @@
 			isa = PBXGroup;
 			children = (
 				F8EAE5C82792FF4300298DED /* RegisterViewController.swift */,
+				F81E64C9279DECD2004B831E /* RegisterPresenter.swift */,
 			);
 			path = Register;
 			sourceTree = "<group>";
@@ -566,12 +569,13 @@
 				F813504E2794A4E7007EA1C4 /* HistoryConfigrator.swift in Sources */,
 				F813502A27949E99007EA1C4 /* AccountPresenter.swift in Sources */,
 				F8EAE5D727930CEE00298DED /* ApiManager.swift in Sources */,
+				F81E64CC279DEFB9004B831E /* ComponentFactory.swift in Sources */,
 				F813503627949EAF007EA1C4 /* HistoryPresenter.swift in Sources */,
 				F8DBBB2D2795F82700414D7A /* EntryDetailsViewController.swift in Sources */,
 				F8EAE5DD2793166300298DED /* Extension+NotificationCenter.Name.swift in Sources */,
 				F813503927949EAF007EA1C4 /* HistoryModels.swift in Sources */,
 				F8EAE5DB279311D300298DED /* User.swift in Sources */,
-				F813502B27949E99007EA1C4 /* AccountWorker.swift in Sources */,
+				F81E64CA279DECD2004B831E /* RegisterPresenter.swift in Sources */,
 				F813502C27949E99007EA1C4 /* AccountRouter.swift in Sources */,
 				F813504627949EC6007EA1C4 /* CreateNewEntryViewController.swift in Sources */,
 				F81350212794581F007EA1C4 /* AuthResponse.swift in Sources */,

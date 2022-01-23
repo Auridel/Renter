@@ -24,18 +24,33 @@ struct NewEntryConvertedInput {
     let meters: NumerousUserInput
 }
 
+enum ConvertError: Error {
+    case invalidData
+}
+
 class CreateNewEntryWorker {
     func convertStringToDouble(_ request: CreateNewEntry.SaveNewEntry.Request) throws -> NewEntryConvertedInput {
-        NewEntryConvertedInput(
+        guard let coldPlan = Double(request.plan.cold),
+              let hotPlan = Double(request.plan.hot),
+              let dayPlan = Double(request.plan.day),
+              let nightPlan = Double(request.plan.night),
+              let cold = Double(request.meters.cold),
+              let hot = Double(request.meters.hot),
+              let day = Double(request.meters.day),
+              let night = Double(request.meters.night)
+        else {
+            throw ConvertError.invalidData
+        }
+        return NewEntryConvertedInput(
             plan: NumerousUserInput(
-                cold: Double(request.plan.cold)!,
-                hot: Double(request.plan.hot)!,
-                day: Double(request.plan.day)!,
-                night: Double(request.plan.night)!),
+                cold: coldPlan,
+                hot: hotPlan,
+                day: dayPlan,
+                night: nightPlan),
             meters: NumerousUserInput(
-                cold: Double(request.meters.cold)!,
-                hot: Double(request.meters.hot)!,
-                day: Double(request.meters.day)!,
-                night: Double(request.meters.night)!))
+                cold: cold,
+                hot: hot,
+                day: day,
+                night: night))
     }
 }

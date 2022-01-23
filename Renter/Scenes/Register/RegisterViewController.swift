@@ -232,3 +232,20 @@ extension RegisterViewController: InputViewDelegate {
     }
 }
 
+
+// MARK: RegisterPresenterDelegate
+extension RegisterViewController: RegisterPresenterDelegate {
+    
+    func presentAlert(with title: String, message: String) {
+        let alert = ComponentFactory.shared.produceUIAlert(
+            with: title,
+            message: message)
+        
+        present(alert, animated: true)
+    }
+    
+    func onRegisterSuccess() {
+        
+    }
+
+}

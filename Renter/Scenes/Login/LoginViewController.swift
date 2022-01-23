@@ -54,11 +54,11 @@ class LoginViewController: UIViewController {
         view.backgroundColor = .systemBackground
         
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillShow(notification:)),
+                                               selector: #selector(adjustForKeyboard(notification:)),
                                                name: UIResponder.keyboardWillShowNotification,
                                                object: nil)
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillHide(notification:)),
+                                               selector: #selector(adjustForKeyboard(notification:)),
                                                name: UIResponder.keyboardWillHideNotification,
                                                object: nil)
 
@@ -107,18 +107,19 @@ class LoginViewController: UIViewController {
         delegate?.didTapRegister()
     }
     
-    @objc private func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            if scrollView.height == view.height {
-                scrollView.frame.size.height -= keyboardSize.height
-            }
+    @objc func adjustForKeyboard(notification: Notification) {
+        guard let keyboardValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
+
+        let keyboardScreenEndFrame = keyboardValue.cgRectValue
+        let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
+
+        if notification.name == UIResponder.keyboardWillHideNotification {
+            scrollView.contentInset = .zero
+        } else {
+            scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height - view.safeAreaInsets.bottom, right: 0)
         }
-    }
-    
-    @objc private func keyboardWillHide(notification: NSNotification) {
-        if scrollView.height != view.height {
-            scrollView.frame.size.height = view.height
-        }
+
+        scrollView.scrollIndicatorInsets = scrollView.contentInset
     }
     
     // MARK: Common
@@ -214,6 +215,7 @@ extension LoginViewController: LoginPresenterDelegate {
     }
     
     func onLoginSuccess() {
+        print(String(describing: delegate))
         delegate?.didLogin()
     }
     

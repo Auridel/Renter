@@ -50,8 +50,7 @@ enum Account {
         }
 
         struct ViewModel {
-            let name: String
-            let email: String
+            let section: AccountSectionViewModel
         }
     }
     

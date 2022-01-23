@@ -14,32 +14,47 @@ import UIKit
 
 protocol AccountBusinessLogic {
     func getUser(request: Account.ShowUser.Request)
-    func updateUser(request: Account.SaveUser.Request)
+    func updateUserName(request: Account.SaveUser.Request)
     func presentSignOutAlert()
     func signOutUser()
 }
 
 protocol AccountDataStore {
+    var user: User? { get set }
 }
 
 class AccountInteractor: AccountBusinessLogic, AccountDataStore {
+    
     var presenter: AccountPresentationLogic?
-    var worker: AccountWorker?
-
+    
+    var user: User?
+    
     // MARK: Do something (and send response to AccountPresenter)
-
+    
     func getUser(request: Account.ShowUser.Request) {
         guard let user = AuthManager.shared.getUser()
         else { return }
+        self.user = user
         presenter?.presentUser(response: Account.ShowUser.Response(user: user))
     }
-
-    func updateUser(request: Account.SaveUser.Request) {
-//        worker = AccountWorker()
-//        worker?.doSomeOtherWork()
-//
-//        let response = Account.SaveUser.Response()
-//        presenter?.presentUpdatedUsername(response: response)
+    
+    func updateUserName(request: Account.SaveUser.Request) {
+        guard !request.name.isEmpty
+        else {
+            presenter?.presentErrorAlert(with: "Name cannot be empty!")
+            return
+        }
+        
+        ApiManager.shared.changeUsername(request.name) { [weak self] isSuccess in
+            if isSuccess {
+                AuthManager.shared.updateUserName(with: request.name)
+                if let user = AuthManager.shared.getUser() {
+                    self?.presenter?.presentUpdatedUsername(response: Account.SaveUser.Response(user: user))
+                    return
+                }
+            }
+            self?.presenter?.presentErrorAlert(with: "Failed to change name")
+        }
     }
     
     func signOutUser() {

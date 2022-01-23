@@ -63,29 +63,31 @@ final class AuthManager {
         accessToken
     }
     
+    public func updateUserName(with name: String) {
+        UserDefaults.standard.setValue(name,
+                                       forKey: StorageKeys.username.rawValue)
+    }
+    
     //TODO: handle errors
     public func login(with email: String, password: String, completion: @escaping (Bool) -> Void) {
         ApiManager.shared.login(with: email, password: password) { [weak self] result in
             switch result {
             case .success(let response):
-                do {
-                    let user = try JWTDecoder.shared.decode(response.token)
-                    let data = try JSONSerialization.data(
-                        withJSONObject: user,
-                        options: .fragmentsAllowed)
-                    let decodedUser = try JSONDecoder().decode(User.self,
-                                                               from: data)
-                    
-                    
-                    print(decodedUser)
-                    
-                    self?.saveUserData(user: decodedUser, token: response.token)
-                } catch let error {
-                    print(error)
-                    completion(false)
-                    return
-                }
-                completion(true)
+                self?.getDataFromToken(response.token, completion: completion)
+            case .failure(_):
+                completion(false)
+            }
+        }
+    }
+    
+    public func register(with email: String, name: String, password: String, confirm: String, completion: @escaping (Bool) -> Void) {
+        ApiManager.shared.register(with: email,
+                                   name: name,
+                                   password: password,
+                                   confirm: confirm) { [weak self] result in
+            switch result {
+            case .success(let response):
+                self?.getDataFromToken(response.token, completion: completion)
             case .failure(_):
                 completion(false)
             }
@@ -104,6 +106,27 @@ final class AuthManager {
     }
     
     // MARK: Private
+    
+    private func getDataFromToken(_ token: String, completion: @escaping (Bool) -> Void) {
+        do {
+            let user = try JWTDecoder.shared.decode(token)
+            let data = try JSONSerialization.data(
+                withJSONObject: user,
+                options: .fragmentsAllowed)
+            let decodedUser = try JSONDecoder().decode(User.self,
+                                                       from: data)
+            
+            
+            print(decodedUser)
+            
+            saveUserData(user: decodedUser, token: token)
+        } catch let error {
+            print(error)
+            completion(false)
+            return
+        }
+        completion(true)
+    }
     
     private func saveUserData(userId: String, username: String, email: String, token: String) {
         UserDefaults.standard.setValuesForKeys([

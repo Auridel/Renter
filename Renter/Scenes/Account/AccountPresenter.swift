@@ -15,6 +15,7 @@ import Foundation
 protocol AccountPresentationLogic {
     func presentUser(response: Account.ShowUser.Response)
     func presentUpdatedUsername(response: Account.SaveUser.Response)
+    func presentErrorAlert(with error: String)
     func presentSignOutAlert()
 }
 
@@ -58,10 +59,24 @@ class AccountPresenter: AccountPresentationLogic {
         let viewModel = Account.ShowUser.ViewModel(sections: sections)
         viewController?.displayUser(viewModel: viewModel)
     }
-//
+
     func presentUpdatedUsername(response: Account.SaveUser.Response) {
-//        let viewModel = Account.SaveUser.ViewModel()
-//        viewController?.displayUpdatedUsername(viewModel: viewModel)
+        let viewModel = Account.SaveUser.ViewModel(
+            section: AccountSectionViewModel(
+                title: "Your Name",
+                rows: [
+                    AccountRowViewModel(
+                        isInteractable: true,
+                        content: response.user.userName,
+                        color: .label,
+                        tag: "name"
+                    )
+                ]))
+        viewController?.displayUpdatedUsername(viewModel: viewModel)
+    }
+    
+    func presentErrorAlert(with error: String) {
+        viewController?.displayError(with: "Error", message: error)
     }
     
     func presentSignOutAlert() {
