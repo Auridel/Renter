@@ -168,7 +168,7 @@ class CreateNewEntryViewController: UIViewController {
             height: metersGroup.blockHeight)
         submitButton.frame = CGRect(
             x: scrollView.width - 100 - padding,
-            y: metersGroup.bottom + lineSpacing * 3,
+            y: metersGroup.bottom + lineSpacing,
             width: 100,
             height: 50)
         

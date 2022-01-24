@@ -36,6 +36,7 @@
 		F81E64C8279D987F004B831E /* GroupedInputsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81E64C7279D987F004B831E /* GroupedInputsView.swift */; };
 		F81E64CA279DECD2004B831E /* RegisterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81E64C9279DECD2004B831E /* RegisterPresenter.swift */; };
 		F81E64CC279DEFB9004B831E /* ComponentFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81E64CB279DEFB9004B831E /* ComponentFactory.swift */; };
+		F8C89EE0279F3D64007A5B28 /* RegisterResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C89EDF279F3D64007A5B28 /* RegisterResponse.swift */; };
 		F8CA0FD12798A80E00EEEF8E /* AccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8CA0FD02798A80E00EEEF8E /* AccountTableViewCell.swift */; };
 		F8DBBB292795F82700414D7A /* EntryDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DBBB232795F82700414D7A /* EntryDetailsPresenter.swift */; };
 		F8DBBB2B2795F82700414D7A /* EntryDetailsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DBBB252795F82700414D7A /* EntryDetailsRouter.swift */; };
@@ -117,6 +118,7 @@
 		F81E64C7279D987F004B831E /* GroupedInputsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupedInputsView.swift; sourceTree = "<group>"; };
 		F81E64C9279DECD2004B831E /* RegisterPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPresenter.swift; sourceTree = "<group>"; };
 		F81E64CB279DEFB9004B831E /* ComponentFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentFactory.swift; sourceTree = "<group>"; };
+		F8C89EDF279F3D64007A5B28 /* RegisterResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterResponse.swift; sourceTree = "<group>"; };
 		F8CA0FD02798A80E00EEEF8E /* AccountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableViewCell.swift; sourceTree = "<group>"; };
 		F8DBBB232795F82700414D7A /* EntryDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryDetailsPresenter.swift; sourceTree = "<group>"; };
 		F8DBBB252795F82700414D7A /* EntryDetailsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryDetailsRouter.swift; sourceTree = "<group>"; };
@@ -395,6 +397,7 @@
 				F8EAE5DA279311D300298DED /* User.swift */,
 				F81350202794581F007EA1C4 /* AuthResponse.swift */,
 				F81350542794B92A007EA1C4 /* HistoryResponse.swift */,
+				F8C89EDF279F3D64007A5B28 /* RegisterResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -567,6 +570,7 @@
 				F8DBBB342796088F00414D7A /* EntryDetailsHeaderView.swift in Sources */,
 				F81E64C8279D987F004B831E /* GroupedInputsView.swift in Sources */,
 				F813504E2794A4E7007EA1C4 /* HistoryConfigrator.swift in Sources */,
+				F8C89EE0279F3D64007A5B28 /* RegisterResponse.swift in Sources */,
 				F813502A27949E99007EA1C4 /* AccountPresenter.swift in Sources */,
 				F8EAE5D727930CEE00298DED /* ApiManager.swift in Sources */,
 				F81E64CC279DEFB9004B831E /* ComponentFactory.swift in Sources */,

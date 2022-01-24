@@ -9,6 +9,7 @@ import UIKit
 
 protocol InputViewDelegate: AnyObject {
     func inputViewTextFieldDidReturn(_ textField: UITextField, with label: String?)
+    func inputViewShouldBeginEditing(_ textField: UITextField) -> Bool
 }
 
 class InputView: UIView {
@@ -104,6 +105,10 @@ class InputView: UIView {
 
 
 extension InputView: UITextFieldDelegate {
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        delegate?.inputViewShouldBeginEditing(textField) ?? true
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         delegate?.inputViewTextFieldDidReturn(textField, with: inputLabel.text)
         

@@ -19,16 +19,32 @@ class RegisterPresenter {
     
     weak var delegate: RegisterPresenterDelegateType?
     
-    public func registerUser(with email: String, name: String, password: String, confirm: String) {
+    public func registerUser(with email: String?, name: String?, password: String?, confirm: String?) {
+        guard let email = email,
+              let name = name,
+              let password = password,
+              let confirm = confirm,
+              !email.isEmpty,
+              !name.isEmpty,
+              !password.isEmpty,
+              !confirm.isEmpty
+        else {
+            DispatchQueue.main.async {
+                self.delegate?.presentAlert(with: "Error",
+                                       message: "Fields must not be empty!")
+            }
+            return
+        }
+        
+        
         AuthManager.shared.register(
             with: email,
             name: name,
             password: password,
-            confirm: confirm) { isSuccess in
-                if isSuccess {
-                    
-                } else {
-                    
+            confirm: confirm) { [weak self] message in
+                DispatchQueue.main.async {
+                    self?.delegate?.presentAlert(with: "Message",
+                                                 message: message)
                 }
             }
     }

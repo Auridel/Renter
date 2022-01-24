@@ -80,16 +80,16 @@ final class AuthManager {
         }
     }
     
-    public func register(with email: String, name: String, password: String, confirm: String, completion: @escaping (Bool) -> Void) {
+    public func register(with email: String, name: String, password: String, confirm: String, completion: @escaping (String) -> Void) {
         ApiManager.shared.register(with: email,
                                    name: name,
                                    password: password,
-                                   confirm: confirm) { [weak self] result in
+                                   confirm: confirm) { result in
             switch result {
             case .success(let response):
-                self?.getDataFromToken(response.token, completion: completion)
-            case .failure(_):
-                completion(false)
+                completion(response.message)
+            case .failure(let error):
+                completion(error.localizedDescription)
             }
         }
     }
@@ -100,6 +100,8 @@ final class AuthManager {
             return
         }
         UserDefaults.standard.removePersistentDomain(forName: domain)
+        UserDefaults.standard.synchronize()
+//        print(UserDefaults.standard.dictionaryRepresentation().keys)
         NotificationCenter.default.post(
             name: .tokenExpired,
             object: nil)

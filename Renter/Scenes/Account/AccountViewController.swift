@@ -84,18 +84,12 @@ class AccountViewController: UIViewController {
     }
 
     private func displayUpdateNameModal(_ name: String) {
-        let alert = UIAlertController(
-            title: "Change name",
+        let alert = ComponentFactory.shared.produceUIAlert(
+            with: "Change name",
             message: "Enter your name",
-            preferredStyle: .alert)
+            textFieldValue: name,
+            placeholder: "Name...")
         
-        alert.addTextField { textField in
-            textField.text = name
-        }
-        
-        alert.addAction(UIAlertAction(title: "Cancel",
-                                      style: .cancel,
-                                      handler: nil))
         alert.addAction(UIAlertAction(title: "Change",
                                       style: .default,
                                       handler: { [weak self] a in

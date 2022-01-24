@@ -196,6 +196,10 @@ class LoginViewController: UIViewController {
 
 // MARK: InputViewDelegate
 extension LoginViewController: InputViewDelegate {
+    func inputViewShouldBeginEditing(_ textField: UITextField) -> Bool {
+        return true
+    }
+    
     func inputViewTextFieldDidReturn(_ textField: UITextField, with label: String?) {
         textField.resignFirstResponder()
         if label == "Email" {

@@ -20,13 +20,24 @@ struct GroupedInputsViewModel {
 class GroupedInputView: UIView {
     
     public var blockHeight: CGFloat {
-        CGFloat(ceil(Double(inputs.count) / 2)) * 94 + 50
+        CGFloat(ceil(Double(inputs.count) / 2)) * (inputHeight + lineSpacing) + 34 + 50
     }
+    
+    private let lineSpacing: CGFloat = 24
+    
+    private let inputHeight: CGFloat = 70
     
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 24, weight: .bold)
         label.textAlignment = .center
+        return label
+    }()
+    
+    private let errorLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .red
+        label.font = .systemFont(ofSize: 16)
         return label
     }()
     
@@ -60,8 +71,7 @@ class GroupedInputView: UIView {
         let padding: CGFloat = 16
         let rightInputX = width / 2  + padding
         let inputWidth = width / 2 - padding * 2
-        let lineSpacing: CGFloat = 24
-        let inputHeight: CGFloat = 70
+        
         
         titleLabel.frame = CGRect(
             x: padding,
@@ -85,6 +95,11 @@ class GroupedInputView: UIView {
             }
             counter += 1
         }
+        errorLabel.frame = CGRect(
+            x: padding,
+            y: (inputs.last?.bottom ?? titleLabel.bottom) + padding,
+            width: width - padding * 2,
+            height: 18)
     }
     
     public func setValues(_ values: [String: String]) {

@@ -25,10 +25,7 @@ final class MainCoordinator: Coordinator {
             object: nil,
             queue: .main,
             using: { [weak self] _ in
-                self?.mainTabViewController?.dismiss(animated: true)
-                let loginVC = LoginViewController()
-                loginVC.delegate = self
-                self?.navigationController.viewControllers = [loginVC]
+                self?.resetToLogin()
             })
     }
     
@@ -45,7 +42,26 @@ final class MainCoordinator: Coordinator {
     }
     
     private func resetToLogin() {
-        
+        DispatchQueue.main.async {
+            self.mainTabViewController?.dismiss(animated: true)
+            let loginVC = LoginViewController()
+            loginVC.delegate = self
+            self.navigationController.viewControllers = [loginVC]
+        }
+    }
+    
+    private func proceedToMain() {
+        DispatchQueue.main.async {
+            self.mainTabViewController = MainTabsViewController()
+            guard let tabVC = self.mainTabViewController else {
+                return
+            }
+            tabVC.modalPresentationStyle = .fullScreen
+            self.navigationController.present(
+                tabVC,
+                animated: true)
+            self.navigationController.viewControllers.removeAll()
+        }
     }
 }
 
@@ -61,17 +77,7 @@ extension MainCoordinator: LoginViewControllerDelegate {
     }
     
     func didLogin() {
-        DispatchQueue.main.async {
-            self.mainTabViewController = MainTabsViewController()
-            guard let tabVC = self.mainTabViewController else {
-                return
-            }
-            tabVC.modalPresentationStyle = .fullScreen
-            self.navigationController.present(
-                tabVC,
-                animated: true)
-            self.navigationController.viewControllers.removeAll()
-        }
+        proceedToMain()
     }
 }
 
@@ -85,7 +91,7 @@ extension MainCoordinator: RegisterViewControllerDelegate {
     }
     
     func didRegister() {
-        
+        proceedToMain()
     }
     
     

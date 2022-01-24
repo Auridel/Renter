@@ -38,7 +38,7 @@ final class ApiManager {
             ])
     }
     
-    public func register(with email: String, name: String, password: String, confirm: String, completion: @escaping TypedCompletion<AuthResponse>) {
+    public func register(with email: String, name: String, password: String, confirm: String, completion: @escaping TypedCompletion<RegisterResponse>) {
         performApiCall(to: "\(baseURLString)/auth/register",
                        method: .POST,
                        completion: completion,

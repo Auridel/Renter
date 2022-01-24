@@ -16,6 +16,8 @@ class RegisterViewController: UIViewController {
     
     weak var delegate: RegisterViewControllerDelegate?
     
+    private let presenter = RegisterPresenter()
+    
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -35,12 +37,12 @@ class RegisterViewController: UIViewController {
     
     private let passwordInput = InputView(
         "Password",
-        returnKey: .done,
+        returnKey: .next,
         isSecure: true)
     
     private let repeatPasswordInput = InputView(
         "Repeat Password",
-        returnKey: .next,
+        returnKey: .done,
         isSecure: true)
     
     private let registerButton: UIButton = {
@@ -65,7 +67,7 @@ class RegisterViewController: UIViewController {
         
         title = "Register"
         view.backgroundColor = .systemBackground
-        
+        presenter.delegate = self
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(adjustForKeyboard(notification:)),
                                                name: UIResponder.keyboardWillShowNotification,
@@ -110,7 +112,11 @@ class RegisterViewController: UIViewController {
     // MARK: Actions
     
     @objc private func didTapRegisterButton() {
-        // TODO: try to auth, notify coordinator
+        presenter.registerUser(
+            with: emailInput.getValue(),
+            name: nameInput.getValue(),
+            password: passwordInput.getValue(),
+            confirm: repeatPasswordInput.getValue())
     }
     
     @objc private func didTapLoginButton() {
@@ -218,6 +224,10 @@ class RegisterViewController: UIViewController {
 // MARK: UITextFieldDelegate
 extension RegisterViewController: InputViewDelegate {
     
+    func inputViewShouldBeginEditing(_ textField: UITextField) -> Bool {
+        return true
+    }
+    
     func inputViewTextFieldDidReturn(_ textField: UITextField, with label: String?) {
         textField.resignFirstResponder()
         if label == "Name" {
@@ -245,7 +255,7 @@ extension RegisterViewController: RegisterPresenterDelegate {
     }
     
     func onRegisterSuccess() {
-        
+        delegate?.didRegister()
     }
 
 }

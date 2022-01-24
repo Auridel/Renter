@@ -38,7 +38,7 @@ class ComponentFactory {
         return alert
     }
     
-    public func produceUIAlert(with title: String, message: String?, action: UIAlertAction, textFieldValue: String?, placeholder: String?) -> UIAlertController {
+    public func produceUIAlert(with title: String, message: String?, textFieldValue: String?, placeholder: String?) -> UIAlertController {
         let alert = UIAlertController(
             title: title,
             message: message,
@@ -50,7 +50,6 @@ class ComponentFactory {
         alert.addAction(UIAlertAction(title: "Cancel",
                                       style: .cancel,
                                       handler: nil))
-        alert.addAction(action)
         
         return alert
     }
