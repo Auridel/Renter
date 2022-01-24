@@ -23,6 +23,8 @@ class GroupedInputView: UIView {
         CGFloat(ceil(Double(inputs.count) / 2)) * (inputHeight + lineSpacing) + 34 + 50
     }
     
+    private var hasErrors = false
+    
     private let lineSpacing: CGFloat = 24
     
     private let inputHeight: CGFloat = 70
@@ -38,6 +40,7 @@ class GroupedInputView: UIView {
         let label = UILabel()
         label.textColor = .red
         label.font = .systemFont(ofSize: 16)
+        label.textAlignment = .center
         return label
     }()
     
@@ -56,7 +59,9 @@ class GroupedInputView: UIView {
         self.titleLabel.text = title
         
         addSubview(titleLabel)
+        addSubview(errorLabel)
         for input in self.inputs {
+            input.delegate = self
             addSubview(input)
         }
     }
@@ -118,4 +123,53 @@ class GroupedInputView: UIView {
         
         return result
     }
+    
+    public func validate() -> Bool {
+        for input in inputs {
+            let value = input.getValue()
+            if (value ?? "").isEmpty  {
+                DispatchQueue.main.async {
+                    input.setError(true)
+                    self.hasErrors = true
+                    self.errorLabel.text  = "Fields cannot be empty!"
+                    print(self.hasErrors)
+                }
+            }
+        }
+        return hasErrors
+    }
+}
+
+
+// MARK: InputViewDelegate
+extension GroupedInputView: InputViewDelegate {
+    func inputViewTextFieldDidReturn(_ textField: UITextField, with label: String?, tag: String) {
+        guard let index = inputs.firstIndex(where: { $0.inputTag == tag })
+        else {
+            textField.resignFirstResponder()
+            return
+        }
+        if index == inputs.endIndex {
+            textField.resignFirstResponder()
+        } else {
+            inputs[index + 1].becomeFirstResponder()
+        }
+    }
+    
+    func inputViewShouldBeginEditing(_ textField: UITextField) -> Bool {
+        if hasErrors {
+            for input in inputs {
+                DispatchQueue.main.async {
+                    input.setError(false)
+                }
+            }
+            hasErrors = false
+            DispatchQueue.main.async {
+                self.errorLabel.text = nil
+            }
+        }
+        return true
+    }
+    
+    
 }

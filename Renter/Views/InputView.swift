@@ -8,7 +8,7 @@
 import UIKit
 
 protocol InputViewDelegate: AnyObject {
-    func inputViewTextFieldDidReturn(_ textField: UITextField, with label: String?)
+    func inputViewTextFieldDidReturn(_ textField: UITextField, with label: String?, tag: String)
     func inputViewShouldBeginEditing(_ textField: UITextField) -> Bool
 }
 
@@ -98,9 +98,10 @@ class InputView: UIView {
         inputTextField.becomeFirstResponder()
     }
     
-    @objc private func didTapDoneButton() {
-        inputTextField.resignFirstResponder()
+    public func setError(_ isError: Bool) {
+        inputTextField.layer.borderColor = isError ? UIColor.red.cgColor : Constants.primaryColor.cgColor
     }
+    
 }
 
 
@@ -110,7 +111,7 @@ extension InputView: UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        delegate?.inputViewTextFieldDidReturn(textField, with: inputLabel.text)
+        delegate?.inputViewTextFieldDidReturn(textField, with: inputLabel.text, tag: inputTag)
         
         return true
     }

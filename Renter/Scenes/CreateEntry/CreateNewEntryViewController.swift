@@ -95,8 +95,12 @@ class CreateNewEntryViewController: UIViewController {
     //MARK: - receive events from UI
     
     @objc private func didTapSubmitButton() {
+        guard metersGroup.validate(),
+              planGroup.validate()
+        else{ return }
         passCreateNewEntryRequest()
     }
+    
     @objc func adjustForKeyboard(notification: Notification) {
         guard let keyboardValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
 

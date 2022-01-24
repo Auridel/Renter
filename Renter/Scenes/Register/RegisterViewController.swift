@@ -228,7 +228,7 @@ extension RegisterViewController: InputViewDelegate {
         return true
     }
     
-    func inputViewTextFieldDidReturn(_ textField: UITextField, with label: String?) {
+    func inputViewTextFieldDidReturn(_ textField: UITextField, with label: String?, tag: String) {
         textField.resignFirstResponder()
         if label == "Name" {
             emailInput.makeFirstResponder()

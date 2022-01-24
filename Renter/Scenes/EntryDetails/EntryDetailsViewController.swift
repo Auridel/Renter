@@ -51,12 +51,6 @@ class EntryDetailsViewController: UIViewController {
         
         layoutViews()
     }
-    
-    //MARK: - receive events from UI
-    
-    @objc private func didTapCloseButton() {
-        
-    }
 
     
     // MARK: - request data from EntryDetailsInteractor
