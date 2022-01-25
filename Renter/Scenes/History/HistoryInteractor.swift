@@ -25,27 +25,23 @@ class HistoryInteractor: HistoryBusinessLogic, HistoryDataStore {
     
     var presenter: HistoryPresentationLogic?
     
-    var worker: HistoryWorker?
+    var worker: HistoryWorkerProtocol?
     
     var historyEntries = [HistoryEntry]()
 
-    // MARK: Do something (and send response to HistoryPresenter)
+    init(worker: HistoryWorkerProtocol) {
+        self.worker = worker
+    }
 
     func getHistory(request: History.GetHistoryData.Request) {
-        ApiManager.shared.getHistoryData { [weak self] result in
-            switch result {
-            case .success(let response):
-                print(response)
-                self?.historyEntries = response.entries.reversed()
-                let response = History.GetHistoryData.Response(
-                    entries: response.entries.reversed())
-                self?.presenter?.presentHistory(response: response)
-            case .failure(_):
-                //TODO: show some error
-                break
+        worker?.fetchHistoryData(completion: { [weak self] entries in
+            guard let entries = entries else {
+                return
             }
-        }
-        
+            self?.historyEntries = entries
+            self?.presenter?.presentHistory(
+                response: History.GetHistoryData.Response(entries: entries))
+        })
     }
 
     func getFiltredHistory(request: History.FilterData.Request) {

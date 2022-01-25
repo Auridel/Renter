@@ -14,13 +14,18 @@ class MainTabsViewController: UITabBarController {
         
         delegate = self
 
-        let historyTab = UINavigationController(rootViewController: HistoryViewController())
+        let historyVC = HistoryViewController()
+        HistoryConfigurator.shared.configure(with: historyVC)
+        let historyTab = UINavigationController(rootViewController: historyVC)
         let historyIcon = UITabBarItem(
             title: "History",
             image: UIImage(systemName: "chart.line.uptrend.xyaxis"),
             tag: 0)
         historyTab.tabBarItem = historyIcon
-        let accountTab = UINavigationController(rootViewController: AccountViewController())
+        
+        let accountVC = AccountViewController()
+        AccountConfigurator.shared.configure(with: accountVC)
+        let accountTab = UINavigationController(rootViewController: accountVC)
         let accountIcon = UITabBarItem(
             title: "Account",
             image: UIImage(systemName: "person.crop.circle"),

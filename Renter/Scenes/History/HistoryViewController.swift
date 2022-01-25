@@ -47,8 +47,6 @@ class HistoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        HistoryConfigurator.shared.configure(with: self)
-        
         title = "History"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.rightBarButtonItem = UIBarButtonItem(

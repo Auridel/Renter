@@ -43,8 +43,6 @@ class AccountViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = .systemBackground
         
-        AccountConfigurator.shared.configure(with: self)
-        
         configureViews()
         passUserRequest()
     }

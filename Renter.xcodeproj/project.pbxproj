@@ -47,12 +47,15 @@
 		F8DBBB322795FAD500414D7A /* EntryDetailsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DBBB312795FAD500414D7A /* EntryDetailsCollectionViewCell.swift */; };
 		F8DBBB342796088F00414D7A /* EntryDetailsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DBBB332796088F00414D7A /* EntryDetailsHeaderView.swift */; };
 		F8DBBB3627960DB600414D7A /* EntryDetailsFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DBBB3527960DB600414D7A /* EntryDetailsFooterView.swift */; };
+		F8E6830B27A07C1700C8E8DB /* HistoryInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E6830A27A07C1700C8E8DB /* HistoryInteractorTests.swift */; };
+		F8E6830D27A07E1800C8E8DB /* Seeds.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E6830C27A07E1800C8E8DB /* Seeds.swift */; };
+		F8E6830F27A08B3000C8E8DB /* HistoryPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E6830E27A08B3000C8E8DB /* HistoryPresenterTests.swift */; };
+		F8E6831127A08F4B00C8E8DB /* HistoryViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E6831027A08F4B00C8E8DB /* HistoryViewControllerTests.swift */; };
 		F8EAE5882792F45800298DED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE5872792F45800298DED /* AppDelegate.swift */; };
 		F8EAE58A2792F45800298DED /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE5892792F45800298DED /* SceneDelegate.swift */; };
 		F8EAE58C2792F45800298DED /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE58B2792F45800298DED /* ViewController.swift */; };
 		F8EAE5912792F45900298DED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8EAE5902792F45900298DED /* Assets.xcassets */; };
 		F8EAE5942792F45900298DED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8EAE5922792F45900298DED /* LaunchScreen.storyboard */; };
-		F8EAE59F2792F45900298DED /* RenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE59E2792F45900298DED /* RenterTests.swift */; };
 		F8EAE5A92792F45900298DED /* RenterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE5A82792F45900298DED /* RenterUITests.swift */; };
 		F8EAE5AB2792F45900298DED /* RenterUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE5AA2792F45900298DED /* RenterUITestsLaunchTests.swift */; };
 		F8EAE5C52792FD4900298DED /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE5C42792FD4900298DED /* Coordinator.swift */; };
@@ -129,6 +132,10 @@
 		F8DBBB312795FAD500414D7A /* EntryDetailsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryDetailsCollectionViewCell.swift; sourceTree = "<group>"; };
 		F8DBBB332796088F00414D7A /* EntryDetailsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryDetailsHeaderView.swift; sourceTree = "<group>"; };
 		F8DBBB3527960DB600414D7A /* EntryDetailsFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryDetailsFooterView.swift; sourceTree = "<group>"; };
+		F8E6830A27A07C1700C8E8DB /* HistoryInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryInteractorTests.swift; sourceTree = "<group>"; };
+		F8E6830C27A07E1800C8E8DB /* Seeds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Seeds.swift; sourceTree = "<group>"; };
+		F8E6830E27A08B3000C8E8DB /* HistoryPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryPresenterTests.swift; sourceTree = "<group>"; };
+		F8E6831027A08F4B00C8E8DB /* HistoryViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewControllerTests.swift; sourceTree = "<group>"; };
 		F8EAE5842792F45800298DED /* Renter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Renter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8EAE5872792F45800298DED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F8EAE5892792F45800298DED /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -137,7 +144,6 @@
 		F8EAE5932792F45900298DED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F8EAE5952792F45900298DED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F8EAE59A2792F45900298DED /* RenterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RenterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F8EAE59E2792F45900298DED /* RenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenterTests.swift; sourceTree = "<group>"; };
 		F8EAE5A42792F45900298DED /* RenterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RenterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8EAE5A82792F45900298DED /* RenterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenterUITests.swift; sourceTree = "<group>"; };
 		F8EAE5AA2792F45900298DED /* RenterUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenterUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -261,7 +267,10 @@
 		F8EAE59D2792F45900298DED /* RenterTests */ = {
 			isa = PBXGroup;
 			children = (
-				F8EAE59E2792F45900298DED /* RenterTests.swift */,
+				F8E6830A27A07C1700C8E8DB /* HistoryInteractorTests.swift */,
+				F8E6830C27A07E1800C8E8DB /* Seeds.swift */,
+				F8E6830E27A08B3000C8E8DB /* HistoryPresenterTests.swift */,
+				F8E6831027A08F4B00C8E8DB /* HistoryViewControllerTests.swift */,
 			);
 			path = RenterTests;
 			sourceTree = "<group>";
@@ -616,7 +625,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F8EAE59F2792F45900298DED /* RenterTests.swift in Sources */,
+				F8E6830F27A08B3000C8E8DB /* HistoryPresenterTests.swift in Sources */,
+				F8E6830B27A07C1700C8E8DB /* HistoryInteractorTests.swift in Sources */,
+				F8E6831127A08F4B00C8E8DB /* HistoryViewControllerTests.swift in Sources */,
+				F8E6830D27A07E1800C8E8DB /* Seeds.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -784,6 +796,7 @@
 				INFOPLIST_FILE = Renter/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -811,6 +824,7 @@
 				INFOPLIST_FILE = Renter/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

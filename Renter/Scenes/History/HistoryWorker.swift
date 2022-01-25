@@ -10,14 +10,26 @@
 //  see http://clean-swift.com
 //
 
-import UIKit
+import Foundation
 
-class HistoryWorker {
+protocol HistoryWorkerProtocol {
+    func fetchHistoryData(completion: @escaping ([HistoryEntry]?) -> Void)
+}
+
+class HistoryWorker: HistoryWorkerProtocol {
     func calculateTotal() {
         
     }
-//    
-//    func doSomeOtherWork() {
-//
-//    }
+    
+    func fetchHistoryData(completion: @escaping ([HistoryEntry]?) -> Void) {
+        ApiManager.shared.getHistoryData { result in
+            switch result {
+            case .success(let response):
+                completion(response.entries.reversed())
+            case .failure(_):
+                //TODO: show some error
+                completion(nil)
+            }
+        }
+    }
 }

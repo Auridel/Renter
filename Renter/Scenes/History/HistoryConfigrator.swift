@@ -14,7 +14,8 @@ class HistoryConfigurator {
     private init(){}
     
     public func configure(with viewController: HistoryViewController) {
-        let interactor = HistoryInteractor()
+        let worker = HistoryWorker()
+        let interactor = HistoryInteractor(worker: worker)
         let presenter = HistoryPresenter()
         let router = HistoryRouter()
         viewController.interactor = interactor
