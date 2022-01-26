@@ -51,6 +51,8 @@
 		F8E6830D27A07E1800C8E8DB /* Seeds.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E6830C27A07E1800C8E8DB /* Seeds.swift */; };
 		F8E6830F27A08B3000C8E8DB /* HistoryPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E6830E27A08B3000C8E8DB /* HistoryPresenterTests.swift */; };
 		F8E6831127A08F4B00C8E8DB /* HistoryViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E6831027A08F4B00C8E8DB /* HistoryViewControllerTests.swift */; };
+		F8E9744E27A1DC8C009496F6 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E9744D27A1DC8C009496F6 /* KeychainManager.swift */; };
+		F8E9745027A1E1BA009496F6 /* KeychainManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E9744F27A1E1BA009496F6 /* KeychainManagerTests.swift */; };
 		F8EAE5882792F45800298DED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE5872792F45800298DED /* AppDelegate.swift */; };
 		F8EAE58A2792F45800298DED /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE5892792F45800298DED /* SceneDelegate.swift */; };
 		F8EAE58C2792F45800298DED /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EAE58B2792F45800298DED /* ViewController.swift */; };
@@ -136,6 +138,8 @@
 		F8E6830C27A07E1800C8E8DB /* Seeds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Seeds.swift; sourceTree = "<group>"; };
 		F8E6830E27A08B3000C8E8DB /* HistoryPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryPresenterTests.swift; sourceTree = "<group>"; };
 		F8E6831027A08F4B00C8E8DB /* HistoryViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewControllerTests.swift; sourceTree = "<group>"; };
+		F8E9744D27A1DC8C009496F6 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
+		F8E9744F27A1E1BA009496F6 /* KeychainManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManagerTests.swift; sourceTree = "<group>"; };
 		F8EAE5842792F45800298DED /* Renter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Renter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8EAE5872792F45800298DED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F8EAE5892792F45800298DED /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -271,6 +275,7 @@
 				F8E6830C27A07E1800C8E8DB /* Seeds.swift */,
 				F8E6830E27A08B3000C8E8DB /* HistoryPresenterTests.swift */,
 				F8E6831027A08F4B00C8E8DB /* HistoryViewControllerTests.swift */,
+				F8E9744F27A1E1BA009496F6 /* KeychainManagerTests.swift */,
 			);
 			path = RenterTests;
 			sourceTree = "<group>";
@@ -302,6 +307,7 @@
 				F8EAE5D627930CEE00298DED /* ApiManager.swift */,
 				F8EAE5D82793117500298DED /* AuthManager.swift */,
 				F81E64CB279DEFB9004B831E /* ComponentFactory.swift */,
+				F8E9744D27A1DC8C009496F6 /* KeychainManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -574,6 +580,7 @@
 				F8EAE5CF2793070E00298DED /* Extension+UIView.swift in Sources */,
 				F813504A27949F12007EA1C4 /* MainTabsViewController.swift in Sources */,
 				F8EAE5D92793117500298DED /* AuthManager.swift in Sources */,
+				F8E9744E27A1DC8C009496F6 /* KeychainManager.swift in Sources */,
 				F8EAE5C92792FF4300298DED /* RegisterViewController.swift in Sources */,
 				F8EAE5E0279328AF00298DED /* InputView.swift in Sources */,
 				F8DBBB342796088F00414D7A /* EntryDetailsHeaderView.swift in Sources */,
@@ -626,6 +633,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F8E6830F27A08B3000C8E8DB /* HistoryPresenterTests.swift in Sources */,
+				F8E9745027A1E1BA009496F6 /* KeychainManagerTests.swift in Sources */,
 				F8E6830B27A07C1700C8E8DB /* HistoryInteractorTests.swift in Sources */,
 				F8E6831127A08F4B00C8E8DB /* HistoryViewControllerTests.swift in Sources */,
 				F8E6830D27A07E1800C8E8DB /* Seeds.swift in Sources */,
