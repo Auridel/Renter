@@ -219,7 +219,6 @@ extension LoginViewController: LoginPresenterDelegate {
     }
     
     func onLoginSuccess() {
-        print(String(describing: delegate))
         delegate?.didLogin()
     }
     

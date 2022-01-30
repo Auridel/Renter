@@ -40,7 +40,6 @@ class CreateNewEntryInteractor: CreateNewEntryBusinessLogic, CreateNewEntryDataS
     }
 
     func createNewEntry(request: CreateNewEntry.SaveNewEntry.Request) {
-        print(request)
         worker = CreateNewEntryWorker()
         do {
             let converted = try worker?.convertStringToDouble(request)

@@ -25,7 +25,7 @@ class PasscodeViewController: UIViewController {
     
     private let pinsView = GroupedPinView()
     
-    private var presenter: PasscodePresenter?
+    internal var presenter: PasscodePresenterProtocol?
     
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -52,10 +52,10 @@ class PasscodeViewController: UIViewController {
     // MARK: Object Lifecycle
     
     init(title: String? = "Enter Passcode", allowFaceId: Bool = true) {
-        super.init(nibName: nil, bundle: nil)
-        
         titleText = title
         self.allowFaceId = allowFaceId
+        
+        super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
@@ -73,9 +73,6 @@ class PasscodeViewController: UIViewController {
             style: .done,
             target: self,
             action: #selector(didTapBackButton))
-        
-        presenter = PasscodePresenter()
-        presenter?.delegate = self
         
         configureViews()
     }
@@ -107,6 +104,7 @@ class PasscodeViewController: UIViewController {
     }
     
     // MARK: Common
+    
     private func configureViews() {
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -128,7 +126,7 @@ class PasscodeViewController: UIViewController {
                 guard isSuccess, error == nil else {
                     return
                 }
-                self?.delegate?.passcodeViewControllerDidLogin()
+                self?.presenter?.didAuthorizeWithBiometric()
             }
         }
     }
@@ -138,7 +136,7 @@ class PasscodeViewController: UIViewController {
             passcode.append(number)
             pinsView.updatePins(selectedCount: passcode.count)
             if passcode.count == 4 {
-                
+                presenter?.didEnterPasscode(passcode)
             }
         }
     }
@@ -196,17 +194,16 @@ extension PasscodeViewController: UICollectionViewDelegate, UICollectionViewData
                     }))
         } else if indexPath.row == 11 {
             if allowFaceId {
-            cell.configure(
-                with: PasscodeCollectionViewCellViewModel(
-                    label: nil,
-                    image: UIImage(
-                        systemName: "face.dashed",
-                        withConfiguration: UIImage.SymbolConfiguration(font: .systemFont(ofSize: 24))),
-                    onPress: { [weak self] in
-                        self?.authenticateUser()
-                    }))
+                cell.configure(
+                    with: PasscodeCollectionViewCellViewModel(
+                        label: nil,
+                        image: UIImage(
+                            systemName: "face.dashed",
+                            withConfiguration: UIImage.SymbolConfiguration(font: .systemFont(ofSize: 24))),
+                        onPress: { [weak self] in
+                            self?.authenticateUser()
+                        }))
             }
-            cell = UICollectionViewCell()
         }
         
         return cell
@@ -230,13 +227,26 @@ extension PasscodeViewController: PasscodePresenterDelegate {
         delegate?.passcodeViewControllerDidLogin()
     }
     
-    func presentAlert(with message: String) {
-        let alert = ComponentFactory.shared.produceUIAlert(
-            with: "Error",
-            message: message)
-        
-        present(alert, animated: true)
+    func passcodePresenterPresentAlert(with message: String) {
+        DispatchQueue.main.async {
+            let alert = ComponentFactory.shared.produceUIAlert(
+                with: "Error",
+                message: message)
+            
+            self.present(alert, animated: true)
+        }
     }
     
+    func passcodePresenterSetTitle(_ title: String) {
+        DispatchQueue.main.async {
+            self.titleText = title
+            self.titleLabel.text = title
+        }
+    }
+    
+    func passcodePresenterClearPasscode() {
+        passcode = []
+        pinsView.updatePins(selectedCount: 0)
+    }
     
 }

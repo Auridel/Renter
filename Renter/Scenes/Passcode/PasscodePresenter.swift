@@ -8,11 +8,18 @@
 import UIKit
 
 protocol PasscodePresenterDelegate: AnyObject {
-    func presentAlert(with message: String)
+    func passcodePresenterPresentAlert(with message: String)
     func passcodePresenterDidLogin()
+    func passcodePresenterSetTitle(_ title: String)
+    func passcodePresenterClearPasscode()
 }
 
-class PasscodePresenter {
+protocol PasscodePresenterProtocol: AnyObject {
+    func didAuthorizeWithBiometric()
+    func didEnterPasscode(_ passcode: [Int])
+}
+
+class PasscodePresenter: PasscodePresenterProtocol {
     
     typealias PasscodePresenterDelegateType = UIViewController & PasscodePresenterDelegate
     
@@ -26,7 +33,6 @@ class PasscodePresenter {
     
     public func didEnterPasscode(_ passcode: [Int]) {
         let passcodeString = passcode.reduce("") { $0 + "\($1)" }
-        print(passcode)
         AuthManager.shared.loginWithPasscode(
             passcode: passcodeString) { [weak self] result in
                 self?.proceedWithAuthResult(result)
@@ -36,12 +42,12 @@ class PasscodePresenter {
     private func proceedWithAuthResult(_ result: AuthManager.PasscodeAuthResult) {
         switch result {
         case .invalidPasscode:
-            self.delegate?.presentAlert(with: "Incorrect Passcode!")
+            self.delegate?.passcodePresenterPresentAlert(with: "Incorrect Passcode!")
         case .failedToGetKeychainValues:
             //TODO: to login
             break
         case .failedToAuth:
-            self.delegate?.presentAlert(with: "Authorization Error!")
+            self.delegate?.passcodePresenterPresentAlert(with: "Authorization Error!")
         case .success:
             delegate?.passcodePresenterDidLogin()
         }

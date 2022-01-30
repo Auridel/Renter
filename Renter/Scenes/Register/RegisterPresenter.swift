@@ -42,6 +42,10 @@ class RegisterPresenter {
             name: name,
             password: password,
             confirm: confirm) { [weak self] message in
+                if message.lowercased() == "success" {
+                    self?.delegate?.onRegisterSuccess()
+                    return
+                }
                 DispatchQueue.main.async {
                     self?.delegate?.presentAlert(with: "Message",
                                                  message: message)

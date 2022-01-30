@@ -33,14 +33,18 @@ class PinView: UIView {
     }
     
     public func selectPin() {
-        UIView.animate(withDuration: 0.2) { [weak self] in
-            self?.pin.backgroundColor = .label
+        DispatchQueue.main.async {
+            UIView.animate(withDuration: 0.2) { [weak self] in
+                self?.pin.backgroundColor = .label
+            }
         }
     }
     
     public func deselectPin() {
-        UIView.animate(withDuration: 0.2) { [weak self] in
-            self?.pin.backgroundColor = .clear
+        DispatchQueue.main.async {
+            UIView.animate(withDuration: 0.2) { [weak self] in
+                self?.pin.backgroundColor = .clear
+            }
         }
     }
     

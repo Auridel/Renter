@@ -132,7 +132,6 @@ class GroupedInputView: UIView {
                     input.setError(true)
                     self.hasErrors = true
                     self.errorLabel.text  = "Fields cannot be empty!"
-                    print(self.hasErrors)
                 }
             }
         }

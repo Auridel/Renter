@@ -95,7 +95,7 @@ final class AuthManager {
     }
     
     public func loginWithPasscode(passcode: String, completion: @escaping (PasscodeAuthResult) -> Void) {
-        guard let savedPasscodeData = try? keychainManager.readPassword(account: Keys.password.rawValue),
+        guard let savedPasscodeData = try? keychainManager.readPassword(account: Keys.passcode.rawValue),
               let savedPasscodeString = String(data: savedPasscodeData,
                                                encoding: .utf8)
         else {
@@ -180,9 +180,6 @@ final class AuthManager {
             let decodedUser = try JSONDecoder().decode(User.self,
                                                        from: data)
             
-            
-            print(decodedUser)
-            
             saveUserData(user: decodedUser, token: token)
         } catch let error {
             print(error)
@@ -226,9 +223,9 @@ final class AuthManager {
             return
         }
         
-        try? keychainManager.savePassword(password: passwordData,
-                                          account: Keys.email.rawValue)
         try? keychainManager.savePassword(password: emailData,
+                                          account: Keys.email.rawValue)
+        try? keychainManager.savePassword(password: passwordData,
                                           account: Keys.password.rawValue)
     }
     

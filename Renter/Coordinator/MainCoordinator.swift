@@ -32,7 +32,7 @@ final class MainCoordinator: Coordinator {
     func start() {
         DispatchQueue.main.async {
             if AuthManager.shared.isAuthorized {
-                self.didLogin()
+                self.proceedToMain()
             } else {
                 let loginVC = self.pickLoginVC()
                 self.navigationController.viewControllers = [loginVC]
@@ -43,10 +43,13 @@ final class MainCoordinator: Coordinator {
     private func pickLoginVC() -> UIViewController {
         if AuthManager.shared.isKeychainDataExists {
             let loginVC = PasscodeViewController()
+            let presenter = PasscodePresenter()
+            presenter.delegate = loginVC
+            loginVC.presenter = presenter
             loginVC.delegate = self
             return loginVC
         } else {
-            let loginVC = PasscodeViewController()
+            let loginVC = LoginViewController()
             loginVC.delegate = self
             return loginVC
         }
@@ -87,7 +90,16 @@ extension MainCoordinator: LoginViewControllerDelegate {
     }
     
     func didLogin() {
-        proceedToMain()
+        DispatchQueue.main.async {
+            let passcodeVC = PasscodeViewController(
+                title: "Create Passcode",
+                allowFaceId: false)
+            let presenter = SetPasscodePresenter()
+            passcodeVC.presenter = presenter
+            presenter.delegate = passcodeVC
+            passcodeVC.delegate = self
+            self.navigationController.viewControllers = [passcodeVC]
+        }
     }
 }
 
@@ -101,7 +113,16 @@ extension MainCoordinator: RegisterViewControllerDelegate {
     }
     
     func didRegister() {
-        proceedToMain()
+        DispatchQueue.main.async {
+            let passcodeVC = PasscodeViewController(
+                title: "Create Passcode",
+                allowFaceId: false)
+            let presenter = SetPasscodePresenter()
+            passcodeVC.presenter = presenter
+            presenter.delegate = passcodeVC
+            passcodeVC.delegate = self
+            self.navigationController.viewControllers = [passcodeVC]
+        }
     }
 }
 
@@ -109,7 +130,7 @@ extension MainCoordinator: RegisterViewControllerDelegate {
 extension MainCoordinator: PasscodeViewControllerDelegate {
     
     func passcodeViewControllerDidTapBack() {
-        
+        // TODO: erase keychain data & back to login
     }
     
     func passcodeViewControllerDidLogin() {
