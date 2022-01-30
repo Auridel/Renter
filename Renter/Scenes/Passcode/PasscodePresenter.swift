@@ -9,6 +9,7 @@ import UIKit
 
 protocol PasscodePresenterDelegate: AnyObject {
     func presentAlert(with message: String)
+    func passcodePresenterDidLogin()
 }
 
 class PasscodePresenter {
@@ -18,7 +19,9 @@ class PasscodePresenter {
     weak var delegate: PasscodePresenterDelegateType?
     
     public func didAuthorizeWithBiometric() {
-        
+        AuthManager.shared.loginWithBiometric { [weak self] result in
+            self?.proceedWithAuthResult(result)
+        }
     }
     
     public func didEnterPasscode(_ passcode: [Int]) {
@@ -26,21 +29,21 @@ class PasscodePresenter {
         print(passcode)
         AuthManager.shared.loginWithPasscode(
             passcode: passcodeString) { [weak self] result in
-                guard let self = self else {
-                    return
-                }
-                switch result {
-                case .invalidPasscode:
-                    self.delegate?.presentAlert(with: "Incorrect Passcode!")
-                case .failedToGetKeychainValues:
-                    //TODO: to login
-                    break
-                case .failedToAuth:
-                    self.delegate?.presentAlert(with: "Authorization Error!")
-                case .success:
-                    // TODO: to main tabs
-                    break
-                }
+                self?.proceedWithAuthResult(result)
             }
+    }
+    
+    private func proceedWithAuthResult(_ result: AuthManager.PasscodeAuthResult) {
+        switch result {
+        case .invalidPasscode:
+            self.delegate?.presentAlert(with: "Incorrect Passcode!")
+        case .failedToGetKeychainValues:
+            //TODO: to login
+            break
+        case .failedToAuth:
+            self.delegate?.presentAlert(with: "Authorization Error!")
+        case .success:
+            delegate?.passcodePresenterDidLogin()
+        }
     }
 }

@@ -28,6 +28,16 @@ final class AuthManager {
         return expiredIn > Date()
     }
     
+    public var isKeychainDataExists: Bool {
+        guard let _ = try? keychainManager.readPassword(account: Keys.passcode.rawValue),
+              let _ = try? keychainManager.readPassword(account: Keys.email.rawValue),
+              let _ = try? keychainManager.readPassword(account: Keys.password.rawValue)
+        else {
+            return false
+        }
+        return true
+    }
+    
     private let keychainManager: KeychainManager
     
     private var tokenExpirationTime: Date? {
@@ -84,16 +94,6 @@ final class AuthManager {
                                           account: Keys.passcode.rawValue)
     }
     
-    public func checkIsKeychainDataExists() -> Bool {
-        guard let _ = try? keychainManager.readPassword(account: Keys.passcode.rawValue),
-              let _ = try? keychainManager.readPassword(account: Keys.email.rawValue),
-              let _ = try? keychainManager.readPassword(account: Keys.password.rawValue)
-        else {
-            return false
-        }
-        return true
-    }
-    
     public func loginWithPasscode(passcode: String, completion: @escaping (PasscodeAuthResult) -> Void) {
         guard let savedPasscodeData = try? keychainManager.readPassword(account: Keys.password.rawValue),
               let savedPasscodeString = String(data: savedPasscodeData,
@@ -103,21 +103,14 @@ final class AuthManager {
             return
         }
         if savedPasscodeString == passcode {
-            guard let userData = getUserDataFromKeychain()
-            else {
-                completion(.failedToGetKeychainValues)
-                return
-            }
-            login(with: userData.email, password: userData.password) { isSuccess in
-                if isSuccess {
-                    completion(.success)
-                } else {
-                    completion(.failedToAuth)
-                }
-            }
+            loginWithKeychainValues(completion: completion)
         } else {
             completion(.invalidPasscode)
         }
+    }
+    
+    public func loginWithBiometric(completion: @escaping (PasscodeAuthResult) -> Void) {
+        loginWithKeychainValues(completion: completion)
     }
     
     //TODO: handle errors
@@ -162,6 +155,21 @@ final class AuthManager {
     }
     
     // MARK: Private
+    
+    private func loginWithKeychainValues(completion: @escaping (PasscodeAuthResult) -> Void) {
+        guard let userData = getUserDataFromKeychain()
+        else {
+            completion(.failedToGetKeychainValues)
+            return
+        }
+        login(with: userData.email, password: userData.password) { isSuccess in
+            if isSuccess {
+                completion(.success)
+            } else {
+                completion(.failedToAuth)
+            }
+        }
+    }
     
     private func getDataFromToken(_ token: String, completion: @escaping (Bool) -> Void) {
         do {

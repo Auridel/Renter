@@ -8,13 +8,31 @@
 import UIKit
 import LocalAuthentication
 
+protocol PasscodeViewControllerDelegate: AnyObject {
+    func passcodeViewControllerDidLogin()
+    func passcodeViewControllerDidTapBack()
+}
+
 class PasscodeViewController: UIViewController {
     
+    weak var delegate: PasscodeViewControllerDelegate?
+    
     private var passcode = [Int]()
+    
+    private var titleText: String?
+    
+    private var allowFaceId: Bool
     
     private let pinsView = GroupedPinView()
     
     private var presenter: PasscodePresenter?
+    
+    private let titleLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 24, weight: .semibold)
+        label.textAlignment = .center
+        return label
+    }()
     
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -31,12 +49,31 @@ class PasscodeViewController: UIViewController {
         return collectionView
     }()
     
+    // MARK: Object Lifecycle
+    
+    init(title: String? = "Enter Passcode", allowFaceId: Bool = true) {
+        super.init(nibName: nil, bundle: nil)
+        
+        titleText = title
+        self.allowFaceId = allowFaceId
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .systemBackground
+        navigationItem.leftBarButtonItem = UIBarButtonItem(
+            title: "Back To Login",
+            style: .done,
+            target: self,
+            action: #selector(didTapBackButton))
+        
         presenter = PasscodePresenter()
         presenter?.delegate = self
         
@@ -46,9 +83,14 @@ class PasscodeViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
+        titleLabel.frame = CGRect(
+            x: 0,
+            y: view.safeAreaInsets.top,
+            width: view.width,
+            height: 40)
         pinsView.frame = CGRect(
             x: 0,
-            y: view.safeAreaInsets.top + 24,
+            y: titleLabel.bottom + 30,
             width: view.width,
             height: 50)
         collectionView.frame = CGRect(
@@ -58,11 +100,19 @@ class PasscodeViewController: UIViewController {
             height: view.height - view.safeAreaInsets.bottom - pinsView.bottom - 24)
     }
     
+    // MARK: Actions
+    
+    @objc private func didTapBackButton() {
+        delegate?.passcodeViewControllerDidTapBack()
+    }
+    
     // MARK: Common
     private func configureViews() {
         collectionView.delegate = self
         collectionView.dataSource = self
+        titleLabel.text = titleText
         
+        view.addSubview(titleLabel)
         view.addSubview(collectionView)
         view.addSubview(pinsView)
     }
@@ -76,10 +126,9 @@ class PasscodeViewController: UIViewController {
             context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics,
                                    localizedReason: reason) { [weak self] isSuccess, error in
                 guard isSuccess, error == nil else {
-                    //TODO: failed
                     return
                 }
-                // TODO: success
+                self?.delegate?.passcodeViewControllerDidLogin()
             }
         }
     }
@@ -146,6 +195,7 @@ extension PasscodeViewController: UICollectionViewDelegate, UICollectionViewData
                         self?.didPressNumber(0)
                     }))
         } else if indexPath.row == 11 {
+            if allowFaceId {
             cell.configure(
                 with: PasscodeCollectionViewCellViewModel(
                     label: nil,
@@ -155,6 +205,8 @@ extension PasscodeViewController: UICollectionViewDelegate, UICollectionViewData
                     onPress: { [weak self] in
                         self?.authenticateUser()
                     }))
+            }
+            cell = UICollectionViewCell()
         }
         
         return cell
@@ -174,8 +226,16 @@ extension PasscodeViewController: UICollectionViewDelegate, UICollectionViewData
 // MARK: PasscodePresenterDelegate
 extension PasscodeViewController: PasscodePresenterDelegate {
     
+    func passcodePresenterDidLogin() {
+        delegate?.passcodeViewControllerDidLogin()
+    }
+    
     func presentAlert(with message: String) {
+        let alert = ComponentFactory.shared.produceUIAlert(
+            with: "Error",
+            message: message)
         
+        present(alert, animated: true)
     }
     
     

@@ -34,19 +34,28 @@ final class MainCoordinator: Coordinator {
             if AuthManager.shared.isAuthorized {
                 self.didLogin()
             } else {
-//                let loginVC = LoginViewController()
-//                loginVC.delegate = self
-                let loginVC = PasscodeViewController()
+                let loginVC = self.pickLoginVC()
                 self.navigationController.viewControllers = [loginVC]
             }
+        }
+    }
+    
+    private func pickLoginVC() -> UIViewController {
+        if AuthManager.shared.isKeychainDataExists {
+            let loginVC = PasscodeViewController()
+            loginVC.delegate = self
+            return loginVC
+        } else {
+            let loginVC = PasscodeViewController()
+            loginVC.delegate = self
+            return loginVC
         }
     }
     
     private func resetToLogin() {
         DispatchQueue.main.async {
             self.mainTabViewController?.dismiss(animated: true)
-            let loginVC = LoginViewController()
-            loginVC.delegate = self
+            let loginVC = self.pickLoginVC()
             self.navigationController.viewControllers = [loginVC]
         }
     }
@@ -94,6 +103,17 @@ extension MainCoordinator: RegisterViewControllerDelegate {
     func didRegister() {
         proceedToMain()
     }
+}
+
+// MARK: PasscodeViewControllerDelegate
+extension MainCoordinator: PasscodeViewControllerDelegate {
     
+    func passcodeViewControllerDidTapBack() {
+        
+    }
+    
+    func passcodeViewControllerDidLogin() {
+        proceedToMain()
+    }
     
 }
