@@ -34,8 +34,9 @@ final class MainCoordinator: Coordinator {
             if AuthManager.shared.isAuthorized {
                 self.didLogin()
             } else {
-                let loginVC = LoginViewController()
-                loginVC.delegate = self
+//                let loginVC = LoginViewController()
+//                loginVC.delegate = self
+                let loginVC = PasscodeViewController()
                 self.navigationController.viewControllers = [loginVC]
             }
         }

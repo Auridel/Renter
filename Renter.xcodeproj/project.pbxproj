@@ -40,6 +40,10 @@
 		F843FEA627A6BFDA005DD6FC /* PasscodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F843FEA527A6BFDA005DD6FC /* PasscodeViewController.swift */; };
 		F843FEA827A6BFE8005DD6FC /* PasscodePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F843FEA727A6BFE8005DD6FC /* PasscodePresenter.swift */; };
 		F843FEAA27A6C940005DD6FC /* KeychainData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F843FEA927A6C940005DD6FC /* KeychainData.swift */; };
+		F843FEAC27A6CE63005DD6FC /* PasscodeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F843FEAB27A6CE63005DD6FC /* PasscodeCollectionViewCell.swift */; };
+		F843FEAE27A6D131005DD6FC /* PinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F843FEAD27A6D131005DD6FC /* PinView.swift */; };
+		F843FEB027A6D419005DD6FC /* GroupedPinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F843FEAF27A6D419005DD6FC /* GroupedPinView.swift */; };
+		F843FEB327A6E6DE005DD6FC /* PasscodeCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F843FEB227A6E6DE005DD6FC /* PasscodeCollectionViewCellViewModel.swift */; };
 		F8C89EE0279F3D64007A5B28 /* RegisterResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C89EDF279F3D64007A5B28 /* RegisterResponse.swift */; };
 		F8CA0FD12798A80E00EEEF8E /* AccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8CA0FD02798A80E00EEEF8E /* AccountTableViewCell.swift */; };
 		F8DBBB292795F82700414D7A /* EntryDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DBBB232795F82700414D7A /* EntryDetailsPresenter.swift */; };
@@ -131,6 +135,10 @@
 		F843FEA527A6BFDA005DD6FC /* PasscodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeViewController.swift; sourceTree = "<group>"; };
 		F843FEA727A6BFE8005DD6FC /* PasscodePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodePresenter.swift; sourceTree = "<group>"; };
 		F843FEA927A6C940005DD6FC /* KeychainData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainData.swift; sourceTree = "<group>"; };
+		F843FEAB27A6CE63005DD6FC /* PasscodeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeCollectionViewCell.swift; sourceTree = "<group>"; };
+		F843FEAD27A6D131005DD6FC /* PinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinView.swift; sourceTree = "<group>"; };
+		F843FEAF27A6D419005DD6FC /* GroupedPinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupedPinView.swift; sourceTree = "<group>"; };
+		F843FEB227A6E6DE005DD6FC /* PasscodeCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
 		F8C89EDF279F3D64007A5B28 /* RegisterResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterResponse.swift; sourceTree = "<group>"; };
 		F8CA0FD02798A80E00EEEF8E /* AccountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableViewCell.swift; sourceTree = "<group>"; };
 		F8DBBB232795F82700414D7A /* EntryDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryDetailsPresenter.swift; sourceTree = "<group>"; };
@@ -214,6 +222,7 @@
 				F81350522794B675007EA1C4 /* HistoryCollectionViewCell.swift */,
 				F8DBBB312795FAD500414D7A /* EntryDetailsCollectionViewCell.swift */,
 				F8CA0FD02798A80E00EEEF8E /* AccountTableViewCell.swift */,
+				F843FEAB27A6CE63005DD6FC /* PasscodeCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -233,6 +242,14 @@
 				F843FEA727A6BFE8005DD6FC /* PasscodePresenter.swift */,
 			);
 			path = Passcode;
+			sourceTree = "<group>";
+		};
+		F843FEB127A6E6C0005DD6FC /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				F843FEB227A6E6DE005DD6FC /* PasscodeCollectionViewCellViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		F8DBBB202795F7A300414D7A /* Tabs */ = {
@@ -283,6 +300,7 @@
 				F8EAE5C32792FD3E00298DED /* Coordinator */,
 				F813504827949EDF007EA1C4 /* Controllers */,
 				F8EAE5BA2792F5C100298DED /* Scenes */,
+				F843FEB127A6E6C0005DD6FC /* ViewModels */,
 				F8EAE5B92792F59E00298DED /* Views */,
 				F8EAE5B82792F59600298DED /* Managers */,
 				F8EAE5CC2793051000298DED /* Models */,
@@ -347,6 +365,8 @@
 				F8DBBB332796088F00414D7A /* EntryDetailsHeaderView.swift */,
 				F8DBBB3527960DB600414D7A /* EntryDetailsFooterView.swift */,
 				F81E64C7279D987F004B831E /* GroupedInputsView.swift */,
+				F843FEAD27A6D131005DD6FC /* PinView.swift */,
+				F843FEAF27A6D419005DD6FC /* GroupedPinView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -604,6 +624,7 @@
 				F8DBBB302795F91D00414D7A /* EntryDetailsConfigurator.swift in Sources */,
 				F813504C2794A475007EA1C4 /* AccountConfigurator.swift in Sources */,
 				F81350552794B92A007EA1C4 /* HistoryResponse.swift in Sources */,
+				F843FEAC27A6CE63005DD6FC /* PasscodeCollectionViewCell.swift in Sources */,
 				F8EAE58C2792F45800298DED /* ViewController.swift in Sources */,
 				F8EAE5CF2793070E00298DED /* Extension+UIView.swift in Sources */,
 				F813504A27949F12007EA1C4 /* MainTabsViewController.swift in Sources */,
@@ -615,6 +636,7 @@
 				F81E64C8279D987F004B831E /* GroupedInputsView.swift in Sources */,
 				F813504E2794A4E7007EA1C4 /* HistoryConfigrator.swift in Sources */,
 				F8C89EE0279F3D64007A5B28 /* RegisterResponse.swift in Sources */,
+				F843FEB327A6E6DE005DD6FC /* PasscodeCollectionViewCellViewModel.swift in Sources */,
 				F813502A27949E99007EA1C4 /* AccountPresenter.swift in Sources */,
 				F8EAE5D727930CEE00298DED /* ApiManager.swift in Sources */,
 				F81E64CC279DEFB9004B831E /* ComponentFactory.swift in Sources */,
@@ -636,6 +658,7 @@
 				F813503827949EAF007EA1C4 /* HistoryRouter.swift in Sources */,
 				F8EAE5D12793072900298DED /* Extension+String.swift in Sources */,
 				F81350232794826D007EA1C4 /* Extension+UITextField.swift in Sources */,
+				F843FEAE27A6D131005DD6FC /* PinView.swift in Sources */,
 				F813504427949EC6007EA1C4 /* CreateNewEntryRouter.swift in Sources */,
 				F813501F2794553D007EA1C4 /* LoginPresenter.swift in Sources */,
 				F813504327949EC6007EA1C4 /* CreateNewEntryWorker.swift in Sources */,
@@ -653,6 +676,7 @@
 				F813503B27949EAF007EA1C4 /* HistoryInteractor.swift in Sources */,
 				F8DBBB2E2795F82700414D7A /* EntryDetailsInteractor.swift in Sources */,
 				F813504227949EC6007EA1C4 /* CreateNewEntryPresenter.swift in Sources */,
+				F843FEB027A6D419005DD6FC /* GroupedPinView.swift in Sources */,
 				F843FEA827A6BFE8005DD6FC /* PasscodePresenter.swift in Sources */,
 				F8CA0FD12798A80E00EEEF8E /* AccountTableViewCell.swift in Sources */,
 				F81350532794B675007EA1C4 /* HistoryCollectionViewCell.swift in Sources */,
