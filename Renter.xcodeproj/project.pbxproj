@@ -36,6 +36,10 @@
 		F81E64C8279D987F004B831E /* GroupedInputsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81E64C7279D987F004B831E /* GroupedInputsView.swift */; };
 		F81E64CA279DECD2004B831E /* RegisterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81E64C9279DECD2004B831E /* RegisterPresenter.swift */; };
 		F81E64CC279DEFB9004B831E /* ComponentFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81E64CB279DEFB9004B831E /* ComponentFactory.swift */; };
+		F843FEA327A6BF26005DD6FC /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = F843FEA227A6BF26005DD6FC /* Keys.swift */; };
+		F843FEA627A6BFDA005DD6FC /* PasscodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F843FEA527A6BFDA005DD6FC /* PasscodeViewController.swift */; };
+		F843FEA827A6BFE8005DD6FC /* PasscodePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F843FEA727A6BFE8005DD6FC /* PasscodePresenter.swift */; };
+		F843FEAA27A6C940005DD6FC /* KeychainData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F843FEA927A6C940005DD6FC /* KeychainData.swift */; };
 		F8C89EE0279F3D64007A5B28 /* RegisterResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C89EDF279F3D64007A5B28 /* RegisterResponse.swift */; };
 		F8CA0FD12798A80E00EEEF8E /* AccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8CA0FD02798A80E00EEEF8E /* AccountTableViewCell.swift */; };
 		F8DBBB292795F82700414D7A /* EntryDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DBBB232795F82700414D7A /* EntryDetailsPresenter.swift */; };
@@ -123,6 +127,10 @@
 		F81E64C7279D987F004B831E /* GroupedInputsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupedInputsView.swift; sourceTree = "<group>"; };
 		F81E64C9279DECD2004B831E /* RegisterPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPresenter.swift; sourceTree = "<group>"; };
 		F81E64CB279DEFB9004B831E /* ComponentFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentFactory.swift; sourceTree = "<group>"; };
+		F843FEA227A6BF26005DD6FC /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
+		F843FEA527A6BFDA005DD6FC /* PasscodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeViewController.swift; sourceTree = "<group>"; };
+		F843FEA727A6BFE8005DD6FC /* PasscodePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodePresenter.swift; sourceTree = "<group>"; };
+		F843FEA927A6C940005DD6FC /* KeychainData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainData.swift; sourceTree = "<group>"; };
 		F8C89EDF279F3D64007A5B28 /* RegisterResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterResponse.swift; sourceTree = "<group>"; };
 		F8CA0FD02798A80E00EEEF8E /* AccountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableViewCell.swift; sourceTree = "<group>"; };
 		F8DBBB232795F82700414D7A /* EntryDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryDetailsPresenter.swift; sourceTree = "<group>"; };
@@ -210,6 +218,23 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		F843FEA027A6BF12005DD6FC /* Keys */ = {
+			isa = PBXGroup;
+			children = (
+				F843FEA227A6BF26005DD6FC /* Keys.swift */,
+			);
+			path = Keys;
+			sourceTree = "<group>";
+		};
+		F843FEA427A6BFC3005DD6FC /* Passcode */ = {
+			isa = PBXGroup;
+			children = (
+				F843FEA527A6BFDA005DD6FC /* PasscodeViewController.swift */,
+				F843FEA727A6BFE8005DD6FC /* PasscodePresenter.swift */,
+			);
+			path = Passcode;
+			sourceTree = "<group>";
+		};
 		F8DBBB202795F7A300414D7A /* Tabs */ = {
 			isa = PBXGroup;
 			children = (
@@ -254,6 +279,7 @@
 		F8EAE5862792F45800298DED /* Renter */ = {
 			isa = PBXGroup;
 			children = (
+				F843FEA027A6BF12005DD6FC /* Keys */,
 				F8EAE5C32792FD3E00298DED /* Coordinator */,
 				F813504827949EDF007EA1C4 /* Controllers */,
 				F8EAE5BA2792F5C100298DED /* Scenes */,
@@ -328,6 +354,7 @@
 		F8EAE5BA2792F5C100298DED /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				F843FEA427A6BFC3005DD6FC /* Passcode */,
 				F8EAE5BB2792F5D000298DED /* Login */,
 				F8EAE5BD2792F74200298DED /* Register */,
 				F8EAE5BC2792F5E000298DED /* Account */,
@@ -413,6 +440,7 @@
 				F81350202794581F007EA1C4 /* AuthResponse.swift */,
 				F81350542794B92A007EA1C4 /* HistoryResponse.swift */,
 				F8C89EDF279F3D64007A5B28 /* RegisterResponse.swift */,
+				F843FEA927A6C940005DD6FC /* KeychainData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -590,6 +618,7 @@
 				F813502A27949E99007EA1C4 /* AccountPresenter.swift in Sources */,
 				F8EAE5D727930CEE00298DED /* ApiManager.swift in Sources */,
 				F81E64CC279DEFB9004B831E /* ComponentFactory.swift in Sources */,
+				F843FEA327A6BF26005DD6FC /* Keys.swift in Sources */,
 				F813503627949EAF007EA1C4 /* HistoryPresenter.swift in Sources */,
 				F8DBBB2D2795F82700414D7A /* EntryDetailsViewController.swift in Sources */,
 				F8EAE5DD2793166300298DED /* Extension+NotificationCenter.Name.swift in Sources */,
@@ -613,15 +642,18 @@
 				F8EAE5D32793074100298DED /* Extension+DateFormatter.swift in Sources */,
 				F8EAE5D52793085600298DED /* JWTDecoder.swift in Sources */,
 				F8DBBB3627960DB600414D7A /* EntryDetailsFooterView.swift in Sources */,
+				F843FEAA27A6C940005DD6FC /* KeychainData.swift in Sources */,
 				F8EAE5882792F45800298DED /* AppDelegate.swift in Sources */,
 				F8DBBB2B2795F82700414D7A /* EntryDetailsRouter.swift in Sources */,
 				F8EAE5CB2793006600298DED /* MainCoordinator.swift in Sources */,
 				F8EAE58A2792F45800298DED /* SceneDelegate.swift in Sources */,
 				F813502D27949E99007EA1C4 /* AccountModels.swift in Sources */,
+				F843FEA627A6BFDA005DD6FC /* PasscodeViewController.swift in Sources */,
 				F813504527949EC6007EA1C4 /* CreateNewEntryModels.swift in Sources */,
 				F813503B27949EAF007EA1C4 /* HistoryInteractor.swift in Sources */,
 				F8DBBB2E2795F82700414D7A /* EntryDetailsInteractor.swift in Sources */,
 				F813504227949EC6007EA1C4 /* CreateNewEntryPresenter.swift in Sources */,
+				F843FEA827A6BFE8005DD6FC /* PasscodePresenter.swift in Sources */,
 				F8CA0FD12798A80E00EEEF8E /* AccountTableViewCell.swift in Sources */,
 				F81350532794B675007EA1C4 /* HistoryCollectionViewCell.swift in Sources */,
 				F8DBBB2C2795F82700414D7A /* EntryDetailsModels.swift in Sources */,

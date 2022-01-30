@@ -9,7 +9,7 @@ import Foundation
 
 final class KeychainManager {
     
-    private let service = "com.oleg.efimov.renter.app.Renter"
+    private let service: String = Bundle.main.bundleIdentifier ?? ""
     
     enum KeychainError: Error, Equatable {
         case itemNotFound, duplicateItem, invalidItemFormat, unexpectedStatus(OSStatus)

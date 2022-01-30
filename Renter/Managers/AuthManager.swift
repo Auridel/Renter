@@ -13,6 +13,10 @@ final class AuthManager {
         case token, username, email, userId, expiredIn
     }
     
+    enum PasscodeAuthResult {
+        case invalidPasscode, failedToGetKeychainValues, failedToAuth, success
+    }
+    
     public static let shared = AuthManager()
     
     public var isAuthorized: Bool {
@@ -23,6 +27,8 @@ final class AuthManager {
         }
         return expiredIn > Date()
     }
+    
+    private let keychainManager: KeychainManager
     
     private var tokenExpirationTime: Date? {
         UserDefaults.standard.value(forKey: "expiredIn") as? Date
@@ -44,7 +50,9 @@ final class AuthManager {
         UserDefaults.standard.string(forKey: "userId")
     }
     
-    private init(){}
+    private init(){
+        keychainManager = KeychainManager()
+    }
     
     public func getUser() -> User? {
         guard let userId = userId,
@@ -68,12 +76,57 @@ final class AuthManager {
                                        forKey: StorageKeys.username.rawValue)
     }
     
+    public func savePasscode(passcode: String) {
+        guard let passcodeData = passcode.data(using: .utf8) else {
+            return
+        }
+        try? keychainManager.savePassword(password: passcodeData,
+                                          account: Keys.passcode.rawValue)
+    }
+    
+    public func checkIsKeychainDataExists() -> Bool {
+        guard let _ = try? keychainManager.readPassword(account: Keys.passcode.rawValue),
+              let _ = try? keychainManager.readPassword(account: Keys.email.rawValue),
+              let _ = try? keychainManager.readPassword(account: Keys.password.rawValue)
+        else {
+            return false
+        }
+        return true
+    }
+    
+    public func loginWithPasscode(passcode: String, completion: @escaping (PasscodeAuthResult) -> Void) {
+        guard let savedPasscodeData = try? keychainManager.readPassword(account: Keys.password.rawValue),
+              let savedPasscodeString = String(data: savedPasscodeData,
+                                               encoding: .utf8)
+        else {
+            completion(.failedToGetKeychainValues)
+            return
+        }
+        if savedPasscodeString == passcode {
+            guard let userData = getUserDataFromKeychain()
+            else {
+                completion(.failedToGetKeychainValues)
+                return
+            }
+            login(with: userData.email, password: userData.password) { isSuccess in
+                if isSuccess {
+                    completion(.success)
+                } else {
+                    completion(.failedToAuth)
+                }
+            }
+        } else {
+            completion(.invalidPasscode)
+        }
+    }
+    
     //TODO: handle errors
     public func login(with email: String, password: String, completion: @escaping (Bool) -> Void) {
         ApiManager.shared.login(with: email, password: password) { [weak self] result in
             switch result {
             case .success(let response):
                 self?.getDataFromToken(response.token, completion: completion)
+                self?.saveUserDataToKeychain(email: email, password: password)
             case .failure(_):
                 completion(false)
             }
@@ -84,10 +137,11 @@ final class AuthManager {
         ApiManager.shared.register(with: email,
                                    name: name,
                                    password: password,
-                                   confirm: confirm) { result in
+                                   confirm: confirm) { [weak self] result in
             switch result {
             case .success(let response):
                 completion(response.message)
+                self?.saveUserDataToKeychain(email: email, password: password)
             case .failure(let error):
                 completion(error.localizedDescription)
             }
@@ -101,7 +155,7 @@ final class AuthManager {
         }
         UserDefaults.standard.removePersistentDomain(forName: domain)
         UserDefaults.standard.synchronize()
-//        print(UserDefaults.standard.dictionaryRepresentation().keys)
+        //        print(UserDefaults.standard.dictionaryRepresentation().keys)
         NotificationCenter.default.post(
             name: .tokenExpired,
             object: nil)
@@ -148,5 +202,45 @@ final class AuthManager {
             StorageKeys.token.rawValue: token,
             StorageKeys.expiredIn.rawValue: Date.now.addingTimeInterval(60 * 60)
         ])
+    }
+    
+    private func clearKeychainEntries() {
+        try? keychainManager.deletePassword(account: Keys.passcode.rawValue)
+        try? keychainManager.deletePassword(account: Keys.email.rawValue)
+        try? keychainManager.deletePassword(account: Keys.password.rawValue)
+    }
+    
+    private func saveUserDataToKeychain(email: String, password: String) {
+        guard let emailData = email.data(using: .utf8),
+              let passwordData = password.data(using: .utf8)
+        else {
+            print("Failed to save data to keychain")
+            return
+        }
+        
+        try? keychainManager.savePassword(password: passwordData,
+                                          account: Keys.email.rawValue)
+        try? keychainManager.savePassword(password: emailData,
+                                          account: Keys.password.rawValue)
+    }
+    
+    private func getUserDataFromKeychain() -> KeychainData? {
+        do {
+            let emailData = try keychainManager.readPassword(
+                account: Keys.email.rawValue)
+            let passwordData = try keychainManager.readPassword(
+                account: Keys.password.rawValue)
+            guard let email = String(data: emailData,
+                                     encoding: .utf8),
+                  let password = String(data: passwordData,
+                                        encoding: .utf8)
+            else { return nil }
+            
+            return KeychainData(email: email,
+                                password: password)
+        } catch let error {
+            print(error)
+            return nil
+        }
     }
 }
