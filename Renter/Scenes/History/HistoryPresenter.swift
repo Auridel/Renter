@@ -36,7 +36,7 @@ class HistoryPresenter: HistoryPresentationLogic {
 
     func presentFilteredHistory(response: History.FilterData.Response) {
 //        let viewModel = History.FilterData.ViewModel()
-//        viewController?.displayFiltredHistory(viewModel: viewModel)
+//        viewController?.displayFilteredHistory(viewModel: viewModel)
     }
 }
 

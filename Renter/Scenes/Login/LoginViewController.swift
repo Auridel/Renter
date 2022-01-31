@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import ProgressHUD
 
 protocol LoginViewControllerDelegate: AnyObject {
     func didTapRegister()
@@ -100,6 +101,8 @@ class LoginViewController: UIViewController {
         else {
             return
         }
+        ProgressHUD.animationType = .circleRotateChase
+        ProgressHUD.show()
         presenter.proceedToLogin(with: email, password: password)
     }
     
@@ -215,10 +218,18 @@ extension LoginViewController: InputViewDelegate {
 // MARK: LoginPresenterDelegate
 extension LoginViewController: LoginPresenterDelegate {
     func presentAlert(with error: String) {
-        print(error)
+        let alert = ComponentFactory.shared.produceUIAlert(
+            with: "Error",
+            message: error)
+        
+        DispatchQueue.main.async {
+            ProgressHUD.show(icon: .failed)
+            self.present(alert, animated: true)
+        }
     }
     
     func onLoginSuccess() {
+        ProgressHUD.show(icon: .succeed)
         delegate?.didLogin()
     }
     

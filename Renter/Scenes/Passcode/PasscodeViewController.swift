@@ -7,6 +7,7 @@
 
 import UIKit
 import LocalAuthentication
+import ProgressHUD
 
 protocol PasscodeViewControllerDelegate: AnyObject {
     func passcodeViewControllerDidLogin()
@@ -223,7 +224,13 @@ extension PasscodeViewController: UICollectionViewDelegate, UICollectionViewData
 // MARK: PasscodePresenterDelegate
 extension PasscodeViewController: PasscodePresenterDelegate {
     
+    func passcodePresenterKeychainFailure() {
+        delegate?.passcodeViewControllerDidTapBack()
+    }
+    
+    
     func passcodePresenterDidLogin() {
+        ProgressHUD.show(icon: .succeed)
         delegate?.passcodeViewControllerDidLogin()
     }
     

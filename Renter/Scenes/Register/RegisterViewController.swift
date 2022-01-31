@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import ProgressHUD
 
 protocol RegisterViewControllerDelegate: AnyObject {
     func didTapLogin()
@@ -112,6 +113,9 @@ class RegisterViewController: UIViewController {
     // MARK: Actions
     
     @objc private func didTapRegisterButton() {
+        ProgressHUD.animationType = .circleRotateChase
+        ProgressHUD.show()
+        
         presenter.registerUser(
             with: emailInput.getValue(),
             name: nameInput.getValue(),
@@ -247,14 +251,18 @@ extension RegisterViewController: InputViewDelegate {
 extension RegisterViewController: RegisterPresenterDelegate {
     
     func presentAlert(with title: String, message: String) {
-        let alert = ComponentFactory.shared.produceUIAlert(
-            with: title,
-            message: message)
-        
-        present(alert, animated: true)
+        DispatchQueue.main.async {
+            ProgressHUD.show(icon: .failed)
+            let alert = ComponentFactory.shared.produceUIAlert(
+                with: title,
+                message: message)
+            
+            self.present(alert, animated: true)
+        }
     }
     
     func onRegisterSuccess() {
+        ProgressHUD.show(icon: .succeed)
         delegate?.didRegister()
     }
 

@@ -128,9 +128,9 @@ class GroupedInputView: UIView {
         for input in inputs {
             let value = input.getValue()
             if (value ?? "").isEmpty  {
+                self.hasErrors = true
                 DispatchQueue.main.async {
                     input.setError(true)
-                    self.hasErrors = true
                     self.errorLabel.text  = "Fields cannot be empty!"
                 }
             }

@@ -39,9 +39,11 @@ class CreateNewEntryPresenter: CreateNewEntryPresentationLogic {
                 viewModel: CreateNewEntry.SaveNewEntry.ViewModel(
                     isSuccess: true,
                     error: nil))
+        } else {
+            viewController?.presentAlert(
+                with: "Error",
+                message: "Failed to create entry")
         }
-//        let viewModel = CreateNewEntry.SomethingElse.ViewModel()
-//        viewController?.displayTransactionStatus(viewModel: viewModel)
     }
     
     func presentAlert(with error: String) {

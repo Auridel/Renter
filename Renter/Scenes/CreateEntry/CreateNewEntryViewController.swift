@@ -11,6 +11,7 @@
 //
 
 import UIKit
+import ProgressHUD
 
 protocol CreateNewEntryDisplayLogic: AnyObject {
     func displayCurrentPlan(viewModel: CreateNewEntry.GetMeters.ViewModel)
@@ -95,12 +96,15 @@ class CreateNewEntryViewController: UIViewController {
     //MARK: - receive events from UI
     
     @objc private func didTapSubmitButton() {
-        guard metersGroup.validate(),
-              planGroup.validate()
-        else{
-            return
+        if metersGroup.validate() == true,
+              planGroup.validate() == true
+        {
+            ProgressHUD.animationType = .circleRotateChase
+            ProgressHUD.show()
+            
+            passCreateNewEntryRequest()
         }
-        passCreateNewEntryRequest()
+        
     }
     
     @objc func adjustForKeyboard(notification: Notification) {
@@ -197,12 +201,20 @@ extension CreateNewEntryViewController: CreateNewEntryDisplayLogic {
     }
 
     func displayTransactionStatus(viewModel: CreateNewEntry.SaveNewEntry.ViewModel) {
+        ProgressHUD.show(icon: .succeed)
         if viewModel.isSuccess {
             router?.routeToPreviousScreen()
         }
     }
     
     func presentAlert(with title: String, message: String) {
-        
+        DispatchQueue.main.async {
+            ProgressHUD.show(icon: .failed)
+            
+            let alert = ComponentFactory.shared.produceUIAlert(
+                with: title,
+                message: message)
+            self.present(alert, animated: true)
+        }
     }
 }

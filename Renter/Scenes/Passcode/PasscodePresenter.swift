@@ -12,6 +12,7 @@ protocol PasscodePresenterDelegate: AnyObject {
     func passcodePresenterDidLogin()
     func passcodePresenterSetTitle(_ title: String)
     func passcodePresenterClearPasscode()
+    func passcodePresenterKeychainFailure()
 }
 
 protocol PasscodePresenterProtocol: AnyObject {
@@ -44,7 +45,7 @@ class PasscodePresenter: PasscodePresenterProtocol {
         case .invalidPasscode:
             self.delegate?.passcodePresenterPresentAlert(with: "Incorrect Passcode!")
         case .failedToGetKeychainValues:
-            //TODO: to login
+            delegate?.passcodePresenterKeychainFailure()
             break
         case .failedToAuth:
             self.delegate?.passcodePresenterPresentAlert(with: "Authorization Error!")

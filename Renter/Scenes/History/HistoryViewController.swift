@@ -11,10 +11,11 @@
 //
 
 import UIKit
+import ProgressHUD
 
 protocol HistoryDisplayLogic: AnyObject {
     func displayHistory(viewModel: History.GetHistoryData.ViewModel)
-    func displayFiltredHistory(viewModel: History.FilterData.ViewModel)
+    func displayFilteredHistory(viewModel: History.FilterData.ViewModel)
 }
 
 class HistoryViewController: UIViewController {
@@ -92,6 +93,9 @@ class HistoryViewController: UIViewController {
     // MARK: Common
     
     @objc private func entriesDidUpdate() {
+        ProgressHUD.animationType = .circleRotateChase
+        ProgressHUD.show()
+        
         passHistoryRequest()
     }
     
@@ -129,6 +133,8 @@ extension HistoryViewController: HistoryDisplayLogic {
     
     func displayHistory(viewModel: History.GetHistoryData.ViewModel) {
         DispatchQueue.main.async { [weak self] in
+            ProgressHUD.dismiss()
+            
             self?.rows = viewModel.rows
             guard let collectionView = self?.collectionView,
                   let noDataLabel = self?.noDataLabel
@@ -144,7 +150,7 @@ extension HistoryViewController: HistoryDisplayLogic {
         }
     }
     
-    func displayFiltredHistory(viewModel: History.FilterData.ViewModel) {
+    func displayFilteredHistory(viewModel: History.FilterData.ViewModel) {
         // do sometingElse with viewModel
     }
 }

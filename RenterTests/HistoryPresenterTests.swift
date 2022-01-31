@@ -19,7 +19,7 @@ class HistoryViewControllerSpy: HistoryDisplayLogic {
         displayedRows = viewModel.rows
     }
     
-    func displayFiltredHistory(viewModel: History.FilterData.ViewModel) {
+    func displayFilteredHistory(viewModel: History.FilterData.ViewModel) {
         
     }
     
