@@ -94,7 +94,11 @@ final class AuthManager {
                                           account: Keys.passcode.rawValue)
     }
     
-    public func loginWithPasscode(passcode: String, completion: @escaping (PasscodeAuthResult) -> Void) {
+    public func loginWithBiometric(completion: @escaping (PasscodeAuthResult) -> Void) {
+        loginWithKeychainValues(completion: completion)
+    }
+    
+    public func login(passcode: String, completion: @escaping (PasscodeAuthResult) -> Void) {
         guard let savedPasscodeData = try? keychainManager.readPassword(account: Keys.passcode.rawValue),
               let savedPasscodeString = String(data: savedPasscodeData,
                                                encoding: .utf8)
@@ -107,10 +111,6 @@ final class AuthManager {
         } else {
             completion(.invalidPasscode)
         }
-    }
-    
-    public func loginWithBiometric(completion: @escaping (PasscodeAuthResult) -> Void) {
-        loginWithKeychainValues(completion: completion)
     }
     
     //TODO: handle errors
@@ -141,7 +141,10 @@ final class AuthManager {
         }
     }
     
-    public func signOut() {
+    public func signOut(_ wipeKeychain: Bool = false) {
+        if wipeKeychain {
+            clearKeychainEntries()
+        }
         let domain = Bundle.main.bundleIdentifier
         guard let domain = domain else {
             return

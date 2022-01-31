@@ -31,7 +31,7 @@ class RegisterPresenter {
         else {
             DispatchQueue.main.async {
                 self.delegate?.presentAlert(with: "Error",
-                                       message: "Fields must not be empty!")
+                                            message: "Fields must not be empty!")
             }
             return
         }
@@ -43,12 +43,23 @@ class RegisterPresenter {
             password: password,
             confirm: confirm) { [weak self] message in
                 if message.lowercased() == "success" {
-                    self?.delegate?.onRegisterSuccess()
-                    return
-                }
-                DispatchQueue.main.async {
-                    self?.delegate?.presentAlert(with: "Message",
-                                                 message: message)
+                    AuthManager.shared.login(
+                        with: email,
+                        password: password) { isSuccess in
+                            if isSuccess {
+                                self?.delegate?.onRegisterSuccess()
+                            } else {
+                                DispatchQueue.main.async {
+                                    self?.delegate?.presentAlert(with: "Error",
+                                                                 message: "Internal error")
+                                }
+                            }
+                        }
+                } else {
+                    DispatchQueue.main.async {
+                        self?.delegate?.presentAlert(with: "Message",
+                                                     message: message)
+                    }
                 }
             }
     }

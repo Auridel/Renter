@@ -97,7 +97,9 @@ class CreateNewEntryViewController: UIViewController {
     @objc private func didTapSubmitButton() {
         guard metersGroup.validate(),
               planGroup.validate()
-        else{ return }
+        else{
+            return
+        }
         passCreateNewEntryRequest()
     }
     

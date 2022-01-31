@@ -33,7 +33,7 @@ class PasscodePresenter: PasscodePresenterProtocol {
     
     public func didEnterPasscode(_ passcode: [Int]) {
         let passcodeString = passcode.reduce("") { $0 + "\($1)" }
-        AuthManager.shared.loginWithPasscode(
+        AuthManager.shared.login(
             passcode: passcodeString) { [weak self] result in
                 self?.proceedWithAuthResult(result)
             }

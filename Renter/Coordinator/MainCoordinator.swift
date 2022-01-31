@@ -130,7 +130,7 @@ extension MainCoordinator: RegisterViewControllerDelegate {
 extension MainCoordinator: PasscodeViewControllerDelegate {
     
     func passcodeViewControllerDidTapBack() {
-        // TODO: erase keychain data & back to login
+        AuthManager.shared.signOut(true)
     }
     
     func passcodeViewControllerDidLogin() {

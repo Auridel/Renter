@@ -135,7 +135,7 @@ class GroupedInputView: UIView {
                 }
             }
         }
-        return hasErrors
+        return !hasErrors
     }
 }
 

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F8553CEA70194169430C2C5 /* Pods_Renter_RenterUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A24AE38C1D08A95CADD1B8A /* Pods_Renter_RenterUITests.framework */; };
+		28EEEC23AEC847F1886A36D6 /* Pods_Renter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA93741ABB298C9AAD2C1F55 /* Pods_Renter.framework */; };
+		63F5ABA954C84993496C31CA /* Pods_RenterTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B06BBEE2D943B683298A672 /* Pods_RenterTests.framework */; };
 		F813501F2794553D007EA1C4 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F813501E2794553D007EA1C4 /* LoginPresenter.swift */; };
 		F81350212794581F007EA1C4 /* AuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81350202794581F007EA1C4 /* AuthResponse.swift */; };
 		F81350232794826D007EA1C4 /* Extension+UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81350222794826D007EA1C4 /* Extension+UITextField.swift */; };
@@ -103,6 +106,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0A24AE38C1D08A95CADD1B8A /* Pods_Renter_RenterUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Renter_RenterUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		298B2B9A6A14328D4D43984E /* Pods-Renter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Renter.release.xcconfig"; path = "Target Support Files/Pods-Renter/Pods-Renter.release.xcconfig"; sourceTree = "<group>"; };
+		3C74DA46E9BA4A05FC3111E8 /* Pods-RenterTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RenterTests.release.xcconfig"; path = "Target Support Files/Pods-RenterTests/Pods-RenterTests.release.xcconfig"; sourceTree = "<group>"; };
+		3D36C4A604C31F8B59F6D658 /* Pods-RenterTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RenterTests.debug.xcconfig"; path = "Target Support Files/Pods-RenterTests/Pods-RenterTests.debug.xcconfig"; sourceTree = "<group>"; };
+		4B06BBEE2D943B683298A672 /* Pods_RenterTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RenterTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6652A4CF1C9C321E090C1CB7 /* Pods-Renter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Renter.debug.xcconfig"; path = "Target Support Files/Pods-Renter/Pods-Renter.debug.xcconfig"; sourceTree = "<group>"; };
+		7DE8405A160D36707A2CCAFD /* Pods-Renter-RenterUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Renter-RenterUITests.debug.xcconfig"; path = "Target Support Files/Pods-Renter-RenterUITests/Pods-Renter-RenterUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		BD82B48C10DD3EDDF45C6819 /* Pods-Renter-RenterUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Renter-RenterUITests.release.xcconfig"; path = "Target Support Files/Pods-Renter-RenterUITests/Pods-Renter-RenterUITests.release.xcconfig"; sourceTree = "<group>"; };
+		EA93741ABB298C9AAD2C1F55 /* Pods_Renter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Renter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F813501E2794553D007EA1C4 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
 		F81350202794581F007EA1C4 /* AuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponse.swift; sourceTree = "<group>"; };
 		F81350222794826D007EA1C4 /* Extension+UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UITextField.swift"; sourceTree = "<group>"; };
@@ -190,6 +202,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28EEEC23AEC847F1886A36D6 /* Pods_Renter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,6 +210,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63F5ABA954C84993496C31CA /* Pods_RenterTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -204,12 +218,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F8553CEA70194169430C2C5 /* Pods_Renter_RenterUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5343A4BBB6229546520E6B1D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6652A4CF1C9C321E090C1CB7 /* Pods-Renter.debug.xcconfig */,
+				298B2B9A6A14328D4D43984E /* Pods-Renter.release.xcconfig */,
+				7DE8405A160D36707A2CCAFD /* Pods-Renter-RenterUITests.debug.xcconfig */,
+				BD82B48C10DD3EDDF45C6819 /* Pods-Renter-RenterUITests.release.xcconfig */,
+				3D36C4A604C31F8B59F6D658 /* Pods-RenterTests.debug.xcconfig */,
+				3C74DA46E9BA4A05FC3111E8 /* Pods-RenterTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		C7E526156AE5BAB9127BF60B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EA93741ABB298C9AAD2C1F55 /* Pods_Renter.framework */,
+				0A24AE38C1D08A95CADD1B8A /* Pods_Renter_RenterUITests.framework */,
+				4B06BBEE2D943B683298A672 /* Pods_RenterTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F813504827949EDF007EA1C4 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -283,6 +322,8 @@
 				F8EAE59D2792F45900298DED /* RenterTests */,
 				F8EAE5A72792F45900298DED /* RenterUITests */,
 				F8EAE5852792F45800298DED /* Products */,
+				5343A4BBB6229546520E6B1D /* Pods */,
+				C7E526156AE5BAB9127BF60B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -495,9 +536,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F8EAE5AE2792F45900298DED /* Build configuration list for PBXNativeTarget "Renter" */;
 			buildPhases = (
+				3894A6272A4EA913176E84C0 /* [CP] Check Pods Manifest.lock */,
 				F8EAE5802792F45800298DED /* Sources */,
 				F8EAE5812792F45800298DED /* Frameworks */,
 				F8EAE5822792F45800298DED /* Resources */,
+				43EDA5EA1290AE5F91FF1716 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -512,6 +555,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F8EAE5B12792F45900298DED /* Build configuration list for PBXNativeTarget "RenterTests" */;
 			buildPhases = (
+				4950FAD2C6B4AA9F8B2F3810 /* [CP] Check Pods Manifest.lock */,
 				F8EAE5962792F45900298DED /* Sources */,
 				F8EAE5972792F45900298DED /* Frameworks */,
 				F8EAE5982792F45900298DED /* Resources */,
@@ -530,9 +574,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F8EAE5B42792F45900298DED /* Build configuration list for PBXNativeTarget "RenterUITests" */;
 			buildPhases = (
+				1BE84961934299020E13A8AB /* [CP] Check Pods Manifest.lock */,
 				F8EAE5A02792F45900298DED /* Sources */,
 				F8EAE5A12792F45900298DED /* Frameworks */,
 				F8EAE5A22792F45900298DED /* Resources */,
+				EFDB2E8C82ED546AB9538C99 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -612,6 +658,109 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1BE84961934299020E13A8AB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Renter-RenterUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3894A6272A4EA913176E84C0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Renter-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		43EDA5EA1290AE5F91FF1716 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Renter/Pods-Renter-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Renter/Pods-Renter-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Renter/Pods-Renter-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4950FAD2C6B4AA9F8B2F3810 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RenterTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EFDB2E8C82ED546AB9538C99 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Renter-RenterUITests/Pods-Renter-RenterUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Renter-RenterUITests/Pods-Renter-RenterUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Renter-RenterUITests/Pods-Renter-RenterUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F8EAE5802792F45800298DED /* Sources */ = {
@@ -854,6 +1003,7 @@
 		};
 		F8EAE5AF2792F45900298DED /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6652A4CF1C9C321E090C1CB7 /* Pods-Renter.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -882,6 +1032,7 @@
 		};
 		F8EAE5B02792F45900298DED /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 298B2B9A6A14328D4D43984E /* Pods-Renter.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -910,6 +1061,7 @@
 		};
 		F8EAE5B22792F45900298DED /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3D36C4A604C31F8B59F6D658 /* Pods-RenterTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -930,6 +1082,7 @@
 		};
 		F8EAE5B32792F45900298DED /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3C74DA46E9BA4A05FC3111E8 /* Pods-RenterTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -950,6 +1103,7 @@
 		};
 		F8EAE5B52792F45900298DED /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7DE8405A160D36707A2CCAFD /* Pods-Renter-RenterUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -968,6 +1122,7 @@
 		};
 		F8EAE5B62792F45900298DED /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BD82B48C10DD3EDDF45C6819 /* Pods-Renter-RenterUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

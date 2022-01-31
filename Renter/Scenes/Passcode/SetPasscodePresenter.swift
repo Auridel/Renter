@@ -26,10 +26,16 @@ class SetPasscodePresenter: PasscodePresenterProtocol {
             delegate?.passcodePresenterSetTitle("Repeat Passcode")
             delegate?.passcodePresenterClearPasscode()
             return
-        }
-        if self.passcode == passcodeString {
-            AuthManager.shared.savePasscode(passcode: passcodeString)
-            delegate?.passcodePresenterDidLogin()
+        } else {
+            if self.passcode == passcodeString {
+                AuthManager.shared.savePasscode(passcode: passcodeString)
+                delegate?.passcodePresenterDidLogin()
+            } else {
+                self.passcode = ""
+                delegate?.passcodePresenterClearPasscode()
+                delegate?.passcodePresenterSetTitle("Create Passcode")
+                delegate?.passcodePresenterPresentAlert(with: "Passcodes does't match")
+            }
         }
     }
 }
