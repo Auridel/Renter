@@ -43,14 +43,14 @@ class PasscodePresenter: PasscodePresenterProtocol {
     private func proceedWithAuthResult(_ result: AuthManager.PasscodeAuthResult) {
         switch result {
         case .invalidPasscode:
-            self.delegate?.passcodePresenterPresentAlert(with: "Incorrect Passcode!")
+            delegate?.passcodePresenterPresentAlert(with: "Incorrect Passcode!")
         case .failedToGetKeychainValues:
             delegate?.passcodePresenterKeychainFailure()
-            break
         case .failedToAuth:
-            self.delegate?.passcodePresenterPresentAlert(with: "Authorization Error!")
+            delegate?.passcodePresenterPresentAlert(with: "Authorization Error!")
         case .success:
             delegate?.passcodePresenterDidLogin()
         }
+        delegate?.passcodePresenterClearPasscode()
     }
 }
